@@ -1,0 +1,94 @@
+<!-- Content area -->
+<div class="content pt-0">
+	
+	<!-- Basic card -->
+	<div class="row">
+		<div class="col-sm-6 col-xl-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-users4 icon-3x text-success-400"></i>
+					</div>
+					
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0"><?= $cantidadClientes ?></h3>
+						<span class="text-uppercase font-size-sm text-muted">Clientes</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-xl-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-enter6 icon-3x text-indigo-400"></i>
+					</div>
+					
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0"><?= $cantidadVentasServicioTecnico ?></h3>
+						<span class="text-uppercase font-size-sm text-muted">Ventas Servicio Técnico</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-xl-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="media-body">
+						<h3 class="font-weight-semibold mb-0">54,390</h3>
+						<span class="text-uppercase font-size-sm text-muted">Ventas Ploteo</span>
+					</div>
+					
+					<div class="ml-3 align-self-center">
+						<i class="icon-bubbles4 icon-3x text-blue-400"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-xl-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="media-body">
+						<h3 class="font-weight-semibold mb-0">389,438</h3>
+						<span class="text-uppercase font-size-sm text-muted">total orders</span>
+					</div>
+					
+					<div class="ml-3 align-self-center">
+						<i class="icon-bag icon-3x text-danger-400"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /basic card -->
+	<div class="card">
+		<div class="card-header header-elements-inline">
+			<h5 class="card-title">Gráfica Servicio Técnico</h5>
+			<div class="header-elements">
+				<div class="list-icons">
+					<select name="year"
+							id="year"
+							class="form-control select">
+						<?php foreach ($years as $year): ?>
+							<option value="<?= $year->year ?>"><?= $year->year ?></option>
+						<?php endforeach; ?>
+					</select>
+					<a class="list-icons-item"
+					   data-action="collapse"></a>
+					<a class="list-icons-item"
+					   data-action="remove"></a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="chart-container">
+				<div class="chart has-fixed-height"
+					 id="graficaServicioTecnico"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /content area -->
