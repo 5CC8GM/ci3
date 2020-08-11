@@ -52,7 +52,7 @@
 		
 		public function years() {
 			
-			$this->db->select('YEAR(FechaInicio_OTServicioTecnico) as year');
+			$this->db->select('YEAR(Fecha_OTServicioTecnico) as year');
 			$this->db->from('ot_servicio_tecnico');
 			$this->db->group_by('year');
 			$this->db->order_by('year', 'desc');
@@ -65,10 +65,10 @@
 		
 		public function montos($year) {
 			
-			$this->db->select('MONTH(FechaInicio_OTServicioTecnico) as mes, SUM(Total_OTServicioTecnico) as monto');
+			$this->db->select('MONTH(Fecha_OTServicioTecnico) as mes, SUM(Total_OTServicioTecnico) as monto');
 			$this->db->from('ot_servicio_tecnico');
-			$this->db->where('FechaInicio_OTServicioTecnico >=', $year . '-01-01');
-			$this->db->where('FechaInicio_OTServicioTecnico <=', $year . '-12-31');
+			$this->db->where('Fecha_OTServicioTecnico >=', $year . '-01-01');
+			$this->db->where('Fecha_OTServicioTecnico <=', $year . '-12-31');
 			$this->db->group_by('mes');
 			$this->db->order_by('mes');
 			
