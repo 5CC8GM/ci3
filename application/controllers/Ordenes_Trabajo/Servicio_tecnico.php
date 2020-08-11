@@ -9,7 +9,6 @@
 			$this->load->library('form_validation');
 			$this->load->model('clientes_model');
 			$this->load->model('ordenes_trabajo/servicio_tecnico_model');
-			$this->load->model('documentos_model');
 		}
 		
 		/* FUNCION PARA PERMITIR MAS CARACTERES Y ESPACIOS */
@@ -20,7 +19,7 @@
 		public function index() {
 			/* CARGA LOS DATOS DEL METODO MOSTRAR DEL MODELO Y LOS ADJUNTA EN UN ARRAY PARA PASARLO A LA VISTA */
 			$data = array('cliente'       => $this->clientes_model->mostrar(),
-						  'tipoDocumento' => $this->documentos_model->getDocumentos());
+						  'tipoDocumento' => $this->servicio_tecnico_model->getComprobantes());
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			/* HEADER */
 			$this->load->view('layouts/header');
