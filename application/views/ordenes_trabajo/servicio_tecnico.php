@@ -20,7 +20,7 @@
 						  method="post"
 						  id="formularioServicioTecnico">
 						<div class="form-group row">
-							<div class="col-4">
+							<div class="col-sm-6">
 								<label for="tipoDocumento">Tipo de Documento</label>
 								<select id="tipoDocumento"
 										name="tipoDocumento"
@@ -46,7 +46,7 @@
 									   id="impuestoDocumento"
 									   name="impuestoDocumento">
 							</div>
-							<div class="col-4">
+							<div class="col-sm-3">
 								<label for="serieDocumento">Serie del Documento</label>
 								<input type="text"
 									   name="serieDocumento"
@@ -54,7 +54,7 @@
 									   class="form-control"
 									   readonly>
 							</div>
-							<div class="col-4">
+							<div class="col-sm-3">
 								<label for="numeroDocumento">Número de Documento</label>
 								<input type="text"
 									   name="numeroDocumento"
@@ -167,7 +167,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-7">
+		<div class="col-xl-7 col-lg-12">
 			<div class="card">
 				<div class="card-header header-elements-inline">
 					<h5 class="card-title">Servicio Técnico</h5>
