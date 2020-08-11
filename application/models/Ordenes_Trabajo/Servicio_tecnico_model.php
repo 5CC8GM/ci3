@@ -24,6 +24,14 @@
 			return $this->db->insert_id();
 		}
 		
+		public function getComprobante($idDocumento) {
+			
+			$this->db->where('ID_Documento', $idDocumento);
+			
+			$resultado = $this->db->get('tipo_documento');
+			return $resultado->row();
+		}
+		
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
