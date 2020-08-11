@@ -146,8 +146,21 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 			// Impuesto_OTServicioTecnico: impuesto,
 			// Subtotal_OTServicioTecnico: subtotal,
 			// Total_OTServicioTecnico: total,
+			ID_Documento: documento,
+			Serie_OTServicioTecnico: serieDocumento,
+			NumeroDocumento_OTServicioTecnico: numeroDocumento,
+			ID_Cliente: cliente,
+			Marca_OTServicioTecnico: marca,
+			Modelo_OTServicioTecnico: modelo,
+			Descripcion_OTServicioTecnico: descripcion,
+			Precio_OTServicioTecnico: precio,
+			Impuesto_OTServicioTecnico: impuestoDocumento,
+			Subtotal_OTServicioTecnico: subtotal,
+			Total_OTServicioTecnico: total
+			
 		},
 		success: function (data) {
+			
 			if (data.respuesta == 'success') {
 				$('#tablaServicioTecnico').DataTable().destroy()
 				mostrarTablaServicioTecnico()
