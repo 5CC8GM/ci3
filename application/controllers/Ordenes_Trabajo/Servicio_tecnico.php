@@ -69,7 +69,7 @@
 					
 					/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
 					if ($this->servicio_tecnico_model->insertar($ajax_data)) {
-						
+						$idOtServicoTecnico = $this->servicio_tecnico_model->lastId();
 						/* MENSAJE AL INSERTAR CORRECTAMENTE */
 						$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
 						
