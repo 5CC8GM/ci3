@@ -110,12 +110,24 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 	
 	event.preventDefault();
 	
-	let idCliente = $("#cliente").val();
+	// let idCliente = $("#cliente").val();
+	// let marca = $("#marca").val();
+	// let modelo = $("#modelo").val();
+	// let descripcion = $("#descripcion").val();
+	// let precio = $("#precio").val();
+	// let impuesto = $("#impuesto").val();
+	// let subtotal = $("#subtotal").val();
+	// let total = $("#total").val();
+	
+	let documento = $('#idDocumento').val()
+	let serieDocumento = $("#serieDocumento").val();
+	let numeroDocumento = $("#numeroDocumento").val();
+	let cliente = $("#cliente").val();
 	let marca = $("#marca").val();
 	let modelo = $("#modelo").val();
 	let descripcion = $("#descripcion").val();
 	let precio = $("#precio").val();
-	let impuesto = $("#impuesto").val();
+	let impuestoDocumento = $("#impuestoDocumento").val();
 	let subtotal = $("#subtotal").val();
 	let total = $("#total").val();
 	
@@ -126,14 +138,14 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 		dataType: "json",
 		data: {
 			/* NOMBRE DE LOS CAMPOS DE LA BASE DE DATOS | VARIABLE CON LA INFORMACION */
-			ID_Cliente: idCliente,
-			Marca_OTServicioTecnico: marca,
-			Modelo_OTServicioTecnico: modelo,
-			Descripcion_OTServicioTecnico: descripcion,
-			Precio_OTServicio_Tecnico: precio,
-			Impuesto_OTServicioTecnico: impuesto,
-			Subtotal_OTServicioTecnico: subtotal,
-			Total_OTServicioTecnico: total,
+			// ID_Cliente: idCliente,
+			// Marca_OTServicioTecnico: marca,
+			// Modelo_OTServicioTecnico: modelo,
+			// Descripcion_OTServicioTecnico: descripcion,
+			// Precio_OTServicio_Tecnico: precio,
+			// Impuesto_OTServicioTecnico: impuesto,
+			// Subtotal_OTServicioTecnico: subtotal,
+			// Total_OTServicioTecnico: total,
 		},
 		success: function (data) {
 			if (data.respuesta == 'success') {
