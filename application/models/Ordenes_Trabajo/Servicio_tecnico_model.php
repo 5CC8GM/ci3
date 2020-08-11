@@ -32,6 +32,17 @@
 			return $resultado->row();
 		}
 		
+		public function updateComprobante($idDocumento, $data) {
+			
+			$this->db->where('ID_Documento', $idDocumento);
+			$this->db->update('tipo_documento', $data);
+			
+		}
+		
+		public function saveDetalle($data) {
+			$this->db->insert('detalle_otservicio_tecnico', $data);
+		}
+		
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
