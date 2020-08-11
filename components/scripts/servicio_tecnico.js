@@ -156,11 +156,11 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 			Precio_OTServicioTecnico: precio,
 			Impuesto_OTServicioTecnico: impuestoDocumento,
 			Subtotal_OTServicioTecnico: subtotal,
-			Total_OTServicioTecnico: total
+			Total_OTServicioTecnico: total,
 			
 		},
 		success: function (data) {
-			
+			// console.log(data)
 			if (data.respuesta == 'success') {
 				$('#tablaServicioTecnico').DataTable().destroy()
 				mostrarTablaServicioTecnico()
@@ -188,6 +188,8 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 		}
 	})
 	$('#formularioServicioTecnico')[0].reset()
+	$('.select-search').val('').trigger('change');
+	$('.select').val('').trigger('change');
 });
 
 /* MOSTRAR ORDENES DE TRABAJO EN LA TABLA */
@@ -257,7 +259,7 @@ function mostrarTablaServicioTecnico() {
 								return `<strong class="text-primary">$${row.Total_OTServicioTecnico}</strong>`
 							}
 						},
-						{"data": "FechaInicio_OTServicioTecnico"},
+						{"data": "Fecha_OTServicioTecnico"},
 						{
 							"render": function (data, type, row, meta) {
 								
