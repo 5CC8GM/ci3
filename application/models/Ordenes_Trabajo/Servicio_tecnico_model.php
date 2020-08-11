@@ -20,6 +20,10 @@
 			
 		}
 		
+		public function lastId() {
+			return $this->db->insert_id();
+		}
+		
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
