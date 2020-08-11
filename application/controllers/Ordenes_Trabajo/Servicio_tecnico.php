@@ -114,8 +114,7 @@
 			
 		}
 		
-		public
-		function mostrar() {
+		public function mostrar() {
 			
 			if ($this->input->is_ajax_request()) {
 				
@@ -131,8 +130,7 @@
 			
 		}
 		
-		public
-		function eliminar() {
+		public function eliminar() {
 			
 			if ($this->input->is_ajax_request()) {
 				
@@ -155,8 +153,7 @@
 			
 		}
 		
-		public
-		function editar() {
+		public function editar() {
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
 			if ($this->input->is_ajax_request()) {
 				
