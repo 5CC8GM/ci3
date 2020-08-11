@@ -24,6 +24,14 @@
 			return $this->db->insert_id();
 		}
 		
+		public function getComprobantes() {
+			
+			$resultado = $this->db->get('tipo_documento');
+			
+			return $resultado->result();
+			
+		}
+		
 		public function getComprobante($idDocumento) {
 			
 			$this->db->where('ID_Documento', $idDocumento);
