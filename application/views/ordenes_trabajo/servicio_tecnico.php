@@ -1,7 +1,7 @@
 <!-- Content area -->
 <div class="content pt-0">
 	<div class="row">
-		<div class="col-xl-5">
+		<div class="col-xl-4">
 			<div class="card">
 				<div class="card-header header-elements-inline">
 					<h5 class="card-title">Crear Orden de Trabajo Servicio Técnico</h5>
@@ -47,7 +47,7 @@
 									   name="impuestoDocumento">
 							</div>
 							<div class="col-sm-3">
-								<label for="serieDocumento">Serie del Documento</label>
+								<label for="serieDocumento">Serie</label>
 								<input type="text"
 									   name="serieDocumento"
 									   id="serieDocumento"
@@ -55,7 +55,7 @@
 									   readonly>
 							</div>
 							<div class="col-sm-3">
-								<label for="numeroDocumento">Número de Documento</label>
+								<label for="numeroDocumento">Número</label>
 								<input type="text"
 									   name="numeroDocumento"
 									   id="numeroDocumento"
@@ -167,7 +167,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-7 col-lg-12">
+		<div class="col-xl-8 col-lg-12">
 			<div class="card">
 				<div class="card-header header-elements-inline">
 					<h5 class="card-title">Servicio Técnico</h5>
@@ -189,8 +189,8 @@
 								<th>#</th>
 								<th>Cliente</th>
 								<th>Tipo de Documento</th>
-								<th>Numero de Documento</th>
-								<th>Descripcion</th>
+								<th>Número de Documento</th>
+								<th>Descripción</th>
 								<th>Fecha</th>
 								<th>Total</th>
 								<th>Acciones</th>
@@ -341,7 +341,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Informacion de la Orden</h5>
+				<h5 class="modal-title">Información de la Orden</h5>
 				<button type="button"
 						class="close"
 						data-dismiss="modal">&times;
@@ -363,7 +363,6 @@
 						id="actualizarOtServicioTecnico">Editar
 				</button>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>
