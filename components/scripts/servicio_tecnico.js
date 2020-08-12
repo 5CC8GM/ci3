@@ -263,7 +263,7 @@ function mostrarTablaServicioTecnico() {
 						{
 							"render": function (data, type, row, meta) {
 								
-								let accionesBotones = `<div class="list-icons"><a href="#" id="editarOtServicioTecnico" value="${row.ID_OTServicioTecnico}" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="${row.ID_OTServicioTecnico}"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>`
+								let accionesBotones = `<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="${row.ID_OTServicioTecnico}" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="${row.ID_OTServicioTecnico}" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="${row.ID_OTServicioTecnico}"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>`
 								
 								return accionesBotones
 								
@@ -391,6 +391,25 @@ $(document).on('click', '#eliminarOtServicioTecnico', function (event) {
 	});
 })
 
+$(document).on('click', '#verOtServicioTecnico', function (event) {
+	// $('#modalVerOtServicioTecnico').modal('show')
+	event.preventDefault()
+	let verIdOtServicioTecnico = $(this).attr('value');
+	$.ajax({
+		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/verOtServicioTecnico',
+		type: 'post',
+		dataType: 'html',
+		data: {
+			id: verIdOtServicioTecnico,
+		},
+		success: function (data) {
+			console.log(data)
+			$('#modalVerOtServicioTecnico').modal('show')
+			$('#modalVerOtServicioTecnico .modal-body').html(data)
+		}
+	})
+	
+})
 /* EDITAR ORDEN DE TRABAJO SERVICIO TECNICO */
 $(document).on('click', '#editarOtServicioTecnico', function (event) {
 	
