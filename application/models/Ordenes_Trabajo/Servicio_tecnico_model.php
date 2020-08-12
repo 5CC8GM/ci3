@@ -41,6 +41,32 @@
 			return $resultado->row();
 		}
 		
+		public function getVenta($id) {
+			
+			$this->db->select('*');
+			$this->db->from('ot_servicio_tecnico');
+			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
+			$this->db->join('tipo_documento', 'tipo_documento.ID_Documento = ot_servicio_tecnico.ID_Documento');
+			$this->db->where('ID_OTServicioTecnico', $id);
+			
+			$resultado = $this->db->get();
+			
+			return $resultado->row();
+			
+		}
+		
+		public function getDetalle($id) {
+			
+			$this->db->select('*');
+			$this->db->from('detalle_otservicio_tecnico');
+			$this->db->where('ID_DetalleOTServicioTecnico', $id);
+			
+			$resultado = $this->db->get();
+			
+			return $resultado->result();
+			
+		}
+		
 		public function updateComprobante($idDocumento, $data) {
 			
 			$this->db->where('ID_Documento', $idDocumento);
