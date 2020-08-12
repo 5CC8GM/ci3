@@ -251,15 +251,15 @@ function mostrarTablaServicioTecnico() {
 								
 							}
 						},
-						{"data": "Marca_OTServicioTecnico"},
-						{"data": "Modelo_OTServicioTecnico"},
+						{"data": 'Nombre_Documento'},
+						{"data": "NumeroDocumento_OTServicioTecnico"},
 						{"data": "Descripcion_OTServicioTecnico"},
+						{"data": "Fecha_OTServicioTecnico"},
 						{
 							"render": function (data, type, row, meta) {
 								return `<strong class="text-primary">$${row.Total_OTServicioTecnico}</strong>`
 							}
 						},
-						{"data": "Fecha_OTServicioTecnico"},
 						{
 							"render": function (data, type, row, meta) {
 								
