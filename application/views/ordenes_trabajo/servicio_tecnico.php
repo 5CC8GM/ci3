@@ -188,11 +188,11 @@
 							<tr>
 								<th>#</th>
 								<th>Cliente</th>
-								<th>Marca</th>
-								<th>Modelo</th>
+								<th>Tipo de Documento</th>
+								<th>Numero de Documento</th>
 								<th>Descripcion</th>
+								<th>Fecha</th>
 								<th>Total</th>
-								<th>Fecha de Creacion</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
