@@ -44,7 +44,8 @@
 <script src="<?= base_url() ?>components/global_assets/js/plugins/forms/inputs/autosize.min.js"></script>
 <!-- ECHARTS -->
 <script src="<?= base_url() ?>components/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
-
+<!-- PRINT -->
+<script src="<?= base_url() ?>components/global_assets/js/plugins/print/jQuery.print.js"></script>
 <!-- Theme JS files -->
 <script src="<?= base_url() ?>components/assets/js/app.js"></script>
 <!-- /theme JS files -->
