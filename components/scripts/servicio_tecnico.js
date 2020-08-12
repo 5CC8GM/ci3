@@ -127,7 +127,7 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 	let modelo = $("#modelo").val();
 	let descripcion = $("#descripcion").val();
 	let precio = $("#precio").val();
-	let impuestoDocumento = $("#impuestoDocumento").val();
+	let impuestoDocumento = $("#iva").val();
 	let subtotal = $("#subtotal").val();
 	let total = $("#total").val();
 	
@@ -153,9 +153,10 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 			Marca_OTServicioTecnico: marca,
 			Modelo_OTServicioTecnico: modelo,
 			Descripcion_OTServicioTecnico: descripcion,
-			Precio_OTServicioTecnico: precio,
+			Precio_DetalleOTServicioTecnico: precio,
 			Impuesto_OTServicioTecnico: impuestoDocumento,
 			Subtotal_OTServicioTecnico: subtotal,
+			Total_DetalleOTServicioTecnico: total,
 			Total_OTServicioTecnico: total,
 			
 		},
