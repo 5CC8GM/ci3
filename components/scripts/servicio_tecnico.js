@@ -561,3 +561,13 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	}
 	
 })
+
+/* IMPRIMIR ORDEN DE TRABAJO SERVICIO TECNICO */
+
+$(document).on('click', '.btn-print', function (event) {
+	event.preventDefault
+	
+	$('#modalVerOtServicioTecnico .modal-body').print({
+		title: null,
+	});
+})
