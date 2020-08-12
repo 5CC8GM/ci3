@@ -340,15 +340,6 @@
 	 tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Información de la Orden</h5>
-				<button type="button"
-						class="close"
-						data-dismiss="modal">&times;
-				</button>
-			</div>
-			
-			
 			<div class="modal-body">
 			
 			</div>
