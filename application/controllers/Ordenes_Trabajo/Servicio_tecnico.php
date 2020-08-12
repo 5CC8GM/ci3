@@ -229,4 +229,14 @@
 			
 		}
 		
+		public function verOtServicioTecnico() {
+			
+			$idOtServicioTecnico = $this->input->post('id');
+			
+			$data = array('venta'   => $this->servicio_tecnico_model->getVenta($idOtServicioTecnico),
+						  'detalle' => $this->servicio_tecnico_model->getDetalle($idOtServicioTecnico));
+			
+			$this->load->view('ordenes_trabajo/invoice', $data);
+			
+		}
 	}
