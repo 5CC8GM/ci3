@@ -59,11 +59,11 @@
 			
 			$this->db->select('*');
 			$this->db->from('detalle_otservicio_tecnico');
-			$this->db->where('ID_DetalleOTServicioTecnico', $id);
+			$this->db->where('ID_OTServicioTecnico', $id);
 			
 			$resultado = $this->db->get();
 			
-			return $resultado->result();
+			return $resultado->row();
 			
 		}
 		
