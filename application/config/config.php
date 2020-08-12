@@ -76,7 +76,7 @@
 	| than english.
 	|
 	*/
-	$config['language'] = 'english';
+	$config['language'] = 'spanish';
 	
 	/*
 	|--------------------------------------------------------------------------
