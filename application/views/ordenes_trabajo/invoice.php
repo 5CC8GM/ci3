@@ -8,9 +8,10 @@
 						 alt=""
 						 style="width: 120px;">
 					<ul class="list list-unstyled mb-0">
+						<li>Jacinto Escobar Oe4-31 pasaje S21A y José Abarcas</li>
 						<li>2269 Elba Lane</li>
-						<li>Paris, France</li>
-						<li>888-555-2311</li>
+						<li>Quito - Ecuador</li>
+						<li>0984035994</li>
 					</ul>
 				</div>
 			</div>
@@ -20,8 +21,14 @@
 					<div class="text-sm-right">
 						<h4 class="text-orange-300 mb-2 mt-md-2">Invoice #49029</h4>
 						<ul class="list list-unstyled mb-0">
-							<li>Date: <span class="font-weight-semibold">January 12, 2015</span></li>
-							<li>Due date: <span class="font-weight-semibold">May 12, 2015</span></li>
+							<?php
+								$fechaOriginal = $venta->Fecha_OTServicioTecnico;
+								setlocale(LC_ALL, 'spanish');
+								$fechaNueva = strftime("%d de %B de %Y %H:%M:%S", strtotime($fechaOriginal));
+							?>
+							<li>Fecha: <span class="font-weight-semibold"><?= $fechaNueva
+									?></span></li>
+							<!--							<li>Due date: <span class="font-weight-semibold">May 12, 2015</span></li>-->
 						</ul>
 					</div>
 				</div>
@@ -30,15 +37,15 @@
 		
 		<div class="d-md-flex flex-md-wrap">
 			<div class="mb-4 mb-md-2">
-				<span class="text-muted">Invoice To:</span>
+				<span class="text-muted">Factura para:</span>
 				<ul class="list list-unstyled mb-0">
 					<li><h5 class="my-2"><?= $venta->Nombre_Cliente . ' ' . $venta->Apellido_Cliente ?></h5></li>
-					<li><span class="font-weight-semibold">Normand axis LTD</span></li>
-					<li>3 Goodman Street</li>
-					<li>London E1 8BF</li>
-					<li>United Kingdom</li>
-					<li>888-555-2311</li>
-					<li><a href="#">rebecca@normandaxis.ltd</a></li>
+					<!--					<li><span class="font-weight-semibold">Normand axis LTD</span></li>-->
+					<!--					<li>3 Goodman Street</li>-->
+					<!--					<li>London E1 8BF</li>-->
+					<!--					<li>United Kingdom</li>-->
+					<li><?= $venta->Telefono_Cliente ?></li>
+					<!--					<li><a href="#">rebecca@normandaxis.ltd</a></li>-->
 				</ul>
 			</div>
 			
