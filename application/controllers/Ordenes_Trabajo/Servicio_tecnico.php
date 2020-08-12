@@ -40,8 +40,8 @@
 		public function crear() {
 			
 			$idDocumento = $this->input->post('ID_Documento');
-			$precio = $this->input->post('Precio_OTServicioTecnico');
-			$importe = $this->input->post('Total_OTServicioTecnico');
+			$precio = $this->input->post('Precio_DetalleOTServicioTecnico');
+			$importe = $this->input->post('Total_DetalleOTServicioTecnico');
 			
 			$ot = $this->input->post(array('ID_Documento', 'Serie_OTServicioTecnico', 'NumeroDocumento_OTServicioTecnico', 'ID_Cliente', 'Marca_OTServicioTecnico', 'Modelo_OTServicioTecnico', 'Descripcion_OTServicioTecnico', 'Impuesto_OTServicioTecnico', 'Subtotal_OTServicioTecnico', 'Total_OTServicioTecnico'), TRUE);
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
@@ -106,9 +106,9 @@
 		}
 		
 		protected function saveDetalle($idOtServicoTecnico, $precio, $importe) {
-			$data = array('ID_OTServicioTecnico'     => $idOtServicoTecnico,
-						  'Precio_OTServicioTecnico' => $precio,
-						  'Total_OTServicioTecnico'  => $importe);
+			$data = array('ID_OTServicioTecnico'            => $idOtServicoTecnico,
+						  'Precio_DetalleOTServicioTecnico' => $precio,
+						  'Total_DetalleOTServicioTecnico'  => $importe);
 			
 			$this->servicio_tecnico_model->saveDetalle($data);
 			
