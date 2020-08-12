@@ -358,10 +358,11 @@
 						class="btn bg-danger-800"
 						data-dismiss="modal">Cerrar
 				</button>
-				<button type="button"
-						class="btn bg-primary-800"
-						id="actualizarOtServicioTecnico">Editar
-				</button>
+				<button class="btn bg-primary-800 btn-print"
+						type="button"
+						id="crearOrdenTrabajoServicioTecnico">Imprimir <i
+							class="icon-printer
+									ml-2"></i></button>
 			</div>
 		</div>
 	</div>
