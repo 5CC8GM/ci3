@@ -43,6 +43,12 @@
 			
 		}
 		
+		public function getFacturas($id) {
+			
+			return $this->db->get_where('tipo_documento', ['ID_Documento' => $id])->result();
+			
+		}
+		
 		public function getComprobante($idDocumento) {
 			
 			$this->db->where('ID_Documento', $idDocumento);
