@@ -259,4 +259,18 @@
 			}
 		}
 		
+		public function getFacturas() {
+			
+			$id = $this->input->post('id');
+			$data = $this->servicio_tecnico_model->getFacturas($id);
+			$output = 'asdfasdf';
+			foreach ($data as $row) {
+				
+				$salida = $row->ID_Documento . '*' . $row->Cantidad_Documento . '*' . $row->Impuesto_Documento . '*' .
+					$row->Serie_Documento;
+				
+				$output .= '<option value="' . $salida . '">' . $row->Nombre_Documento . '</option>';
+			}
+			$this->output->set_content_type('application/json')->set_output(json_encode($output));
+		}
 	}
