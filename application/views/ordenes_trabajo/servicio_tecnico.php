@@ -24,20 +24,11 @@
 								<label for="tipoDocumento">Tipo de Documento</label>
 								<select id="tipoDocumento"
 										name="tipoDocumento"
-										class="form-control select"
-										data-placeholder="Seleccione un documento"
+										class="form-control"
 										data-fouc
 										required>
 									<option></option>
 									
-									<?php foreach ($tipoDocumento as $documento): ?>
-										
-										<?php $dataDocumento = $documento->ID_Documento . '*'
-												. $documento->Cantidad_Documento . '*' .
-												$documento->Impuesto_Documento . '*' . $documento->Serie_Documento ?>
-										<option value="<?= $dataDocumento ?>"><?= $documento->Nombre_Documento
-											?></option>
-									<?php endforeach; ?>
 								</select>
 								<input type="hidden"
 									   id="idDocumento"
