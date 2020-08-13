@@ -163,8 +163,7 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 		success: function (data) {
 			// console.log(data)
 			if (data.respuesta == 'success') {
-				$('#tablaServicioTecnico').DataTable().destroy()
-				mostrarTablaServicioTecnico()
+				location.reload();
 				/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
 				new Noty({
 					layout: 'topRight',
@@ -173,7 +172,6 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 					text: data.mensaje,
 					timeout: 3000,
 				}).show();
-				
 			} else {
 				
 				/* ESTETICA AL MOSTRAR EL MENSAJE DE ERROR */
@@ -188,9 +186,6 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 			}
 		}
 	})
-	$('#formularioServicioTecnico')[0].reset()
-	$('.select-search').val('').trigger('change');
-	$('.select').val('').trigger('change');
 });
 
 /* MOSTRAR ORDENES DE TRABAJO EN LA TABLA */
@@ -404,7 +399,7 @@ $(document).on('click', '#verOtServicioTecnico', function (event) {
 			id: verIdOtServicioTecnico,
 		},
 		success: function (data) {
-			console.log(data)
+			// console.log(data)
 			$('#modalVerOtServicioTecnico').modal('show')
 			$('#modalVerOtServicioTecnico .modal-body').html(data)
 		}
