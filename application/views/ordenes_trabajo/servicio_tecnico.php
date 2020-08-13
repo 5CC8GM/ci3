@@ -27,8 +27,6 @@
 										class="form-control"
 										data-fouc
 										required>
-									<option></option>
-									
 								</select>
 								<input type="hidden"
 									   id="idDocumento"
