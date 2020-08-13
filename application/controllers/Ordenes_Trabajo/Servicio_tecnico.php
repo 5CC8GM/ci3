@@ -239,4 +239,24 @@
 			$this->load->view('ordenes_trabajo/invoice', $data);
 			
 		}
+		
+		public function getFacts() {
+			
+			$search = $this->input->post('search');
+			//			var_dump($search);
+			$resultados = $this->servicio_tecnico_model->getFacts($search);
+			
+			foreach ($resultados as $row) {
+				
+				$selectAjax[] = array(
+					'id'       => $row['ID_Documento'],
+					'text'     => $row['Nombre_Documento'],
+					'impuesto' => $row['Impuesto_Documento'],
+					'cantidad' => $row['Cantidad_Documento'],
+					'serie'    => $row['Serie_Documento'],
+				);
+				$this->output->set_content_type('application/json')->set_output(json_encode($selectAjax));
+			}
+		}
+		
 	}
