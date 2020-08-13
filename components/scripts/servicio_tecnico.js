@@ -1,26 +1,26 @@
 /* SELECT CON BUSCADOR */
-$('#tipoDocumento').on('change', function () {
-	
-	let opcion = $(this).val();
-	
-	if (opcion != '') {
-		
-		let informacionComprobante = opcion.split('*');
-		
-		$('#idDocumento').val(informacionComprobante[0]);
-		$('#impuestoDocumento').val(informacionComprobante[2]);
-		$('#serieDocumento').val(informacionComprobante[3]);
-		$('#numeroDocumento').val(generarNumero(informacionComprobante[1]));
-		sumar()
-	} else {
-		$('#idDocumento').val(null);
-		$('#impuestoDocumento').val(null);
-		$('#serieDocumento').val(null);
-		$('#numeroDocumento').val(null);
-		sumar()
-	}
-	
-})
+// $('#tipoDocumento').on('change', function () {
+//
+// 	let opcion = $(this).val();
+//
+// 	if (opcion != '') {
+//
+// 		let informacionComprobante = opcion.split('*');
+//
+// 		$('#idDocumento').val(informacionComprobante[0]);
+// 		$('#impuestoDocumento').val(informacionComprobante[2]);
+// 		$('#serieDocumento').val(informacionComprobante[3]);
+// 		$('#numeroDocumento').val(generarNumero(informacionComprobante[1]));
+// 		sumar()
+// 	} else {
+// 		$('#idDocumento').val(null);
+// 		$('#impuestoDocumento').val(null);
+// 		$('#serieDocumento').val(null);
+// 		$('#numeroDocumento').val(null);
+// 		sumar()
+// 	}
+//
+// })
 
 $(document).ready(function () {
 	$('#tipoDocumento').select2({
@@ -29,7 +29,7 @@ $(document).ready(function () {
 			dataType: 'json',
 			type: 'post',
 			data: function (params) {
-				console.log(params)
+				console.log('params' + params)
 				
 				return {
 					search: params.term,
@@ -49,6 +49,43 @@ $(document).ready(function () {
 		
 	})
 })
+$('#tipoDocumento').select2({
+	placeholder: 'Seleccione un documento'
+})
+$('#tipoDocumento').change(function () {
+	let id = $(this).val();
+	console.log(id)
+	$.ajax({
+		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacturas',
+		type: 'post',
+		data: {
+			id: id
+		},
+		dataType: 'json',
+		success: function (data) {
+			console.log('data ' + data)
+			$('#tipoDocumento').html(data)
+			let opcion = $('#tipoDocumento').val();
+			console.log('opcion' + opcion)
+			if (opcion != '') {
+				
+				let informacionComprobante = opcion.split('*');
+				
+				$('#idDocumento').val(informacionComprobante[0]);
+				$('#impuestoDocumento').val(informacionComprobante[2]);
+				$('#serieDocumento').val(informacionComprobante[3]);
+				$('#numeroDocumento').val(generarNumero(informacionComprobante[1]));
+				sumar()
+			} else {
+				$('#idDocumento').val(null);
+				$('#impuestoDocumento').val(null);
+				$('#serieDocumento').val(null);
+				$('#numeroDocumento').val(null);
+				sumar()
+			}
+		}
+	})
+});
 
 $(document).on('keyup', '#precio', function () {
 	sumar()
@@ -192,7 +229,9 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 		success: function (data) {
 			// console.log(data)
 			if (data.respuesta == 'success') {
-				location.reload();
+				$('#tablaServicioTecnico').DataTable().destroy();
+				mostrarTablaServicioTecnico()
+				// location.reload();
 				/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
 				new Noty({
 					layout: 'topRight',
@@ -215,6 +254,9 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 			}
 		}
 	})
+	$('#formularioServicioTecnico')[0].reset()
+	$('#tipoDocumento').val(null).trigger('change');
+	$('#cliente').val(null).trigger('change');
 });
 
 /* MOSTRAR ORDENES DE TRABAJO EN LA TABLA */
