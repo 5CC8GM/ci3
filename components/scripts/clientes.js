@@ -1,3 +1,6 @@
+$('.select-search').select2({
+	allowClear: true,
+});
 /* CREAR CLIENTE */
 
 $(document).on('click', '#crearCliente', function (event) {
