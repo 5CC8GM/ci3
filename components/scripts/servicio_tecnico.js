@@ -21,6 +21,35 @@ $('#tipoDocumento').on('change', function () {
 	}
 	
 })
+
+$(document).ready(function () {
+	$('#tipoDocumento').select2({
+		ajax: {
+			url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
+			dataType: 'json',
+			type: 'post',
+			data: function (params) {
+				console.log(params)
+				
+				return {
+					search: params.term,
+				}
+				
+			},
+			processResults: function (data) {
+				return {
+					results: data
+				}
+			},
+			
+			cache: true
+			
+		},
+		placeholder: 'Seleccione un documento',
+		
+	})
+})
+
 $(document).on('keyup', '#precio', function () {
 	sumar()
 })
