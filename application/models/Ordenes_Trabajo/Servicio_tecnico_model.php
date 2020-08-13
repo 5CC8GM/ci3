@@ -33,6 +33,16 @@
 			
 		}
 		
+		public function getFacts($search) {
+			
+			$this->db->select('*');
+			$this->db->from('tipo_documento');
+			$this->db->like('Nombre_Documento', $search);
+			
+			return $this->db->get()->result_array();
+			
+		}
+		
 		public function getComprobante($idDocumento) {
 			
 			$this->db->where('ID_Documento', $idDocumento);
