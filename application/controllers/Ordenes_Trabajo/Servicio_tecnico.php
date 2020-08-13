@@ -263,7 +263,7 @@
 			
 			$id = $this->input->post('id');
 			$data = $this->servicio_tecnico_model->getFacturas($id);
-			$output = 'asdfasdf';
+			$output = '';
 			foreach ($data as $row) {
 				
 				$salida = $row->ID_Documento . '*' . $row->Cantidad_Documento . '*' . $row->Impuesto_Documento . '*' .
