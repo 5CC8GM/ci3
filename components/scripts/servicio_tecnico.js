@@ -24,18 +24,13 @@
 
 $(document).ready(function () {
 	$('#tipoDocumento').select2({
+		placeholder: 'Seleccione un documento',
+		allowClear: true,
+		minimumResultsForSearch: Infinity,
 		ajax: {
 			url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
 			dataType: 'json',
 			type: 'post',
-			data: function (params) {
-				console.log('params' + params)
-				
-				return {
-					search: params.term,
-				}
-				
-			},
 			processResults: function (data) {
 				return {
 					results: data
@@ -45,12 +40,7 @@ $(document).ready(function () {
 			cache: true
 			
 		},
-		placeholder: 'Seleccione un documento',
-		
 	})
-})
-$('#tipoDocumento').select2({
-	placeholder: 'Seleccione un documento'
 })
 $('#tipoDocumento').change(function () {
 	let id = $(this).val();
@@ -121,10 +111,6 @@ function generarNumero(numero) {
 		
 	}
 }
-
-$('.select-search').select2({
-	allowClear: true,
-});
 
 /* TAMAÑO AUTOMATICO TEXTAREA */
 autosize($('.elastic'));
