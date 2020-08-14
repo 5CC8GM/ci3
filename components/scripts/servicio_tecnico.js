@@ -42,7 +42,7 @@ $('#tipoDocumento').select2({
 })
 $('#tipoDocumento').change(function () {
 	let id = $(this).val();
-	console.log(id)
+	// console.log(id)
 	$.ajax({
 		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacturas',
 		type: 'post',
@@ -51,10 +51,10 @@ $('#tipoDocumento').change(function () {
 		},
 		dataType: 'json',
 		success: function (data) {
-			console.log('data ' + data)
+			// console.log('data ' + data)
 			$('#infoOculta').val(data)
 			let opcion = $('#infoOculta').val();
-			console.log('opcion' + opcion)
+			// console.log('opcion' + opcion)
 			if (opcion != '') {
 				
 				let informacionComprobante = opcion.split('*');
