@@ -22,25 +22,23 @@
 //
 // })
 
-$(document).ready(function () {
-	$('#tipoDocumento').select2({
-		placeholder: 'Seleccione un documento',
-		allowClear: true,
-		minimumResultsForSearch: Infinity,
-		// ajax: {
-		// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
-		// 	dataType: 'json',
-		// 	type: 'post',
-		// 	processResults: function (data) {
-		// 		return {
-		// 			results: data
-		// 		}
-		// 	},
-		//
-		// 	cache: true
-		//
-		// },
-	})
+$('#tipoDocumento').select2({
+	placeholder: 'Seleccione un documento',
+	allowClear: true,
+	minimumResultsForSearch: Infinity,
+	// ajax: {
+	// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
+	// 	dataType: 'json',
+	// 	type: 'post',
+	// 	processResults: function (data) {
+	// 		return {
+	// 			results: data
+	// 		}
+	// 	},
+	//
+	// 	cache: true
+	//
+	// },
 })
 $('#tipoDocumento').change(function () {
 	let id = $(this).val();
