@@ -29,6 +29,8 @@
 										required>
 								</select>
 								<input type="hidden"
+									   id="infoOculta">
+								<input type="hidden"
 									   id="idDocumento"
 									   name="idDocumento">
 								<input type="hidden"
