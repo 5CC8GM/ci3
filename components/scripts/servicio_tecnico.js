@@ -54,8 +54,8 @@ $('#tipoDocumento').change(function () {
 		dataType: 'json',
 		success: function (data) {
 			console.log('data ' + data)
-			$('#tipoDocumento').html(data)
-			let opcion = $('#tipoDocumento').val();
+			$('#infoOculta').val(data)
+			let opcion = $('#infoOculta').val();
 			console.log('opcion' + opcion)
 			if (opcion != '') {
 				
