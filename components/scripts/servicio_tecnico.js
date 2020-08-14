@@ -40,6 +40,24 @@ $('#tipoDocumento').select2({
 	//
 	// },
 })
+$('#editarTipoDocumento').select2({
+	placeholder: 'Seleccione un documento',
+	allowClear: true,
+	minimumResultsForSearch: Infinity,
+	// ajax: {
+	// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
+	// 	dataType: 'json',
+	// 	type: 'post',
+	// 	processResults: function (data) {
+	// 		return {
+	// 			results: data
+	// 		}
+	// 	},
+	//
+	// 	cache: true
+	//
+	// },
+})
 $('#tipoDocumento').change(function () {
 	let id = $(this).val();
 	// console.log(id)
@@ -462,71 +480,71 @@ $(document).on('click', '#verOtServicioTecnico', function (event) {
 	
 })
 /* EDITAR ORDEN DE TRABAJO SERVICIO TECNICO */
-$(document).on('click', '#editarOtServicioTecnico', function (event) {
-	
-	event.preventDefault();
-	
-	let editarIdOtServicioTecnico = $(this).attr('value');
-	
-	// alert(editarIdOtServicioTecnico)
-	
-	$.ajax({
-		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/editar',
-		type: 'post',
-		dataType: 'json',
-		data: {
-			editarIdOtServicioTecnico: editarIdOtServicioTecnico
-		},
-		success: function (data) {
-			/* VERIFICAR LO QUE SE OBTIENE EN LA RESPUESTA DEL CONTROLADOR */
-			// console.log(data)
-			
-			if (data.respuesta == 'success') {
-				$('#editarIdOtServicioTecnico').val(data.post.ID_OTServicioTecnico);
-				$('#editarClienteOtServicioTecnico').val(data.post.ID_Cliente);
-				$('#editarMarcaOtServicioTecnico').val(data.post.Marca_OTServicioTecnico);
-				$('#editarModeloOtServicioTecnico').val(data.post.Modelo_OTServicioTecnico);
-				$('#editarDescripcionOtServicioTecnico').val(data.post.Descripcion_OTServicioTecnico);
-				$('#editarPrecioOtServicioTecnico').val(data.post.Precio_OTServicio_Tecnico);
-				$('#editarImpuestoOtServicioTecnico').val(data.post.Impuesto_OTServicioTecnico);
-				$('#editarSubtotalOtServicioTecnico').val(data.post.Subtotal_OTServicioTecnico);
-				$('#editarTotalOtServicioTecnico').val(data.post.Total_OTServicioTecnico);
-				$('#modalEditarOtServicioTecnico').modal('show');
-				$('.editarInput').on('input', function () {
-					let editarPrecio = document.getElementById('editarPrecioOtServicioTecnico').value
-					editarPrecio = parseFloat(editarPrecio);
-					
-					let editarImpuesto = document.getElementById('editarImpuestoOtServicioTecnico').value
-					editarImpuesto = parseFloat(editarImpuesto)
-					
-					let editarSubtotal = document.getElementById('editarSubtotalOtServicioTecnico').value
-					editarSubtotal = parseFloat(editarSubtotal)
-					
-					let editarTotal = document.getElementById('editarTotalOtServicioTecnico').value
-					editarTotal = parseFloat(editarTotal)
-					if (Number.isNaN(editarPrecio)) {
-						editarPrecio = 0
-					} else if (Number.isNaN(editarImpuesto)) {
-						editarImpuesto = 0
-					}
-					
-					document.getElementById('editarSubtotalOtServicioTecnico').value = editarPrecio;
-					document.getElementById('editarTotalOtServicioTecnico').value = (editarPrecio * (editarImpuesto / 100) + editarPrecio).toFixed(2);
-				});
-			} else {
-				new Noty({
-					layout: 'topRight',
-					theme: 'limitless',
-					type: 'error',
-					text: data.mensaje,
-					timeout: 3000,
-				}).show();
-			}
-			
-			
-		}
-	})
-});
+// $(document).on('click', '#editarOtServicioTecnico', function (event) {
+//
+// 	event.preventDefault();
+//
+// 	let editarIdOtServicioTecnico = $(this).attr('value');
+//
+// 	// alert(editarIdOtServicioTecnico)
+//
+// 	$.ajax({
+// 		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/editar',
+// 		type: 'post',
+// 		dataType: 'json',
+// 		data: {
+// 			editarIdOtServicioTecnico: editarIdOtServicioTecnico
+// 		},
+// 		success: function (data) {
+// 			/* VERIFICAR LO QUE SE OBTIENE EN LA RESPUESTA DEL CONTROLADOR */
+// 			// console.log(data)
+//
+// 			if (data.respuesta == 'success') {
+// 				$('#editarIdOtServicioTecnico').val(data.post.ID_OTServicioTecnico);
+// 				$('#editarClienteOtServicioTecnico').val(data.post.ID_Cliente);
+// 				$('#editarMarcaOtServicioTecnico').val(data.post.Marca_OTServicioTecnico);
+// 				$('#editarModeloOtServicioTecnico').val(data.post.Modelo_OTServicioTecnico);
+// 				$('#editarDescripcionOtServicioTecnico').val(data.post.Descripcion_OTServicioTecnico);
+// 				$('#editarPrecioOtServicioTecnico').val(data.post.Precio_OTServicio_Tecnico);
+// 				$('#editarImpuestoOtServicioTecnico').val(data.post.Impuesto_OTServicioTecnico);
+// 				$('#editarSubtotalOtServicioTecnico').val(data.post.Subtotal_OTServicioTecnico);
+// 				$('#editarTotalOtServicioTecnico').val(data.post.Total_OTServicioTecnico);
+// 				$('#modalEditarOtServicioTecnico').modal('show');
+// 				$('.editarInput').on('input', function () {
+// 					let editarPrecio = document.getElementById('editarPrecioOtServicioTecnico').value
+// 					editarPrecio = parseFloat(editarPrecio);
+//
+// 					let editarImpuesto = document.getElementById('editarImpuestoOtServicioTecnico').value
+// 					editarImpuesto = parseFloat(editarImpuesto)
+//
+// 					let editarSubtotal = document.getElementById('editarSubtotalOtServicioTecnico').value
+// 					editarSubtotal = parseFloat(editarSubtotal)
+//
+// 					let editarTotal = document.getElementById('editarTotalOtServicioTecnico').value
+// 					editarTotal = parseFloat(editarTotal)
+// 					if (Number.isNaN(editarPrecio)) {
+// 						editarPrecio = 0
+// 					} else if (Number.isNaN(editarImpuesto)) {
+// 						editarImpuesto = 0
+// 					}
+//
+// 					document.getElementById('editarSubtotalOtServicioTecnico').value = editarPrecio;
+// 					document.getElementById('editarTotalOtServicioTecnico').value = (editarPrecio * (editarImpuesto / 100) + editarPrecio).toFixed(2);
+// 				});
+// 			} else {
+// 				new Noty({
+// 					layout: 'topRight',
+// 					theme: 'limitless',
+// 					type: 'error',
+// 					text: data.mensaje,
+// 					timeout: 3000,
+// 				}).show();
+// 			}
+//
+//
+// 		}
+// 	})
+// });
 
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
 $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
