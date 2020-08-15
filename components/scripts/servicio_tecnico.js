@@ -510,7 +510,7 @@ $(document).on('click', '#eliminarOtServicioTecnico', function (event) {
 })
 
 $(document).on('click', '#verOtServicioTecnico', function (event) {
-	// $('#modalVerOtServicioTecnico').modal('show')
+	$('#modalVerOtServicioTecnico').modal('show')
 	event.preventDefault()
 	let verIdOtServicioTecnico = $(this).attr('value');
 	$.ajax({
