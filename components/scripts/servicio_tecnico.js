@@ -97,6 +97,10 @@ $(document).on('keyup', '#precio', function () {
 	sumar()
 })
 
+$(document).on('keyup', '#editarPrecio', function () {
+	sumar()
+})
+
 function generarNumero(numero) {
 	if (numero >= 99999 && numero < 99999) {
 		return Number(numero) + 1
