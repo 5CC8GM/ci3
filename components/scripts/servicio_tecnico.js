@@ -546,6 +546,17 @@ $(document).on('click', '#verOtServicioTecnico', function (event) {
 // 	})
 // });
 
+/* EDITAR ORDEN DE TRABAJO SERVICIO TECNICO */
+$(document).on('click', '#editarOtServicioTecnico', function (event) {
+	
+	event.preventDefault()
+	
+	let editarIdOtServicioTecnico = $(this).attr('value');
+	/* OBTENER EL ID DEL BOTON AL DAR CLICK */
+	// alert(editarIdOtServicioTecnico)
+	
+})
+
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
 // $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 //
