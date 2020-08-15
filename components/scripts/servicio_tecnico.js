@@ -98,7 +98,7 @@ $(document).on('keyup', '#precio', function () {
 })
 
 $(document).on('keyup', '#editarPrecio', function () {
-	sumar()
+	editarSumar()
 })
 
 function generarNumero(numero) {
@@ -150,6 +150,23 @@ function sumar() {
 	
 	let total = (Number(subtotal + iva))
 	$('input[name=total]').val(total.toFixed(2))
+}
+
+function editarSumar() {
+	// let precio = document.getElementById('precio').value
+	// precio = parseFloat(precio);
+	// let subtotal = document.getElementById('subtotal').value
+	// subtotal = parseFloat(subtotal)
+	let subtotal = (Number($('#editarPrecio').val()))
+	$('input[name=editarSubtotal]').val(subtotal.toFixed(2));
+	
+	let porcentaje = $('#editarIva').val();
+	
+	let iva = Number((subtotal * (porcentaje / 100)).toFixed(3));
+	$('input[name=editarIva]').val(iva.toFixed(2))
+	
+	let total = (Number(subtotal + iva))
+	$('input[name=editarTotal]').val(total.toFixed(2))
 }
 
 /* CALCULOS DE LOS INPUTS */
