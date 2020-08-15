@@ -588,10 +588,32 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 	})
 })
 
-$(document).on('click', '#actualizarOtServicioTenico', function (event) {
-
-
-
+$(document).on('click', '#actualizarOtServicioTecnico', function (event) {
+	
+	event.preventDefault();
+	
+	let editarIdOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
+	// alert(editarIdOtServicioTecnico)
+	let editarSerie = $('#editarSerieDocumento').val()
+	// alert(editarSerie)
+	let editarNumero = $('#editarNumeroDocumento').val()
+	// alert(editarNumero)
+	let editarCliente = $('#editarCliente').val()
+	// alert(editarCliente)
+	let editarMarca = $('#editarMarca').val();
+	// alert(editarMarca)
+	let editarModelo = $('#editarModelo').val();
+	// alert(editarModelo)
+	let editarDescripcion = $('#editarDescripcion').val();
+	// alert(editarDescripcion)
+	let editarPrecio = $('#editarPrecio').val()
+	// alert(editarPrecio)
+	let editarIva = $('#editarIva').val();
+	// alert(editarIva)
+	let editarSubtotal = $('#editarSubtotal').val()
+	// alert(editarSubtotal)
+	let editarTotal = $('#editarTotal').val();
+	// alert(editarTotal)
 })
 
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
