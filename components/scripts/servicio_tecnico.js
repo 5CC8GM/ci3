@@ -588,6 +588,12 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 	})
 })
 
+$(document).on('click', '#actualizarOtServicioTenico', function (event) {
+
+
+
+})
+
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
 // $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 //
