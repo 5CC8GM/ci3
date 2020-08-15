@@ -614,6 +614,8 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	// alert(editarSubtotal)
 	let editarTotal = $('#editarTotal').val();
 	// alert(editarTotal)
+	let editarIdDocumento = $('#editarTipoDocumento').val()
+	// alert(editarIdDocumento)
 })
 
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
