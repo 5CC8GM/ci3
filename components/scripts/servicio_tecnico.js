@@ -687,6 +687,31 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 			timeout: 3000,
 		}).show();
 		
+	} else {
+		$.ajax({
+			url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/actualizar',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				
+				id: editarIdOtServicioTecnico,
+				serie: editarSerie,
+				numero: editarNumero,
+				cliente: editarCliente,
+				marca: editarMarca,
+				modelo: editarModelo,
+				descripcion: editarDescripcion,
+				precio: editarPrecio,
+				iva: editarIva,
+				subtotal: editarSubtotal,
+				total: editarTotal,
+				totalDetalle: editarTotal
+				
+			},
+			success: function (data) {
+				console.log(data)
+			}
+		})
 	}
 	
 })
