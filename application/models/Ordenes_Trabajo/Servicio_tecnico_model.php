@@ -100,23 +100,42 @@
 			
 		}
 		
-//		public function editar($id) {
-//
-//			$this->db->select('*');
-//			$this->db->from('ot_servicio_tecnico');
-//			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
-//			$this->db->where('ID_OTServicioTecnico', $id);
-//			$this->db->order_by('ID_OTServicioTecnico', 'ASC');
-//
-//			$consulta = $this->db->get();
-//
-//			if (count($consulta->result()) > 0) {
-//
-//				return $consulta->row();
-//
-//			}
-//
-//		}
+		//		public function editar($id) {
+		//
+		//			$this->db->select('*');
+		//			$this->db->from('ot_servicio_tecnico');
+		//			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
+		//			$this->db->where('ID_OTServicioTecnico', $id);
+		//			$this->db->order_by('ID_OTServicioTecnico', 'ASC');
+		//
+		//			$consulta = $this->db->get();
+		//
+		//			if (count($consulta->result()) > 0) {
+		//
+		//				return $consulta->row();
+		//
+		//			}
+		//
+		//		}
+		
+		public function editar($id) {
+			
+			$this->db->select('*');
+			$this->db->from('ot_servicio_tecnico');
+			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
+			$this->db->join('detalle_otservicio_tecnico', 'ot_servicio_tecnico.ID_OTServicioTecnico = detalle_otservicio_tecnico.ID_OTServicioTecnico');
+			$this->db->join('tipo_documento', 'ot_servicio_tecnico.ID_Documento = tipo_documento.ID_Documento');
+			$this->db->where('ot_servicio_tecnico.ID_OTServicioTecnico', $id);
+			$this->db->order_by('ot_servicio_tecnico.ID_OTServicioTecnico', 'ASC');
+			$consulta = $this->db->get();
+			
+			if (count($consulta->result()) > 0) {
+				
+				return $consulta->row();
+				
+			}
+			
+		}
 		
 		public function actualizar($data) {
 			
