@@ -665,6 +665,30 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	// alert(editarTotal)
 	let editarIdDocumento = $('#editarTipoDocumento').val()
 	// alert(editarIdDocumento)
+	
+	if (editarIdOtServicioTecnico == '' ||
+		editarSerie == '' ||
+		editarNumero == '' ||
+		editarCliente == '' ||
+		editarMarca == '' ||
+		editarModelo == '' ||
+		editarDescripcion == '' ||
+		editarPrecio == '' ||
+		editarIva == '' ||
+		editarSubtotal == '' ||
+		editarTotal == '' ||
+		editarIdDocumento == '') {
+		
+		new Noty({
+			layout: 'topRight',
+			theme: 'limitless',
+			type: 'error',
+			text: 'Los campos no deben estar vacios',
+			timeout: 3000,
+		}).show();
+		
+	}
+	
 })
 
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
