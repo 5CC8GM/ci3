@@ -555,6 +555,21 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 	/* OBTENER EL ID DEL BOTON AL DAR CLICK */
 	// alert(editarIdOtServicioTecnico)
 	
+	$.ajax({
+		
+		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/editar',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			
+			editarIdOtServicioTecnico: editarIdOtServicioTecnico,
+			
+		},
+		success: function (data) {
+			console.log(data)
+		}
+		
+	})
 })
 
 /* ACTUALIZAR ORDEN DE TRABAJO SERVICIO TECNICO */
