@@ -153,27 +153,27 @@
 			
 		}
 		
-		public function editar() {
-			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
-			if ($this->input->is_ajax_request()) {
-				
-				$editarIdOtServicioTecnico = $this->input->post('editarIdOtServicioTecnico');
-				if ($datos = $this->servicio_tecnico_model->editar($editarIdOtServicioTecnico)) {
-					
-					$data = array('respuesta' => 'success', 'post' => $datos);
-					
-				} else {
-					$data = array('respuesta' => 'error', 'mensaje' => 'Error al mostrar los datos');
-				}
-				
-				/* RESPUESTA EN FORMATO JSON */
-				echo json_encode($data);
-				
-				
-			} else {
-				echo 'No se permite el acceso de scripts';
-			}
-		}
+//		public function editar() {
+//			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
+//			if ($this->input->is_ajax_request()) {
+//
+//				$editarIdOtServicioTecnico = $this->input->post('editarIdOtServicioTecnico');
+//				if ($datos = $this->servicio_tecnico_model->editar($editarIdOtServicioTecnico)) {
+//
+//					$data = array('respuesta' => 'success', 'post' => $datos);
+//
+//				} else {
+//					$data = array('respuesta' => 'error', 'mensaje' => 'Error al mostrar los datos');
+//				}
+//
+//				/* RESPUESTA EN FORMATO JSON */
+//				echo json_encode($data);
+//
+//
+//			} else {
+//				echo 'No se permite el acceso de scripts';
+//			}
+//		}
 		
 		public function actualizar() {
 			
