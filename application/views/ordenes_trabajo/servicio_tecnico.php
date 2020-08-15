@@ -215,19 +215,57 @@
 						data-dismiss="modal">&times;
 				</button>
 			</div>
-			
-			<form action=""
-				  method="post"
-				  id="formularioEditarOtServicioTecnico">
-				<input type="hidden"
-					   name="editarIdOtServicioTecnico"
-					   id="editarIdOtServicioTecnico"
-					   value="">
-				<div class="modal-body">
+			<div class="modal-body">
+				<form action=""
+					  method="post"
+					  id="formularioEditarServicioTecnico">
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="editarTipoDocumento">Tipo de Documento</label>
+							<select id="editarTipoDocumento"
+									name="editarTipoDocumento"
+									class="form-control"
+									data-fouc
+									required>
+								<?php foreach ($tipoDocumento as $documento): ?>
+									
+									<option value="<?= $documento->ID_Documento ?>"><?= $documento->Nombre_Documento
+										?></option>
+								<?php endforeach; ?>
+							</select>
+							<input type="hidden"
+								   id="editarInfoOculta">
+							<input type="hidden"
+								   id="editarIdDocumento"
+								   name="editarIdDocumento">
+							<input type="hidden"
+								   id="editarImpuestoDocumento"
+								   name="editarImpuestoDocumento">
+							<input type="hidden"
+								   id="editarIdOtServicioTecnico"
+								   name="editarIdOtServicioTecnico">
+						</div>
+						<div class="col-sm-3">
+							<label for="editarSerieDocumento">Serie</label>
+							<input type="text"
+								   name="editarSerieDocumento"
+								   id="editarSerieDocumento"
+								   class="form-control"
+								   disabled>
+						</div>
+						<div class="col-sm-3">
+							<label for="editarNumeroDocumento">Número</label>
+							<input type="text"
+								   name="editarNumeroDocumento"
+								   id="editarNumeroDocumento"
+								   class="form-control"
+								   disabled>
+						</div>
+					</div>
 					<div class="form-group">
-						<label for="editarClienteOtServicioTecnico">Cliente</label>
-						<select id="editarClienteOtServicioTecnico"
-								name="editarClienteOtServicioTecnico"
+						<label for="editarCliente">Cliente</label>
+						<select id="editarCliente"
+								name="editarCliente"
 								class="form-control select-search"
 								data-placeholder="Seleccione un cliente"
 								data-fouc
@@ -241,95 +279,89 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-md-6">
-							<label for="editarMarcaOtServicioTecnico">Marca:</label>
+							<label for="editarMarca">Marca:</label>
 							<input type="text"
 								   class="form-control"
-								   name="editarMarcaOtServicioTecnico"
-								   id="editarMarcaOtServicioTecnico"
+								   name="editarMarca"
+								   id="editarMarca"
 								   placeholder="Asus"
 								   required>
 						</div>
 						<div class="col-md-6">
-							<label for="editarModeloOtServicioTecnico">Modelo:</label>
+							<label for="editarModelo">Modelo:</label>
 							<input type="text"
 								   class="form-control"
-								   name="editarModeloOtServicioTecnico"
-								   id="editarModeloOtServicioTecnico"
+								   name="editarModelo"
+								   id="editarModelo"
 								   placeholder="BHMX350"
 								   required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="editarDescripcionOtServicioTecnico">Descripción:</label>
+						<label for="editarDescripcion">Descripción:</label>
 						<textarea rows="1"
 								  cols="1"
 								  class="form-control elastic"
 								  placeholder="Descripción:"
-								  id="editarDescripcionOtServicioTecnico"
-								  name="editarDescripcionOtServicioTecnico"
+								  id="editarDescripcion"
+								  name="editarDescripcion"
 								  required></textarea>
 					</div>
 					<div class="form-group row">
 						<div class="col-md-6">
-							<label for="editarPrecioOtServicioTecnico">Precio:</label>
+							<label for="editarPrecio">Precio:</label>
 							<input type="text"
-								   class="editarInput form-control"
-								   name="editarPrecioOtServicioTecnico"
-								   id="editarPrecioOtServicioTecnico"
+								   class="input form-control"
+								   name="editarPrecio"
+								   id="editarPrecio"
 								   placeholder="30.50"
 								   required>
 						</div>
 						<div class="col-md-6">
-							<label for="editarImpuestoOtServicioTecnico">Impuesto:</label>
+							<label for="editarIva">IVA:</label>
 							<div class="input-group">
-								<input type="number"
-									   id="editarImpuestoOtServicioTecnico"
-									   name="editarImpuestoOtServicioTecnico"
-									   class="editarInput form-control"
-									   placeholder="12%"
-									   min="0"
-									   max="100">
+								<input type="text"
+									   id="editarIva"
+									   name="editarIva"
+									   class="input form-control"
+									   readonly>
 								<span class="input-group-append">
-									<span class="input-group-text">%</span>
+									<span class="input-group-text">IVA</span>
 								</span>
 							</div>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-md-6 ml-md-auto">
-							<label for="editarSubtotalOtServicioTecnico">Subtotal:</label>
+							<label for="editarSubtotal">Subtotal:</label>
 							<input type="text"
-								   class="editarInput form-control"
-								   name="editarSubtotalOtServicioTecnico"
-								   id="editarSubtotalOtServicioTecnico"
+								   class="input form-control"
+								   name="editarSubtotal"
+								   id="editarSubtotal"
 								   readonly
 								   required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-md-6 ml-md-auto">
-							<label for="editarTotalOtServicioTecnico">Total:</label>
+							<label for="editarTotal">Total:</label>
 							<input type="text"
-								   class="editarInput form-control"
-								   name="editarTotalOtServicioTecnico"
-								   id="editarTotalOtServicioTecnico"
+								   class="input form-control"
+								   name="editarTotal"
+								   id="editarTotal"
 								   readonly
 								   required>
 						</div>
 					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button"
-							class="btn bg-danger-800"
-							data-dismiss="modal">Cerrar
-					</button>
-					<button type="button"
-							class="btn bg-primary-800"
-							id="actualizarOtServicioTecnico">Editar
-					</button>
-				</div>
-			</form>
+					<div class="text-center">
+						<button class="btn bg-primary-800"
+								type="button"
+								id="actualizarOtServicioTecnico">Actualizar Orden de Trabajo <i
+									class="icon-paperplane
+									ml-2"></i></button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
