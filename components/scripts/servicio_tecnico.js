@@ -42,7 +42,6 @@ $('#tipoDocumento').select2({
 })
 $('#editarTipoDocumento').select2({
 	placeholder: 'Seleccione un documento',
-	allowClear: true,
 	minimumResultsForSearch: Infinity,
 	// ajax: {
 	// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
@@ -92,7 +91,36 @@ $('#tipoDocumento').change(function () {
 		}
 	})
 });
-
+$('#editarTipoDocumento').change(function () {
+	let id = $(this).val();
+	// console.log(id)
+	let idOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
+	// alert(idOtServicioTecnico)
+	$.ajax({
+		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacturas',
+		type: 'post',
+		data: {
+			id: id,
+			idOt: idOtServicioTecnico
+		},
+		dataType: 'json',
+		success: function (data) {
+			// console.log('data ' + data)
+			$('#editarInfoOculta').val(data)
+			let opcion = $('#editarInfoOculta').val();
+			console.log('opcion' + opcion)
+			if (opcion != '') {
+				
+				let informacionComprobante = opcion.split('*');
+				$('#editarImpuestoDocumento').val(informacionComprobante[2]);
+				editarSumar()
+			} else {
+				$('#impuestoDocumento').val(null);
+				editarSumar()
+			}
+		}
+	})
+});
 $(document).on('keyup', '#precio', function () {
 	sumar()
 })
@@ -160,7 +188,7 @@ function editarSumar() {
 	let subtotal = (Number($('#editarPrecio').val()))
 	$('input[name=editarSubtotal]').val(subtotal.toFixed(2));
 	
-	let porcentaje = $('#editarIva').val();
+	let porcentaje = $('#editarImpuestoDocumento').val();
 	
 	let iva = Number((subtotal * (porcentaje / 100)).toFixed(3));
 	$('input[name=editarIva]').val(iva.toFixed(2))
