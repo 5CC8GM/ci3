@@ -114,6 +114,16 @@
 			
 		}
 		
+		public function editarSaveDetalle() {
+			
+			$data = array('ID_OTServicioTecnico'            => $data2['ID_OTServicioTecnico'] = $this->input->post('id'),
+						  'Precio_DetalleOTServicioTecnico' => $data2['Precio_DetalleOTServicioTecnico'] = $this->input->post('precio'),
+						  'Total_DetalleOTServicioTecnico'  => $data2['Total_DetalleOTServicioTecnico'] = $this->input->post('totalDetalle'));
+			
+			$this->servicio_tecnico_model->editarSaveDetalle($data);
+			
+		}
+		
 		public function mostrar() {
 			
 			if ($this->input->is_ajax_request()) {
@@ -271,13 +281,15 @@
 				/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
 				if ($this->servicio_tecnico_model->actualizar($data)) {
 					
+					$this->editarSaveDetalle();
+					
 					/* MENSAJE AL INSERTAR CORRECTAMENTE */
-					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido editada exitosamente');
+					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido actualizada exitosamente');
 					
 				} else {
 					
 					/* MENSAJE DE ERROR SI NO SE INSERTA CORRECTAMENTE */
-					$data = array('respuesta' => 'error', 'mensaje' => 'La orden de trabajo de servicio técnico no ha sido editada');
+					$data = array('respuesta' => 'error', 'mensaje' => 'La orden de trabajo de servicio técnico no ha sido actualizada');
 				}
 				
 				
@@ -326,11 +338,11 @@
 			$output = null;
 			foreach ($data as $row) {
 				
-				$salida = $row->ID_Documento . ' * ' . $row->Cantidad_Documento . ' * ' . $row->Impuesto_Documento . ' * ' .
+				$salida = $row->ID_Documento . '*' . $row->Cantidad_Documento . '*' . $row->Impuesto_Documento . '*' .
 					$row->Serie_Documento;
 				
 				$output .= $salida;
 			}
-			$this->output->set_content_type('application / json')->set_output(json_encode($output));
+			$this->output->set_content_type('application/json')->set_output(json_encode($output));
 		}
 	}
