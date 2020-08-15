@@ -566,7 +566,28 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 			
 		},
 		success: function (data) {
-			console.log(data)
+			// console.log(data)
+			
+			if (data.respuesta == 'success') {
+				
+				$('#editarIdOtServicioTecnico').val(data.post.ID_OTServicioTecnico);
+				$('#editarIdDocumento').val(data.post.ID_Documento);
+				$('#editarTipoDocumento').val(data.post.ID_Documento).trigger('change');
+				$('#editarSerieDocumento').val(data.post.Serie_OTServicioTecnico);
+				$('#editarNumeroDocumento').val(data.post.NumeroDocumento_OTServicioTecnico);
+				$('#editarCliente').val(data.post.ID_Cliente).trigger('change');
+				$('#editarMarca').val(data.post.Marca_OTServicioTecnico);
+				$('#editarModelo').val(data.post.Modelo_OTServicioTecnico);
+				$('#editarDescripcion').val(data.post.Descripcion_OTServicioTecnico);
+				$('#editarPrecio').val(data.post.Precio_DetalleOTServicioTecnico);
+				$('#editarIva').val(data.post.Impuesto_OTServicioTecnico);
+				$('#editarSubtotal').val(data.post.Subtotal_OTServicioTecnico);
+				$('#editarTotal').val(data.post.Total_OTServicioTecnico);
+				$('#modalEditarOtServicioTecnico').modal('show');
+				
+				
+				
+			}
 		}
 		
 	})
