@@ -94,6 +94,12 @@
 			$this->db->insert('detalle_otservicio_tecnico', $data);
 		}
 		
+		public function editarSaveDetalle($data) {
+			
+			return $this->db->update('detalle_otservicio_tecnico', $data, array('ID_OTServicioTecnico' => $data['ID_OTServicioTecnico']));
+			
+		}
+		
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
