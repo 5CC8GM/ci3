@@ -226,7 +226,8 @@
 									name="editarTipoDocumento"
 									class="form-control"
 									data-fouc
-									required>
+									required
+									disabled="disabled">
 								<?php foreach ($tipoDocumento as $documento): ?>
 									
 									<option value="<?= $documento->ID_Documento ?>"><?= $documento->Nombre_Documento
