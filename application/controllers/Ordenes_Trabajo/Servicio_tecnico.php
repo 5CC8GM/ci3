@@ -129,26 +129,30 @@
 			$resultadoList = $this->servicio_tecnico_model->mostrar();
 			$resultado = array();
 			$i = 1;
-			foreach ($resultadoList as $key => $value) {
-				$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
-				$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
-					$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="' .
-					$value['ID_OTServicioTecnico'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="' .
-					$value['ID_OTServicioTecnico'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
-				
-				$resultado['data'][] = array(
-					$i++,
-					$nombreApellido,
-					$value['Nombre_Documento'],
-					$value['NumeroDocumento_OTServicioTecnico'],
-					$value['Descripcion_OTServicioTecnico'],
-					$value['Fecha_OTServicioTecnico'],
-					$value['Total_OTServicioTecnico'],
-					$acciones
-				);
+			if (!empty($resultadoList)) {
+				foreach ($resultadoList as $key => $value) {
+					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
+						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="' .
+						$value['ID_OTServicioTecnico'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="' .
+						$value['ID_OTServicioTecnico'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
+					
+					$resultado['data'][] = array(
+						$i++,
+						$nombreApellido,
+						$value['Nombre_Documento'],
+						$value['NumeroDocumento_OTServicioTecnico'],
+						$value['Descripcion_OTServicioTecnico'],
+						$value['Fecha_OTServicioTecnico'],
+						$value['Total_OTServicioTecnico'],
+						$acciones
+					);
+				}
+			} else {
+				$resultado['data'] = array();
 			}
-			echo json_encode($resultado);
 			
+			echo json_encode($resultado);
 			
 		}
 		
