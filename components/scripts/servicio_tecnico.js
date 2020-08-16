@@ -280,8 +280,7 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 		success: function (data) {
 			// console.log(data)
 			if (data.respuesta == 'success') {
-				$('#tablaServicioTecnico').DataTable().destroy();
-				mostrarTablaServicioTecnico()
+				$('#tablaServicioTecnico').DataTable().ajax.reload()
 				// location.reload();
 				/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
 				new Noty({
@@ -311,142 +310,15 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 });
 
 /* MOSTRAR ORDENES DE TRABAJO EN LA TABLA */
-function mostrarTablaServicioTecnico() {
-	
-	$.ajax({
-		url: "http://localhost/ci3/ordenes_trabajo/servicio_tecnico/mostrar",
-		type: "post",
-		dataType: "json",
-		success: function (data) {
-			if (data.respuesta == 'success') {
-				let i = "1";
-				// console.log(data)
-				
-				$('#tablaServicioTecnico').DataTable({
-					autoWidth: false,
-					language: {
-						"sProcessing": "Procesando...",
-						"sZeroRecords": "No se encontraron resultados",
-						"sEmptyTable": "Ningún dato disponible en esta tabla",
-						"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-						"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-						"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-						"sInfoPostFix": "",
-						"sUrl": "",
-						"sInfoThousands": ",",
-						"sLoadingRecords": "Cargando...",
-						"oAria": {
-							"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-						},
-						// Select2 for length menu styling
-						
-						// Initialize
-						
-						search: '<span>Filtro:</span> _INPUT_',
-						searchPlaceholder: 'Escriba para buscar...',
-						lengthMenu: '<span>Mostrar:</span> _MENU_',
-						paginate: {
-							'first': 'First',
-							'last': 'Last',
-							'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
-							'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
-						}
-					},
-					
-					dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-					'data': data.datos,
-					'responsive': true,
-					'columns': [
-						{
-							"render": function () {
-								return accionesBotones = i++;
-							}
-						},
-						{
-							"render": function (data, type, row, meta) {
-								return `${row.Nombre_Cliente} ${row.Apellido_Cliente}`
-								
-							}
-						},
-						{"data": 'Nombre_Documento'},
-						{"data": "NumeroDocumento_OTServicioTecnico"},
-						{"data": "Descripcion_OTServicioTecnico"},
-						{"data": "Fecha_OTServicioTecnico"},
-						{
-							"render": function (data, type, row, meta) {
-								return `<strong class="text-primary">$${row.Total_OTServicioTecnico}</strong>`
-							}
-						},
-						{
-							"render": function (data, type, row, meta) {
-								
-								let accionesBotones = `<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="${row.ID_OTServicioTecnico}" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="${row.ID_OTServicioTecnico}" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="${row.ID_OTServicioTecnico}"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>`
-								
-								return accionesBotones
-								
-							}
-						},
-					]
-					
-				});
-				$('.dataTables_length select').select2({
-					minimumResultsForSearch: Infinity,
-					dropdownAutoWidth: true,
-					width: 'auto'
-				});
-			} else {
-				$('#tablaServicioTecnico').DataTable().destroy()
-				/* ESTETICA AL MOSTRAR EL MENSAJE DE ERROR */
-				$('#tablaServicioTecnico').DataTable({
-					autoWidth: false,
-					language: {
-						"sProcessing": "Procesando...",
-						"sZeroRecords": "No se encontraron resultados",
-						"sEmptyTable": "Ningún dato disponible en esta tabla",
-						"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-						"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-						"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-						"sInfoPostFix": "",
-						"sUrl": "",
-						"sInfoThousands": ",",
-						"sLoadingRecords": "Cargando...",
-						"oAria": {
-							"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-						},
-						// Select2 for length menu styling
-						
-						// Initialize
-						
-						search: '<span>Filtro:</span> _INPUT_',
-						searchPlaceholder: 'Escriba para buscar...',
-						lengthMenu: '<span>Mostrar:</span> _MENU_',
-						paginate: {
-							'first': 'First',
-							'last': 'Last',
-							'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
-							'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
-						}
-					},
-					
-					dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-					'data': [],
-					'responsive': true,
-				})
-				$('.dataTables_length select').select2({
-					minimumResultsForSearch: Infinity,
-					dropdownAutoWidth: true,
-					width: 'auto'
-				});
-			}
-			
-		}
+$(document).ready(function () {
+	$('#tablaServicioTecnico').DataTable({
+		
+		'ajax': "http://localhost/ci3/ordenes_trabajo/servicio_tecnico/mostrar",
+		order: [],
+		responsive: true,
+		autoWidth: false
 	})
-	
-}
-
-mostrarTablaServicioTecnico()
+})
 
 /* ELIMINAR ORDEN DE TRABAJO SERVICIO TECNICO */
 $(document).on('click', '#eliminarOtServicioTecnico', function (event) {

@@ -11,7 +11,7 @@
 			$this->db->join('tipo_documento', 'tipo_documento.ID_Documento = ot_servicio_tecnico.ID_Documento');
 			$this->db->order_by('ID_OTServicioTecnico', 'ASC');
 			$query = $this->db->get();
-			return $query->result();
+			return $query->result_array();
 		}
 		
 		/* INSERTAR ORDER DE TRABAJO SERVICIO TECNICO */
