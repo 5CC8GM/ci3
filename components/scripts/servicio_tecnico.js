@@ -26,42 +26,16 @@ $('#tipoDocumento').select2({
 	placeholder: 'Seleccione un documento',
 	allowClear: true,
 	minimumResultsForSearch: Infinity,
-	// ajax: {
-	// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
-	// 	dataType: 'json',
-	// 	type: 'post',
-	// 	processResults: function (data) {
-	// 		return {
-	// 			results: data
-	// 		}
-	// 	},
-	//
-	// 	cache: true
-	//
-	// },
 })
 $('#editarTipoDocumento').select2({
 	placeholder: 'Seleccione un documento',
 	minimumResultsForSearch: Infinity,
-	// ajax: {
-	// 	url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacts',
-	// 	dataType: 'json',
-	// 	type: 'post',
-	// 	processResults: function (data) {
-	// 		return {
-	// 			results: data
-	// 		}
-	// 	},
-	//
-	// 	cache: true
-	//
-	// },
 })
 $('#tipoDocumento').change(function () {
 	let id = $(this).val();
 	// console.log(id)
 	$.ajax({
-		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacturas',
+		url: 'http://localhost/ci3/servicio_tecnico/getFacturas',
 		type: 'post',
 		data: {
 			id: id
@@ -97,7 +71,7 @@ $('#editarTipoDocumento').change(function () {
 	let idOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
 	// alert(idOtServicioTecnico)
 	$.ajax({
-		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/getFacturas',
+		url: 'http://localhost/ci3/servicio_tecnico/getFacturas',
 		type: 'post',
 		data: {
 			id: id,
@@ -250,7 +224,7 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 	
 	// alert(total)
 	$.ajax({
-		url: "http://localhost/ci3/ordenes_trabajo/servicio_tecnico/crear",
+		url: "http://localhost/ci3/servicio_tecnico/crear",
 		type: "post",
 		dataType: "json",
 		data: {
@@ -313,7 +287,7 @@ $(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 $(document).ready(function () {
 	$('#tablaServicioTecnico').DataTable({
 		
-		'ajax': "http://localhost/ci3/ordenes_trabajo/servicio_tecnico/mostrar",
+		'ajax': "http://localhost/ci3/servicio_tecnico/mostrar",
 		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
 		responsive: true,
@@ -385,7 +359,7 @@ $(document).on('click', '#eliminarOtServicioTecnico', function (event) {
 		if (result.value) {
 			
 			$.ajax({
-				url: "http://localhost/ci3/ordenes_trabajo/servicio_tecnico/eliminar",
+				url: "http://localhost/ci3/servicio_tecnico/eliminar",
 				type: "post",
 				dataType: "json",
 				data: {
@@ -421,7 +395,7 @@ $(document).on('click', '#verOtServicioTecnico', function (event) {
 	event.preventDefault()
 	let verIdOtServicioTecnico = $(this).attr('value');
 	$.ajax({
-		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/verOtServicioTecnico',
+		url: 'http://localhost/ci3/servicio_tecnico/invoice',
 		type: 'post',
 		dataType: 'html',
 		data: {
@@ -513,7 +487,7 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 	
 	$.ajax({
 		
-		url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/editar',
+		url: 'http://localhost/ci3/servicio_tecnico/editar',
 		type: 'post',
 		dataType: 'json',
 		data: {
@@ -596,7 +570,7 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 		
 	} else {
 		$.ajax({
-			url: 'http://localhost/ci3/ordenes_trabajo/servicio_tecnico/actualizar',
+			url: 'http://localhost/ci3/servicio_tecnico/actualizar',
 			type: 'post',
 			dataType: 'json',
 			data: {
