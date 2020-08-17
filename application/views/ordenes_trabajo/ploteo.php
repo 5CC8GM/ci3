@@ -47,18 +47,18 @@
 									   name="impuestoDocumentoPloteo">
 							</div>
 							<div class="col-sm-3">
-								<label for="serieDocumento">Serie</label>
+								<label for="serieDocumentoPloteo">Serie</label>
 								<input type="text"
-									   name="serieDocumento"
-									   id="serieDocumento"
+									   name="serieDocumentoPloteo"
+									   id="serieDocumentoPloteo"
 									   class="form-control"
 									   readonly>
 							</div>
 							<div class="col-sm-3">
-								<label for="numeroDocumento">Número</label>
+								<label for="numeroDocumentoPloteo">Número</label>
 								<input type="text"
-									   name="numeroDocumento"
-									   id="numeroDocumento"
+									   name="numeroDocumentoPloteo"
+									   id="numeroDocumentoPloteo"
 									   class="form-control"
 									   readonly>
 							</div>
