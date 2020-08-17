@@ -75,20 +75,10 @@
 						   class="nav-link align-items-center"><i class="icon-hammer-wrench"></i> <span>Órdenes de Trabajo
 																					 Sercivio Técnico</span></a>
 					</li>
-					<li class="nav-item nav-item-submenu">
-						<a href="#"
+					<li class="nav-item">
+						<a href="<?= base_url() ?>ploteo"
 						   class="nav-link align-items-center"><i class="icon-printer"></i> <span>Órdenes de Trabajo
 																					 Ploteo</span></a>
-						
-						<ul class="nav nav-group-sub"
-							data-submenu-title="asdf">
-							<li class="nav-item"><a href="../seed/layout_nav_horizontal.html"
-													class="nav-link">Horizontal navigation</a></li>
-							<li class="nav-item"><a href="../seed/sidebar_none.html"
-													class="nav-link">No sidebar</a></li>
-							<li class="nav-item"><a href="../seed/sidebar_main.html"
-													class="nav-link">1 sidebar</a></li>
-						</ul>
 					</li>
 					<li class="nav-item">
 						<a href=""
