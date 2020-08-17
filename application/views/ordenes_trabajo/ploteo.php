@@ -28,7 +28,7 @@
 										data-fouc
 										required>
 									<option></option>
-									<?php foreach ($tipoDocumento as $documento): ?>
+									<?php foreach ($tipoDocumentoPloteo as $documento): ?>
 										
 										<?php $dataDocumento = $documento->ID_Documento . '*'
 											. $documento->Cantidad_Documento . '*' .
@@ -72,7 +72,7 @@
 									data-fouc
 									required>
 								<option></option>
-								<?php foreach ($cliente as $value): ?>
+								<?php foreach ($clientePloteo as $value): ?>
 									
 									<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
 								
