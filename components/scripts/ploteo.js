@@ -38,3 +38,35 @@ $('#tipoDocumentoPloteo').change(function () {
 		}
 	})
 })
+
+/* FUNCION PARA GENERAR EL NUMERO DE LA FACTURA O RECIBO */
+function generarNumeroDocumentoPloteo(numero) {
+	if (numero >= 99999 && numero < 99999) {
+		return Number(numero) + 1
+	}
+	if (numero >= 9999 && numero < 99999) {
+		
+		return '0' + (Number(numero) + 1)
+		
+	}
+	if (numero >= 999 && numero < 9999) {
+		
+		return '00' + (Number(numero) + 1)
+		
+	}
+	if (numero >= 99 && numero < 999) {
+		
+		return '000' + (Number(numero) + 1)
+		
+	}
+	if (numero >= 9 && numero < 99) {
+		
+		return '0000' + (Number(numero) + 1)
+		
+	}
+	if (numero < 9) {
+		
+		return '00000' + (Number(numero) + 1)
+		
+	}
+}
