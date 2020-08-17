@@ -18,12 +18,12 @@
 				<div class="card-body">
 					<form action=""
 						  method="post"
-						  id="formularioServicioTecnico">
+						  id="formularioPloteo">
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<label for="tipoDocumento">Tipo de Documento</label>
-								<select id="tipoDocumento"
-										name="tipoDocumento"
+								<label for="tipoDocumentoPloteo">Tipo de Documento</label>
+								<select id="tipoDocumentoPloteo"
+										name="tipoDocumentoPloteo"
 										class="form-control"
 										data-fouc
 										required>
