@@ -396,9 +396,7 @@ $(document).on('click', '#eliminarOtServicioTecnico', function (event) {
 					
 					// console.log(data)
 					if (data.respuesta == 'success') {
-						
-						$('#tablaServicioTecnico').DataTable().destroy()
-						mostrarTablaServicioTecnico()
+						$('#tablaServicioTecnico').DataTable().ajax.reload()
 						swalInit.fire(
 							'Eliminado!',
 							'La orden de trabajo ha sido eliminado',
@@ -618,7 +616,33 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 				
 			},
 			success: function (data) {
-				console.log(data)
+				
+				// console.log(data)
+				if (data.respuesta == 'success') {
+					$('#tablaServicioTecnico').DataTable().ajax.reload()
+					$('#modalEditarOtServicioTecnico').modal('hide');
+					/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
+					new Noty({
+						layout: 'topRight',
+						theme: 'limitless',
+						type: 'success',
+						text: data.mensaje,
+						timeout: 3000,
+					}).show();
+					
+				} else {
+					
+					/* ESTETICA AL MOSTRAR EL MENSAJE DE ERROR */
+					new Noty({
+						layout: 'topRight',
+						theme: 'limitless',
+						type: 'error',
+						text: data.mensaje,
+						timeout: 3000,
+					}).show();
+					
+				}
+				
 			}
 		})
 	}
