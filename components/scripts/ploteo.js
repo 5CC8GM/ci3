@@ -32,7 +32,7 @@ $('#tipoDocumentoPloteo').change(function () {
 				$('#idDocumentoPloteo').val(informacionDocumento[0])
 				$('#impuestoDocumentoPloteo').val(informacionDocumento[2])
 				$('#serieDocumentoPloteo').val(informacionDocumento[3])
-				$('#numeroDocumentoPloteo').val(informacionDocumento[1])
+				$('#numeroDocumentoPloteo').val(generarNumeroDocumentoPloteo(informacionDocumento[1]))
 				
 			}
 		}
