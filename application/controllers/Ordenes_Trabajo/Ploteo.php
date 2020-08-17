@@ -16,6 +16,7 @@
 			return (!preg_match("/^([-a-z-ñ-Ñ_0-9, ])+$/i", $str)) ? FALSE : TRUE;
 		}
 		
+		/* VISTA */
 		public function index() {
 			
 			$data = array('clientePloteo'       => $this->clientes_model->mostrar(),
@@ -34,6 +35,23 @@
 			$this->load->view('ordenes_trabajo/ploteo', $data);
 			/* FOOTER */
 			$this->load->view('layouts/footer');
+			
+		}
+		
+		/* OBTENER DOCUMENTOS POR ID */
+		public function obtenerDocumentos() {
+			
+			$id = $this->input->post('id');
+			$data = $this->ploteo_model->getFacturas($id);
+			$output = null;
+			foreach ($data as $row) {
+				
+				$salida = $row->ID_Documento . '*' . $row->Cantidad_Documento . '*' . $row->Impuesto_Documento . '*' .
+					$row->Serie_Documento;
+				
+				$output .= $salida;
+			}
+			$this->output->set_content_type('application/json')->set_output(json_encode($output));
 			
 		}
 	}
