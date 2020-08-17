@@ -71,7 +71,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?= base_url() ?>ordenes_trabajo/servicio_tecnico"
+						<a href="<?= base_url() ?>servicio_tecnico"
 						   class="nav-link align-items-center"><i class="icon-hammer-wrench"></i> <span>Órdenes de Trabajo
 																					 Sercivio Técnico</span></a>
 					</li>
