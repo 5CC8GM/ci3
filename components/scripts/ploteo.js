@@ -20,7 +20,21 @@ $('#tipoDocumentoPloteo').change(function () {
 		dataType: 'json',
 		success: function (data) {
 			// console.log(data)
-			
+			/* LLENAR EL INPUT HIDDEN CON LA INFORMACION OBTENIDA */
+			$('#dataDocumentoPloteo').val(data)
+			/* ALMACENAR EN UNA VARIABLE LOS VALORES DEL INPUT HIDDEN */
+			let opcion = $('#dataDocumentoPloteo').val();
+			// console.log('opcion ' + opcion)
+			if (opcion != '') {
+				
+				let informacionDocumento = opcion.split('*');
+				
+				$('#idDocumentoPloteo').val(informacionDocumento[0])
+				$('#impuestoDocumentoPloteo').val(informacionDocumento[2])
+				$('#serieDocumentoPloteo').val(informacionDocumento[3])
+				$('#numeroDocumentoPloteo').val(informacionDocumento[1])
+				
+			}
 		}
 	})
 })
