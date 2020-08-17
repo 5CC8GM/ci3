@@ -40,11 +40,11 @@
 								<input type="hidden"
 									   id="infoOculta">
 								<input type="hidden"
-									   id="idDocumento"
-									   name="idDocumento">
+									   id="idDocumentoPloteo"
+									   name="idDocumentoPloteo">
 								<input type="hidden"
-									   id="impuestoDocumento"
-									   name="impuestoDocumento">
+									   id="impuestoDocumentoPloteo"
+									   name="impuestoDocumentoPloteo">
 							</div>
 							<div class="col-sm-3">
 								<label for="serieDocumento">Serie</label>
