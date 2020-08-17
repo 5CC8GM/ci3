@@ -34,6 +34,11 @@ $('#tipoDocumentoPloteo').change(function () {
 				$('#serieDocumentoPloteo').val(informacionDocumento[3])
 				$('#numeroDocumentoPloteo').val(generarNumeroDocumentoPloteo(informacionDocumento[1]))
 				
+			} else {
+				$('#idDocumentoPloteo').val(null)
+				$('#impuestoDocumentoPloteo').val(null)
+				$('#serieDocumentoPloteo').val(null)
+				$('#numeroDocumentoPloteo').val(null)
 			}
 		}
 	})
