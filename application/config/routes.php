@@ -69,4 +69,5 @@
 	$route['servicio_tecnico/getFacturas'] = 'ordenes_trabajo/servicio_tecnico/getFacturas';
 	$route['servicio_tecnico/invoice'] = 'ordenes_trabajo/servicio_tecnico/verOtServicioTecnico';
 	$route['ploteo'] = 'ordenes_trabajo/ploteo/index';
+	$route['ploteo/obtenerDocumentos'] = 'ordenes_trabajo/ploteo/obtenerDocumentos';
 	
