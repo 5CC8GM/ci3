@@ -18,8 +18,8 @@
 		
 		public function index() {
 			
-			$data = array('cliente'       => $this->clientes_model->mostrar(),
-						  'tipoDocumento' => $this->servicio_tecnico_model->getComprobantes());
+			$data = array('clientePloteo'       => $this->clientes_model->mostrar(),
+						  'tipoDocumentoPloteo' => $this->ploteo_model->getComprobantes());
 			
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			/* HEADER */
