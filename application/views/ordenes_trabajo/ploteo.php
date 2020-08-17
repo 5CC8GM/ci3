@@ -38,7 +38,7 @@
 									<?php endforeach; ?>
 								</select>
 								<input type="hidden"
-									   id="infoOculta">
+									   id="dataDocumentoPloteo">
 								<input type="hidden"
 									   id="idDocumentoPloteo"
 									   name="idDocumentoPloteo">
