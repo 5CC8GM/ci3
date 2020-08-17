@@ -60,10 +60,12 @@
 	$route['actualizar'] = 'clientes/actualizar';
 	$route['/'] = 'dashboard/index';
 	$route['getData'] = 'dashboard/getData';
-	$route['ordenes_trabajo/servicio_tecnico'] = 'ordenes_trabajo/servicio_tecnico/index';
-	$route['ordenes_trabajo/servicio_tecnico/crear'] = 'ordenes_trabajo/servicio_tecnico/crear';
-	$route['ordenes_trabajo/servicio_tecnico/mostrar'] = 'ordenes_trabajo/servicio_tecnico/mostrar';
-	$route['ordenes_trabajo/servicio_tecnico/eliminar'] = 'ordenes_trabajo/servicio_tecnico/eliminar';
-	$route['ordenes_trabajo/servicio_tecnico/editar'] = 'ordenes_trabajo/servicio_tecnico/editar';
-	$route['ordenes_trabajo/servicio_tecnico/actualizar'] = 'ordenes_trabajo/servicio_tecnico/actualizar';
+	$route['servicio_tecnico'] = 'ordenes_trabajo/servicio_tecnico/index';
+	$route['servicio_tecnico/crear'] = 'ordenes_trabajo/servicio_tecnico/crear';
+	$route['servicio_tecnico/mostrar'] = 'ordenes_trabajo/servicio_tecnico/mostrar';
+	$route['servicio_tecnico/eliminar'] = 'ordenes_trabajo/servicio_tecnico/eliminar';
+	$route['servicio_tecnico/editar'] = 'ordenes_trabajo/servicio_tecnico/editar';
+	$route['servicio_tecnico/actualizar'] = 'ordenes_trabajo/servicio_tecnico/actualizar';
+	$route['servicio_tecnico/getFacturas'] = 'ordenes_trabajo/servicio_tecnico/getFacturas';
+	$route['servicio_tecnico/invoice'] = 'ordenes_trabajo/servicio_tecnico/verOtServicioTecnico';
 	
