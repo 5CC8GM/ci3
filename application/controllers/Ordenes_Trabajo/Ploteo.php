@@ -18,6 +18,9 @@
 		
 		public function index() {
 			
+			$data = array('cliente'       => $this->clientes_model->mostrar(),
+						  'tipoDocumento' => $this->servicio_tecnico_model->getComprobantes());
+			
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			/* HEADER */
 			$this->load->view('layouts/header');
@@ -28,7 +31,7 @@
 			/* BREADCRUMB */
 			$this->load->view('layouts/breadcrumb');
 			/* CONTENIDO PRINCIPAL */
-			$this->load->view('ordenes_trabajo/ploteo');
+			$this->load->view('ordenes_trabajo/ploteo', $data);
 			/* FOOTER */
 			$this->load->view('layouts/footer');
 			
