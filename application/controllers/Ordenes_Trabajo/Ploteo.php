@@ -54,4 +54,33 @@
 			$this->output->set_content_type('application/json')->set_output(json_encode($output));
 			
 		}
+		
+		/* CREAR ORDEN DE TRABAJO PLOTEO */
+		public function crear() {
+			
+			/* ALMACENAR EN UNA VARIABLE TODOS LOS DATOS OBTENIDOS POR POST */
+			$datosOtPloteo = $this->input->post(array('ID_Documento', 'Serie_OTPloteo', 'NumeroDocumento_OTPloteo', 'ID_Cliente', 'Subtotal_OTPloteo', 'Impuesto_OTPloteo', 'Total_OTPloteo'), TRUE);
+			
+			if ($this->input->is_ajax_request()) {
+				
+				if ($this->ploteo_model->crear($datosOtPloteo)) {
+					
+					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
+				} else {
+					
+					/* MENSAJE DE ERROR SI NO SE INSERTA CORRECTAMENTE */
+					$data = array('respuesta' => 'error', 'mensaje' => 'La orden de trabajo de servicio técnico no ha sido guardado');
+					
+				}
+				
+				echo json_encode($data);
+				
+			} else {
+				
+				echo 'No se permite el acceso de scripts';
+				
+			}
+			
+		}
+		
 	}
