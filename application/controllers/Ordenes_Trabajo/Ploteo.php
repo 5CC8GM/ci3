@@ -86,4 +86,15 @@
 			
 		}
 		
+		/* ACTUALIZAR LOS DOCUMENTOS */
+		protected function actualizarDocumentos($idDocumento) {
+			
+			$documentoActual = $this->ploteo_model->getDocumento($idDocumento);
+			
+			$data = array('Cantidad_Documento' => $documentoActual->Cantidad_Documento + 1);
+			
+			$this->ploteo_model->actualizarDocumento($idDocumento, $data);
+			
+		}
+		
 	}
