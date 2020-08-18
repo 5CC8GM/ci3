@@ -37,9 +37,16 @@
 			
 		}
 		
-		/* CREAR ORDEN DE TRABAJO SERVICIO TECNICO */
+		/* CREAR ORDEN DE TRABAJO PLOTEO */
 		public function crear($datosOtPloteo) {
 			return $this->db->insert('ot_ploteo', $datosOtPloteo);
+		}
+		
+		/* GUARDAR EL DETALLE DE LA ORDEN DE PLOTEO */
+		public function guardarDetalleOTPloteo($datos) {
+			
+			$this->db->insert('detalle_otploteo', $datos);
+			
 		}
 		
 		/* OBTENER EL ULTIMO ID */
