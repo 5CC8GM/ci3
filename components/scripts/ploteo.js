@@ -40,6 +40,7 @@ $('#tipoDocumentoPloteo').change(function () {
 				$('#serieDocumentoPloteo').val(null)
 				$('#numeroDocumentoPloteo').val(null)
 			}
+			calculosMetrosPloteo()
 		}
 	})
 })
@@ -91,6 +92,12 @@ $('#agregarPloteo').on('click', function () {
 		html += `<td><a href="#" id="eliminarMetros" value="" class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></td>`;
 		html += `</tr>`;
 		
+		/* DIBUJAR LA TABLA EN LA TABLA RESPECTIVA EN EL HTML */
+		$('.tablaAgregarPloteo').append(html);
+		
+		/* FUNCION PARA HACER LOS CALCULOS */
+		calculosMetrosPloteo()
+		$('#agregarPloteo').val(null);
 	} else {
 		
 		/* NOTIFICACION EN CASO DE QUE EL INPUT ESTE VACIO Y SE TRATE DE AGREGAR UN VALOR */
@@ -103,8 +110,6 @@ $('#agregarPloteo').on('click', function () {
 		}).show();
 	}
 	
-	/* DIBUJAR LA TABLA EN LA TABLA RESPECTIVA EN EL HTML */
-	$('.tablaAgregarPloteo').append(html);
 	
 	/* LIMPIEZA DEL INPUT DESPUES DE AGREGAR LOS METROS */
 	$('input[name=metrosPloteo]').val('');
@@ -112,6 +117,7 @@ $('#agregarPloteo').on('click', function () {
 	/* ELIMINACION INDIVIDUAL DE LOS METROS CUANDO LA TABLA YA ESTA CREADA */
 	$(document).on('click', '#eliminarMetros', function () {
 		$(this).closest('tr').remove()
+		calculosMetrosPloteo()
 	})
 	
 	/* CALCULO INDIVIDUAL EN LOS INPUTS YA CREADOS EN LA TABLA */
@@ -126,6 +132,30 @@ $('#agregarPloteo').on('click', function () {
 		
 		/* IMPRESION EN EL INPUT READONLY DE LA COLUMNA DE IMPORTES */
 		$(this).closest('tr').find('td:eq(1)').children('input').val(importe)
-		
+		calculosMetrosPloteo()
 	})
 });
+
+/* CALCULOS DE LOS INPUTS */
+function calculosMetrosPloteo() {
+	
+	let subtotal = 0;
+	
+	/* OBTENER EL IMPORTE DE LA MINITABLA DONDE SE INGRESAN LOS NUEVOS METROS O SE EDITAN */
+	$('.tablaAgregarPloteo tbody tr').each(function () {
+		subtotal = subtotal + Number($(this).find('td:eq(1)').children('input').val())
+		// alert(subtotal)
+	})
+	
+	/* IMPRESION DE LOS CALCULOS EN LOS INPUTS */
+	$('input[name=subtotalPloteo]').val(subtotal.toFixed(2))
+	let porcentaje = $('#impuestoDocumentoPloteo').val()
+	// alert(porcentaje)
+	let iva = subtotal * (porcentaje / 100);
+	// alert(iva)
+	$('input[name=ivaPloteo]').val(iva.toFixed(2))
+	let total = subtotal + iva
+	// alert(total)
+	$('#totalPloteo').val(total.toFixed(2))
+	
+}
