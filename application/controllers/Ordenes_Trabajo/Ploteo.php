@@ -60,13 +60,15 @@
 			
 			/* ALMACENAR EN UNA VARIABLE TODOS LOS DATOS OBTENIDOS POR POST */
 			$datosOtPloteo = $this->input->post(array('ID_Documento', 'Serie_OTPloteo', 'NumeroDocumento_OTPloteo', 'ID_Cliente', 'Subtotal_OTPloteo', 'Impuesto_OTPloteo', 'Total_OTPloteo'), TRUE);
-			
+			$idDocumento = $this->input->post('ID_Documento');
 			if ($this->input->is_ajax_request()) {
 				
 				if ($this->ploteo_model->crear($datosOtPloteo)) {
 					
 					/* ALAMCENAR EN UNA VARIABLE EL ULTIMO ID INGRESADO */
 					$idOtPloteo = $this->ploteo_model->ultimoId();
+					$this->actualizarDocumentos($idDocumento);
+					
 					
 					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
 				} else {
