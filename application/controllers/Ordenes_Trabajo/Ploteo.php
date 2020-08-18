@@ -61,6 +61,10 @@
 			/* ALMACENAR EN UNA VARIABLE TODOS LOS DATOS OBTENIDOS POR POST */
 			$datosOtPloteo = $this->input->post(array('ID_Documento', 'Serie_OTPloteo', 'NumeroDocumento_OTPloteo', 'ID_Cliente', 'Subtotal_OTPloteo', 'Impuesto_OTPloteo', 'Total_OTPloteo'), TRUE);
 			$idDocumento = $this->input->post('ID_Documento');
+			
+			$precioPorMetroPloteo = $this->input->post('Precio_OTPloteo');
+			$importePloteo = $this->input->post('Importe_OTPloteo');
+			
 			if ($this->input->is_ajax_request()) {
 				
 				if ($this->ploteo_model->crear($datosOtPloteo)) {
@@ -68,7 +72,7 @@
 					/* ALAMCENAR EN UNA VARIABLE EL ULTIMO ID INGRESADO */
 					$idOtPloteo = $this->ploteo_model->ultimoId();
 					$this->actualizarDocumentos($idDocumento);
-					
+					$this->guardarDetalleOt($idOtPloteo, $precioPorMetroPloteo, $importePloteo);
 					
 					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
 				} else {
@@ -96,6 +100,20 @@
 			$data = array('Cantidad_Documento' => $documentoActual->Cantidad_Documento + 1);
 			
 			$this->ploteo_model->actualizarDocumento($idDocumento, $data);
+			
+		}
+		
+		/* GUARDAR LOS IMPORTES DE PLOTEO EN DETALLE DE PLOTEO */
+		protected function guardarDetalleOt($idOrdenTrabajoPloteo, $metros, $importe) {
+			
+			for ($i = 0; $i < count($metros); $i++) {
+				
+				$datos = array('ID_OTPloteo'      => $idOrdenTrabajoPloteo, 'Precio_OTPloteo' => $metros[$i],
+							   'Importe_OTPloteo' => $importe[$i]);
+				
+				$this->ploteo_model->guardarDetalleOTPloteo($datos);
+				
+			}
 			
 		}
 		
