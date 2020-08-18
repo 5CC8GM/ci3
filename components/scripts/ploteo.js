@@ -75,3 +75,57 @@ function generarNumeroDocumentoPloteo(numero) {
 		
 	}
 }
+
+/* PROCEDIMIENTO CUANDO SE HACE CLICK EN AGREGAR PLOTEO */
+$('#agregarPloteo').on('click', function () {
+	
+	/* OBTENCION DEL VALOR DEL INPUT */
+	let datos = $('#metrosPloteo').val()
+	
+	if (datos != '') {
+		
+		/* PROCESO PARA AUMENTAR LAS FILAS EN LA TABLA PARA AGREGAR METROS */
+		html = `<tr>`;
+		html += `<td><input type="text" name="metrosTotalPloteo[]" class="metrosTotalPloteo form-control" value="${datos}"></td>`;
+		html += `<td><input type="text" class="form-control importeMetrosPloteo" name="importeMetrosPloteo[]" value="${(datos * 1.25).toFixed(2)}" readonly></td>`;
+		html += `<td><a href="#" id="eliminarMetros" value="" class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></td>`;
+		html += `</tr>`;
+		
+	} else {
+		
+		/* NOTIFICACION EN CASO DE QUE EL INPUT ESTE VACIO Y SE TRATE DE AGREGAR UN VALOR */
+		new Noty({
+			layout: 'topRight',
+			theme: 'limitless',
+			type: 'error',
+			text: 'Ingrese la cantidad de metros',
+			timeout: 5000,
+		}).show();
+	}
+	
+	/* DIBUJAR LA TABLA EN LA TABLA RESPECTIVA EN EL HTML */
+	$('.tablaAgregarPloteo').append(html);
+	
+	/* LIMPIEZA DEL INPUT DESPUES DE AGREGAR LOS METROS */
+	$('input[name=metrosPloteo]').val('');
+	
+	/* ELIMINACION INDIVIDUAL DE LOS METROS CUANDO LA TABLA YA ESTA CREADA */
+	$(document).on('click', '#eliminarMetros', function () {
+		$(this).closest('tr').remove()
+	})
+	
+	/* CALCULO INDIVIDUAL EN LOS INPUTS YA CREADOS EN LA TABLA */
+	$(document).on('keyup', '.tablaAgregarPloteo input.metrosTotalPloteo', function () {
+		
+		/* OBTENER EL VALOR DEL INPUT */
+		let metros = $(this).val();
+		// alert(metros)
+		
+		/* CALCULOS */
+		let importe = (metros * 1.25).toFixed(2)
+		
+		/* IMPRESION EN EL INPUT READONLY DE LA COLUMNA DE IMPORTES */
+		$(this).closest('tr').find('td:eq(1)').children('input').val(importe)
+		
+	})
+});
