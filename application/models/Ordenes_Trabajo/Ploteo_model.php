@@ -24,4 +24,9 @@
 			return $this->db->insert('ot_ploteo', $datosOtPloteo);
 		}
 		
+		/* OBTENER EL ULTIMO ID */
+		public function ultimoId() {
+			return $this->db->insert_id();
+		}
+		
 	}
