@@ -12,6 +12,16 @@
 			
 		}
 		
+		/* FUNCION PARA OBTENER EL DOCUMENTO POR EL ID */
+		public function getDocumento($idDocumento) {
+			
+			$this->db->where('ID_Documento', $idDocumento);
+			
+			$resultado = $this->db->get('tipo_documento');
+			return $resultado->row();
+			
+		}
+		
 		/* OBTENER DOCUMENTOS POR ID */
 		public function getFacturas($id) {
 			
