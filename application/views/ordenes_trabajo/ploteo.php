@@ -114,29 +114,29 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
-								<label for="subtotal">Subtotal:</label>
+								<label for="subtotalPloteo">Subtotal:</label>
 								<input type="text"
 									   class="input form-control"
-									   name="subtotal"
-									   id="subtotal"
+									   name="subtotalPloteo"
+									   id="subtotalPloteo"
 									   readonly
 									   required>
 							</div>
 							<div class="col-md-4">
-								<label for="subtotal">IVA:</label>
+								<label for="ivaPloteo">IVA:</label>
 								<input type="text"
 									   class="input form-control"
-									   name="subtotal"
-									   id="subtotal"
+									   name="ivaPloteo"
+									   id="ivaPloteo"
 									   readonly
 									   required>
 							</div>
 							<div class="col-md-4">
-								<label for="subtotal">Total:</label>
+								<label for="totalPloteo">Total:</label>
 								<input type="text"
 									   class="input form-control"
-									   name="subtotal"
-									   id="subtotal"
+									   name="totalPloteo"
+									   id="totalPloteo"
 									   readonly
 									   required>
 							</div>
@@ -144,7 +144,7 @@
 						<div class="text-center">
 							<button class="btn bg-primary-800"
 									type="button"
-									id="crearOrdenTrabajoServicioTecnico">Crear Orden de Trabajo <i
+									id="crearOrdenTrabajoPloteo">Crear Orden de Trabajo <i
 										class="icon-paperplane
 									ml-2"></i></button>
 						</div>
