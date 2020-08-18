@@ -19,4 +19,9 @@
 			
 		}
 		
+		/* CREAR ORDEN DE TRABAJO SERVICIO TECNICO */
+		public function crear($datosOtPloteo) {
+			return $this->db->insert('ot_ploteo', $datosOtPloteo);
+		}
+		
 	}
