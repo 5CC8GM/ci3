@@ -70,4 +70,5 @@
 	$route['servicio_tecnico/invoice'] = 'ordenes_trabajo/servicio_tecnico/verOtServicioTecnico';
 	$route['ploteo'] = 'ordenes_trabajo/ploteo/index';
 	$route['ploteo/obtenerDocumentos'] = 'ordenes_trabajo/ploteo/obtenerDocumentos';
+	$route['ploteo/crear'] = 'ordenes_trabajo/ploteo/crear';
 	
