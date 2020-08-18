@@ -81,45 +81,33 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-5">
-								<label for="numeroDocumento">Metros de Ploteo</label>
+								<label for="metrosPloteo">Metros de Ploteo</label>
 								<input type="text"
-									   name="numeroDocumento"
-									   id="numeroDocumento"
+									   name="metrosPloteo"
+									   id="metrosPloteo"
 									   class="form-control"
 									   placeholder="1.75">
 							</div>
 							<div class="col-sm-7 align-self-end text-right">
-								<a href="#"
-								   id=""
-								   value=""
-								   class="btn btn-block btn-success btn-icon"
-								   type="button"><i class="icon-trash"></i> Agregar
-								</a>
+								<button href="#"
+										id="agregarPloteo"
+										class="btn btn-block btn-success btn-icon"
+										type="button"><i class="icon-trash"></i> Agregar
+								</button>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="table-responsive">
-								<table class="table table-bordered">
+								<table class="table table-bordered tablaAgregarPloteo">
 									<thead>
 										<tr>
 											<th>Metros</th>
-											<th>Importe</th>
+											<th>Precio Final</th>
 											<th>Acción</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td><input type="text"
-													   class="form-control"></td>
-											<td><input type="text"
-													   class="form-control"
-													   readonly></td>
-											<td><a href="#"
-												   id=""
-												   value=""
-												   class="btn btn-danger btn-icon"
-												   type="button"><i class="icon-trash"></i></a></td>
-										</tr>
+									
 									</tbody>
 								</table>
 							</div>
