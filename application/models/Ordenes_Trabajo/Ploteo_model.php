@@ -29,6 +29,14 @@
 			
 		}
 		
+		/* ACTUALIZAR LA CANTIDAD DE DOCUMENTOS POR ID */
+		public function actualizarDocumento($idDocumento, $data) {
+			
+			$this->db->where('ID_Documento', $idDocumento);
+			$this->db->update('tipo_documento', $data);
+			
+		}
+		
 		/* CREAR ORDEN DE TRABAJO SERVICIO TECNICO */
 		public function crear($datosOtPloteo) {
 			return $this->db->insert('ot_ploteo', $datosOtPloteo);
