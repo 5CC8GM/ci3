@@ -64,9 +64,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="cliente">Cliente</label>
-							<select id="cliente"
-									name="cliente"
+							<label for="clientePloteo">Cliente</label>
+							<select id="clientePloteo"
+									name="clientePloteo"
 									class="form-control select-search"
 									data-placeholder="Seleccione un cliente"
 									data-fouc
