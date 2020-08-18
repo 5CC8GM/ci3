@@ -65,6 +65,9 @@
 				
 				if ($this->ploteo_model->crear($datosOtPloteo)) {
 					
+					/* ALAMCENAR EN UNA VARIABLE EL ULTIMO ID INGRESADO */
+					$idOtPloteo = $this->ploteo_model->ultimoId();
+					
 					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
 				} else {
 					
