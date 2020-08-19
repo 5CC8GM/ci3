@@ -176,7 +176,6 @@
 								<th>Cliente</th>
 								<th>Tipo de Documento</th>
 								<th>Número de Documento</th>
-								<th>Descripción</th>
 								<th>Fecha</th>
 								<th>Total</th>
 								<th>Acciones</th>
