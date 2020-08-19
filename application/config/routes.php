@@ -71,4 +71,5 @@
 	$route['ploteo'] = 'ordenes_trabajo/ploteo/index';
 	$route['ploteo/obtenerDocumentos'] = 'ordenes_trabajo/ploteo/obtenerDocumentos';
 	$route['ploteo/crear'] = 'ordenes_trabajo/ploteo/crear';
+	$route['ploteo/mostrar'] = 'ordenes_trabajo/ploteo/mostrar';
 	
