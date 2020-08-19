@@ -54,4 +54,17 @@
 			return $this->db->insert_id();
 		}
 		
+		/* MOSTRAR ORDENES DE TRABAJO */
+		public function mostrar() {
+			
+			$this->db->select('*');
+			$this->db->from('ot_ploteo');
+			$this->db->join('cliente', 'cliente.ID_Cliente = ot_ploteo.ID_Cliente');
+			$this->db->join('tipo_documento', 'tipo_documento.ID_Documento = ot_ploteo.ID_Documento');
+			$this->db->order_by('ID_OTPloteo', 'ASC');
+			$query = $this->db->get();
+			return $query->result_array();
+			
+		}
+		
 	}
