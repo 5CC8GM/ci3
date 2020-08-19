@@ -117,4 +117,41 @@
 			
 		}
 		
+		/* MOSTRAR ORDENES DE TRABAJO PLOTEO */
+		public function mostrar() {
+			
+			$resultadoDb = $this->ploteo_model->mostrar();
+			$resultado = array();
+			$i = 1;
+			
+			if (!empty($resultadoDb)) {
+				
+				foreach ($resultadoDb as $key => $value) {
+					
+					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					$acciones = '<div class="list-icons"><a href="#" id="verOtPloteo" value="' .
+						$value['ID_OTPloteo'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtPloteo" value="' .
+						$value['ID_OTPloteo'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtPloteo" value="' .
+						$value['ID_OTPloteo'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
+					
+					$resultado['data'][] = array(
+						$i++,
+						$nombreApellido,
+						$value['Nombre_Documento'],
+						$value['NumeroDocumento_OTPloteo'],
+						$value['Fecha_OTPloteo'],
+						$value['Total_OTPloteo'],
+						$acciones
+					);
+					
+				}
+				
+			} else {
+				$resultado['data'] = array();
+			}
+			
+			echo json_encode($resultado);
+			
+		}
+		
 	}
