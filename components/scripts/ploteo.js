@@ -159,3 +159,84 @@ function calculosMetrosPloteo() {
 	$('#totalPloteo').val(total.toFixed(2))
 	
 }
+
+/* CREAR ORDEN DE TRABAJO PLOTEO */
+$(document).on('click', '#crearOrdenTrabajoPloteo', function (event) {
+	
+	/* PREVENIR ACCION POR DEFECTO DEL BOTON */
+	event.preventDefault()
+	
+	/* OBTENCION DE VALORES DE LOS INPUTS */
+	let idDocumento = $('#idDocumentoPloteo').val()
+	// alert(idDocumento)
+	let serieDocumento = $('#serieDocumentoPloteo').val()
+	// alert(serieDocumento)
+	let numeroDocumento = $('#numeroDocumentoPloteo').val()
+	// alert(numeroDocumento)
+	let idCliente = $('#clientePloteo').val()
+	// alert(idCliente)
+	let subtotalPloteo = $('#subtotalPloteo').val()
+	// alert(subtotalPloteo)
+	let ivaPloteo = $('#ivaPloteo').val()
+	// alert(ivaPloteo)
+	let totalPloteo = $('#totalPloteo').val()
+	// alert(totalPloteo)
+	let metrosPloteo = $('input[name="metrosTotalPloteo[]"]').map(function () {
+		return this.value;
+	}).get();
+	// alert(metrosPloteo)
+	let importePloteo = $('input[name="importeMetrosPloteo[]"]').map(function () {
+		return this.value;
+	}).get();
+	// alert(importePloteo)
+	
+	$.ajax({
+		
+		url: 'http://localhost/ci3/ploteo/crear',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			
+			ID_Documento: idDocumento,
+			Serie_OTPloteo: serieDocumento,
+			NumeroDocumento_OTPloteo: numeroDocumento,
+			ID_Cliente: idCliente,
+			Subtotal_OTPloteo: subtotalPloteo,
+			Impuesto_OTPloteo: ivaPloteo,
+			Total_OTPloteo: totalPloteo,
+			Precio_OTPloteo: metrosPloteo,
+			Importe_OTPloteo: importePloteo
+			
+		},
+		success: function (data) {
+			// console.log(data)
+			
+			if (data.respuesta == 'success') {
+				
+				new Noty({
+					layout: 'topRight',
+					theme: 'limitless',
+					type: 'success',
+					text: data.mensaje,
+					timeout: 3000,
+				}).show();
+				
+			} else {
+				new Noty({
+					layout: 'topRight',
+					theme: 'limitless',
+					type: 'error',
+					text: data.mensaje,
+					timeout: 5000,
+				}).show();
+			}
+			
+			/* VACIAR LA MINITABLA DESPUES DE LA EJECUCION AJAX */
+			$('.tablaAgregarPloteo > tbody').empty()
+		}
+		
+	})
+	$('#formularioPloteo')[0].reset()
+	$('#tipoDocumentoPloteo').val(null).trigger('change');
+	$('#clientePloteo').val(null).trigger('change');
+})
