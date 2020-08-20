@@ -173,6 +173,31 @@
 				echo json_encode($datos);
 				
 			} else {
+				
+				echo 'No se permite el acceso de scripts';
+				
+			}
+			
+		}
+		
+		/* EDITAR ORDEN DE TRABAJO PLOTEO */
+		public function editar() {
+			
+			if ($this->input->is_ajax_request()) {
+				
+				$idEditarOtPloteo = $this->input->post('idEditarOtPloteo');
+				if ($datos = $this->ploteo_model->editar($idEditarOtPloteo)) {
+					$datosDetalleOtPloteo = $this->ploteo_model->editarOtDetallePloteo($idEditarOtPloteo);
+					
+					$data = array('respuesta' => 'success', 'post' => array($datos, $datosDetalleOtPloteo));
+					
+				} else {
+					$data = array('respuesta' => 'error', 'mensaje' => 'Error al mostrar los datos');
+				}
+				
+				echo json_encode($data);
+				
+			} else {
 				echo 'No se permite el acceso de scripts';
 			}
 			
