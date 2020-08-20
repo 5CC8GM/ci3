@@ -187,3 +187,168 @@
 		</div>
 	</div>
 </div>
+<!-- MODAL EDITAR ORDEN DE TRABAJO SERVICIO TECNICO -->
+<div id="modalEditarOtServicioTecnico"
+	 class="modal fade"
+	 tabindex="-1">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Editar Orden de Trabajo Servicio Técnico</h5>
+				<button type="button"
+						class="close"
+						data-dismiss="modal">&times;
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action=""
+					  method="post"
+					  id="formularioServicioTecnico">
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="tipoDocumento">Tipo de Documento</label>
+							<select id="tipoDocumento"
+									name="tipoDocumento"
+									class="form-control"
+									data-fouc
+									required>
+								<option></option>
+								<?php foreach ($tipoDocumento as $documento): ?>
+									
+									<?php $dataDocumento = $documento->ID_Documento . '*'
+										. $documento->Cantidad_Documento . '*' .
+										$documento->Impuesto_Documento . '*' . $documento->Serie_Documento ?>
+									<option value="<?= $dataDocumento ?>"><?= $documento->Nombre_Documento
+										?></option>
+								<?php endforeach; ?>
+							</select>
+							<input type="hidden"
+								   id="infoOculta">
+							<input type="hidden"
+								   id="idDocumento"
+								   name="idDocumento">
+							<input type="hidden"
+								   id="impuestoDocumento"
+								   name="impuestoDocumento">
+						</div>
+						<div class="col-sm-3">
+							<label for="serieDocumento">Serie</label>
+							<input type="text"
+								   name="serieDocumento"
+								   id="serieDocumento"
+								   class="form-control"
+								   readonly>
+						</div>
+						<div class="col-sm-3">
+							<label for="numeroDocumento">Número</label>
+							<input type="text"
+								   name="numeroDocumento"
+								   id="numeroDocumento"
+								   class="form-control"
+								   readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="cliente">Cliente</label>
+						<select id="cliente"
+								name="cliente"
+								class="form-control select-search"
+								data-placeholder="Seleccione un cliente"
+								data-fouc
+								required>
+							<option></option>
+							<?php foreach ($cliente as $value): ?>
+								
+								<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
+							
+							<?php endforeach; ?>
+						</select>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label for="marca">Marca:</label>
+							<input type="text"
+								   class="form-control"
+								   name="marca"
+								   id="marca"
+								   placeholder="Asus"
+								   required>
+						</div>
+						<div class="col-md-6">
+							<label for="modelo">Modelo:</label>
+							<input type="text"
+								   class="form-control"
+								   name="modelo"
+								   id="modelo"
+								   placeholder="BHMX350"
+								   required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="descripcion">Descripción:</label>
+						<textarea rows="1"
+								  cols="1"
+								  class="form-control elastic"
+								  placeholder="Descripción:"
+								  id="descripcion"
+								  name="descripcion"
+								  required></textarea>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label for="precio">Precio:</label>
+							<input type="text"
+								   class="input form-control"
+								   name="precio"
+								   id="precio"
+								   placeholder="30.50"
+								   required>
+						</div>
+						<div class="col-md-6">
+							<label for="iva">IVA:</label>
+							<div class="input-group">
+								<input type="text"
+									   id="iva"
+									   name="iva"
+									   class="input form-control"
+									   readonly>
+								<span class="input-group-append">
+									<span class="input-group-text">IVA</span>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6 ml-md-auto">
+							<label for="subtotal">Subtotal:</label>
+							<input type="text"
+								   class="input form-control"
+								   name="subtotal"
+								   id="subtotal"
+								   readonly
+								   required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6 ml-md-auto">
+							<label for="total">Total:</label>
+							<input type="text"
+								   class="input form-control"
+								   name="total"
+								   id="total"
+								   readonly
+								   required>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn bg-primary-800"
+								type="button"
+								id="crearOrdenTrabajoServicioTecnico">Crear Orden de Trabajo <i
+									class="icon-paperplane
+									ml-2"></i></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
