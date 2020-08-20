@@ -286,3 +286,65 @@ $(document).ready(function () {
 		width: 'auto'
 	});
 });
+
+/* ELIMINAR ORDEN DE TRABAJO PLOTEO */
+$(document).on('click', '#eliminarOtPloteo', function (event) {
+	
+	event.preventDefault()
+	// alert('clickeado')
+	
+	let idPloteo = $(this).attr('value');
+	// alert(idPloteo)
+	
+	const swalInit = swal.mixin({
+		buttonsStyling: false,
+		confirmButtonClass: 'btn btn-success',
+		cancelButtonClass: 'btn btn-danger'
+	});
+	swalInit.fire({
+		title: '¿Está seguro de eliminar la orden de trabajo?',
+		text: "¡Si no lo está puede cancelar esta acción!",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonText: '¡Sí, eliminar!',
+		cancelButtonText: '¡No, cancelar!',
+		confirmButtonClass: 'btn btn-success',
+		cancelButtonClass: 'btn btn-danger',
+		buttonsStyling: false
+	}).then(function (result) {
+		
+		if (result.value) {
+			
+			$.ajax({
+				url: 'http://localhost/ci3/ploteo/eliminar',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					idPloteo: idPloteo
+				},
+				success: function (data) {
+					// console.log(data)
+					
+					if (data.respuesta == 'success') {
+						
+						$('#tablaPloteo').DataTable().ajax.reload()
+						swalInit.fire(
+							'Eliminado!',
+							'La orden de trabajo ha sido eliminada',
+							'success'
+						);
+					}
+					
+				}
+			})
+			
+		} else {
+			swalInit.fire(
+				'Cancelado',
+				'La eliminación de la orden de trabajo ha sido cancelada',
+				'error'
+			);
+		}
+		
+	})
+})
