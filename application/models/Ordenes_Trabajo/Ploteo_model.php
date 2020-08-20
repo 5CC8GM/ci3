@@ -74,4 +74,41 @@
 			
 		}
 		
+		/* EDITAR ORDEN DE TRABAJO PLOTEO */
+		public function editar($idEditarOtPloteo) {
+			
+			$this->db->select('*');
+			$this->db->from('ot_ploteo');
+			$this->db->join('cliente', 'cliente.ID_Cliente = ot_ploteo.ID_Cliente');
+			$this->db->join('tipo_documento', 'ot_ploteo.ID_Documento = tipo_documento.ID_Documento');
+			$this->db->join('detalle_otploteo', 'detalle_otploteo.ID_OTPloteo = ot_ploteo.ID_OTPloteo');
+			$this->db->where('ot_ploteo.ID_OTPloteo', $idEditarOtPloteo);
+			$this->db->order_by('ot_ploteo.ID_OTPloteo', 'ASC');
+			
+			$respuesta = $this->db->get();
+			
+			if (count($respuesta->result()) > 0) {
+				
+				return $respuesta->row();
+				
+			}
+			
+		}
+		
+		public function editarOtDetallePloteo($idEditarOtPloteo) {
+			
+			$this->db->select('*');
+			$this->db->from('detalle_otploteo');
+			$this->db->where('detalle_otploteo.ID_OTPloteo', $idEditarOtPloteo);
+			
+			$respuesta = $this->db->get();
+			
+			if (count($respuesta->result()) > 0) {
+				
+				return $respuesta->result();
+				
+			}
+			
+		}
+		
 	}
