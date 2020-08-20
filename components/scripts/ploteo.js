@@ -212,7 +212,7 @@ $(document).on('click', '#crearOrdenTrabajoPloteo', function (event) {
 			// console.log(data)
 			
 			if (data.respuesta == 'success') {
-				
+				$('#tablaPloteo').DataTable().ajax.reload()
 				new Noty({
 					layout: 'topRight',
 					theme: 'limitless',
