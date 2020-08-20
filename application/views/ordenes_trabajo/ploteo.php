@@ -213,13 +213,9 @@
 									data-fouc
 									required
 									disabled="disabled">
-								<option></option>
 								<?php foreach ($tipoDocumentoPloteo as $documento): ?>
 									
-									<?php $dataDocumento = $documento->ID_Documento . '*'
-										. $documento->Cantidad_Documento . '*' .
-										$documento->Impuesto_Documento . '*' . $documento->Serie_Documento ?>
-									<option value="<?= $dataDocumento ?>"><?= $documento->Nombre_Documento
+									<option value="<?= $documento->ID_Documento ?>"><?= $documento->Nombre_Documento
 										?></option>
 								<?php endforeach; ?>
 							</select>
@@ -242,7 +238,7 @@
 								   name="editarSerieDocumentoPloteo"
 								   id="editarSerieDocumentoPloteo"
 								   class="form-control"
-								   readonly>
+								   disabled>
 						</div>
 						<div class="col-sm-3">
 							<label for="editarNumeroDocumentoPloteo">Número</label>
@@ -250,7 +246,7 @@
 								   name="editarNumeroDocumentoPloteo"
 								   id="editarNumeroDocumentoPloteo"
 								   class="form-control"
-								   readonly>
+								   disabled>
 						</div>
 					</div>
 					<div class="form-group">
