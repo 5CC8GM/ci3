@@ -154,4 +154,28 @@
 			
 		}
 		
+		/* ELIMINAR ORDEN DE TRABAJO PLOTEO */
+		public function eliminar() {
+			
+			if ($this->input->is_ajax_request()) {
+				
+				$idPloteo = $this->input->post('idPloteo');
+				
+				if ($this->ploteo_model->eliminar($idPloteo)) {
+					
+					$datos = array('respuesta' => 'success');
+					
+				} else {
+					
+					$datos = array('respuesta' => 'error');
+				}
+				
+				echo json_encode($datos);
+				
+			} else {
+				echo 'No se permite el acceso de scripts';
+			}
+			
+		}
+		
 	}
