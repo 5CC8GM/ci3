@@ -67,4 +67,11 @@
 			
 		}
 		
+		/* ELIMINAR ORDEN DE TRABAJO PLOTEO */
+		public function eliminar($idPloteo) {
+			
+			return $this->db->delete('ot_ploteo', array('ID_OTPloteo' => $idPloteo));
+			
+		}
+		
 	}
