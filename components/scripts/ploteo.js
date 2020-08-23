@@ -4,6 +4,10 @@ $('#tipoDocumentoPloteo').select2({
 	allowClear: true,
 	minimumResultsForSearch: Infinity,
 })
+$('#editarTipoDocumentoPloteo').select2({
+	placeholder: 'Seleccione un documento',
+	minimumResultsForSearch: Infinity,
+})
 
 /* FUNCION PARA EDITAR LOS PRECIOS EN EL FORMULARIO GUARDAR SERVICIO TECNICO EN BASE AL DOCUMENTO SELECCIONADO */
 $('#tipoDocumentoPloteo').change(function () {
@@ -41,6 +45,40 @@ $('#tipoDocumentoPloteo').change(function () {
 				$('#numeroDocumentoPloteo').val(null)
 			}
 			calculosMetrosPloteo()
+		}
+	})
+})
+
+$('#editarTipoDocumentoPloteo').change(function () {
+	
+	/* PONER EN UNA VARIABLE EL CONTENIDO DEL SELECTOR */
+	let idDocumentoPloteo = $(this).val();
+	// alert(idDocumentoPloteo)
+	$.ajax({
+		url: 'http://localhost/ci3/ploteo/obtenerDocumentos',
+		type: 'post',
+		data: {
+			id: idDocumentoPloteo
+		},
+		dataType: 'json',
+		success: function (data) {
+			// console.log(data)
+			/* LLENAR EL INPUT HIDDEN CON LA INFORMACION OBTENIDA */
+			$('#editarDataDocumentoPloteo').val(data)
+			/* ALMACENAR EN UNA VARIABLE LOS VALORES DEL INPUT HIDDEN */
+			let opcion = $('#editarDataDocumentoPloteo').val();
+			// console.log('opcion ' + opcion)
+			if (opcion != '') {
+				
+				let informacionDocumento = opcion.split('*');
+				
+				$('#editarImpuestoDocumentoPloteo').val(informacionDocumento[2])
+				editarCalculosMetrosPloteo()
+				
+			} else {
+				$('#editarImpuestoDocumentoPloteo').val(null)
+				editarCalculosMetrosPloteo()
+			}
 		}
 	})
 })
@@ -347,4 +385,165 @@ $(document).on('click', '#eliminarOtPloteo', function (event) {
 		}
 		
 	})
+})
+
+/* EDITAR ORDEN DE TRABAJO PLOTEO */
+$(document).on('click', '#editarOtPloteo', function (event) {
+	
+	event.preventDefault()
+	
+	let idEditarOtPloteo = $(this).attr('value')
+	// alert(idEditarOtPloteo)
+	
+	$.ajax({
+		url: 'http://localhost/ci3/ploteo/editar',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			idEditarOtPloteo: idEditarOtPloteo
+		},
+		success: function (data) {
+			
+			
+			// console.log(metros)
+			/* IMPRESION DE LOS VALORES EN CADA INPUT DEL MODAL EDITAR ORDEN DE TRABAJO PLOTEO */
+			$('#editarIdOtPloteo').val(data.post[0].ID_OTPloteo)
+			$('#editarIdDocumentoPloteo').val(data.post[0].ID_Documento)
+			$('#editarImpuestoDocumentoPloteo').val(data.post[0].Impuesto_Documento)
+			$('#editarTipoDocumentoPloteo').val(data.post[0].ID_Documento).trigger('change')
+			$('#editarSerieDocumentoPloteo').val(data.post[0].Serie_OTPloteo)
+			$('#editarNumeroDocumentoPloteo').val(data.post[0].NumeroDocumento_OTPloteo)
+			$('#editarClientePloteo').val(data.post[0].ID_Cliente).trigger('change')
+			$('#editarSubtotalPloteo').val(data.post[0].Subtotal_OTPloteo)
+			$('#editarIvaPloteo').val(data.post[0].Impuesto_OTPloteo)
+			$('#editarTotalPloteo').val(data.post[0].Total_OTPloteo)
+			
+			/* LIMPIAR LA MINITABLA AL PASAR DE MODAL EN MODAL */
+			$('.tablaEditarAgregarPloteo tbody').empty();
+			
+			/* RECORRER CADA DATO DE LA RESPUESTA DEL CONTROLADOR PARA IMPRIMIRLO EN LA MINITABLA */
+			data.post[1].forEach(item => {
+				// Crea contenido HTML de la fila
+				// Agrega un campo oculto para saber qué es lo que se está modificando
+				let html = `<tr>
+										<td>
+											<input type="hidden" name="editarIdPloteo[]" value="${item.ID_OTPloteo}">
+											<input type="text" name="editarMetrosTotalPloteo[]" class="editarMetrosTotalPloteo form-control" value="${item.Precio_OTPloteo}">
+										</td>
+										<td>
+											<input type="text" class="form-control editarImporteMetrosPloteo" name="editarImporteMetrosPloteo[]" value="${(item.Importe_OTPloteo)}" readonly>
+										</td>
+										<td>
+										<input type="hidden" name="editarIdDetallePloteo[]" value="${(item.ID_DetalleOTPloteo)}">
+											<button href="#" id="eliminarMetros" value="${(item.ID_DetalleOTPloteo)}" class="eliminarMetros btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></button>
+										</td>
+    							</tr>`;
+				
+				/* DIBUJO EN EL HTML DE LA TABLA CON LOS DATOS DE LA BASE DE DATOS */
+				$('.tablaEditarAgregarPloteo').append(html);
+				
+			});
+			
+			/* AGREGAR FILAS A LA MINI TABLA EDITAR OT PLOTEO */
+			$('#editarAgregarPloteo').on('click', function () {
+				
+				/* OBTENCION DEL VALOR DEL INPUT */
+				let datos = $('#editarMetrosPloteo').val()
+				
+				if (datos != '') {
+					
+					/* PROCESO PARA AUMENTAR LAS FILAS EN LA TABLA PARA AGREGAR METROS */
+					tabla = `<tr>`;
+					tabla += `<td><input type="text" name="editarMetrosTotalPloteo[]" class="editarMetrosTotalPloteo form-control" value="${datos}"></td>`;
+					tabla += `<td><input type="text" class="form-control editarImporteMetrosPloteo" name="editarImporteMetrosPloteo[]" value="${(datos * 1.25).toFixed(2)}" readonly></td>`;
+					tabla += `<td><a href="#" id="eliminarMetros" value="" class="eliminarMetros btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></td>`;
+					tabla += `</tr>`;
+					
+					/* DIBUJAR LA TABLA EN LA TABLA RESPECTIVA EN EL HTML */
+					$('.tablaEditarAgregarPloteo').append(tabla);
+				}
+				
+				/* LIMPIEZA DEL INPUT DESPUES DE AGREGAR LOS METROS */
+				$('input[name=editarMetrosPloteo]').val('');
+				editarCalculosMetrosPloteo()
+			});
+			
+			$(document).on('keyup', '.tablaEditarAgregarPloteo input.editarMetrosTotalPloteo', function () {
+				
+				/* OBTENER EL VALOR DEL INPUT */
+				let metros = $(this).val();
+				// alert(metros)
+				
+				/* CALCULOS */
+				let importe = (metros * 1.25).toFixed(2)
+				
+				/* IMPRESION EN EL INPUT READONLY DE LA COLUMNA DE IMPORTES */
+				$(this).closest('tr').find('td:eq(1)').children('input').val(importe)
+				editarCalculosMetrosPloteo()
+			})
+			/* ELIMINACION INDIVIDUAL DE LOS METROS CUANDO LA TABLA YA ESTA CREADA */
+			$(document).on('click', '#eliminarMetros', function () {
+				$(this).closest('tr').remove()
+				editarCalculosMetrosPloteo()
+			})
+			
+			
+			let nuevometro = []
+			$(document).on('click', '#eliminarMetros', function () {
+
+				nuevometro.push($(this).val())
+				console.log(nuevometro)
+			})
+
+			$('#modalEditarOtPloteo').modal('show');
+			
+		}
+	})
+	
+})
+
+function editarCalculosMetrosPloteo() {
+	
+	let subtotal = 0
+	
+	/* OBTENER EL IMPORTE DE LA MINITABLA DONDE SE INGRESAN LOS NUEVOS METROS O SE EDITAN */
+	$('.tablaEditarAgregarPloteo tbody tr').each(function () {
+		subtotal = subtotal + Number($(this).find('td:eq(1)').children('input').val())
+		// alert(subtotal)
+	})
+	
+	/* IMPRESION DE LOS CALCULOS EN LOS INPUTS */
+	$('input[name=editarSubtotalPloteo]').val(subtotal.toFixed(2))
+	let porcentaje = $('#editarImpuestoDocumentoPloteo').val()
+	// alert(porcentaje)
+	let iva = subtotal * (porcentaje / 100);
+	// alert(iva)
+	$('input[name=editarIvaPloteo]').val(iva.toFixed(2))
+	let total = subtotal + iva
+	// alert(total)
+	$('#editarTotalPloteo').val(total.toFixed(2))
+	
+}
+
+$(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
+	event.preventDefault()
+	
+	let editarIdOtPloteo = $('#editarIdOtPloteo').val();
+	// console.log(editarIdOtPloteo)
+	let editarSerie = $('#editarSerieDocumentoPloteo').val()
+	// console.log(editarSerie)
+	let editarNumero = $('#editarNumeroDocumentoPloteo').val()
+	// console.log(editarNumero)
+	let editarIdCliente = $('#editarClientePloteo').val()
+	// console.log(editarIdCliente)
+	let metrosPloteo = $('input[name="editarMetrosTotalPloteo[]"]').map(function () {
+		return this.value;
+	}).get();
+	// console.log(metrosPloteo)
+	let importePloteo = $('input[name="editarImporteMetrosPloteo[]"]').map(function () {
+		return this.value;
+	}).get();
+	// console.log(importePloteo)
+	
+	
 })
