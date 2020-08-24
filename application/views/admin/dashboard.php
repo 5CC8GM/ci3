@@ -7,7 +7,7 @@
 			<div class="card card-body">
 				<div class="media">
 					<div class="mr-3 align-self-center">
-						<i class="icon-users4 icon-3x text-success-400"></i>
+						<i class="icon-users4 icon-3x text-orange-300"></i>
 					</div>
 					
 					<div class="media-body text-right">
@@ -22,7 +22,7 @@
 			<div class="card card-body">
 				<div class="media">
 					<div class="mr-3 align-self-center">
-						<i class="icon-hammer-wrench icon-3x text-indigo-400"></i>
+						<i class="icon-hammer-wrench icon-3x text-primary-300"></i>
 					</div>
 					
 					<div class="media-body text-right">
@@ -37,7 +37,7 @@
 			<div class="card card-body">
 				<div class="media">
 					<div class="mr-3 align-self-center">
-						<i class="icon-printer icon-3x text-indigo-400"></i>
+						<i class="icon-printer icon-3x text-danger-300"></i>
 					</div>
 					
 					<div class="media-body text-right">
@@ -47,17 +47,16 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="col-sm-6 col-xl-3">
 			<div class="card card-body">
 				<div class="media">
-					<div class="media-body">
-						<h3 class="font-weight-semibold mb-0">389,438</h3>
-						<span class="text-uppercase font-size-sm text-muted">total orders</span>
+					<div class="mr-3 align-self-center">
+						<i class="icon-cash icon-3x text-success-300"></i>
 					</div>
 					
-					<div class="ml-3 align-self-center">
-						<i class="icon-bag icon-3x text-danger-400"></i>
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0">$ <?= $ingresosTotales ?></h3>
+						<span class="text-uppercase font-size-sm text-muted">Ingresos Totales</span>
 					</div>
 				</div>
 			</div>
