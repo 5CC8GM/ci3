@@ -146,4 +146,19 @@
 			
 		}
 		
+		public function montos($year) {
+			
+			$this->db->select('MONTH(Fecha_OTPloteo) as mes, SUM(Total_OTPloteo) as monto');
+			$this->db->from('ot_ploteo');
+			$this->db->where('Fecha_OTPloteo >=', $year . '-01-01');
+			$this->db->where('Fecha_OTPloteo <=', $year . '-12-31');
+			$this->db->group_by('mes');
+			$this->db->order_by('mes');
+			
+			$resultados = $this->db->get();
+			
+			return $resultados->result();
+		}
+		
+		
 	}
