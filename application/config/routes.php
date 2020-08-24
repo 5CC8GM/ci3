@@ -74,4 +74,5 @@
 	$route['ploteo/mostrar'] = 'ordenes_trabajo/ploteo/mostrar';
 	$route['ploteo/eliminar'] = 'ordenes_trabajo/ploteo/eliminar';
 	$route['ploteo/editar'] = 'ordenes_trabajo/ploteo/editar';
+	$route['ploteo/actualizar'] = 'ordenes_trabajo/ploteo/actualizar';
 	
