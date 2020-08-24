@@ -15,7 +15,7 @@ $('#year').on('change', function (event) {
 
 function datosGrafico(year) {
 	
-	nombresDelMes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+	let nombresDelMes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 	// console.log(nombresDelMes)
 	$.ajax({
 		url: 'http://localhost/ci3/getData',
@@ -202,6 +202,7 @@ $('.selectPloteo').select2({
 });
 
 let yearPloteo = (new Date().getFullYear())
+
 datosGraficoPloteo(yearPloteo)
 $('#yearPloteo').on('change', function (event) {
 	
@@ -213,8 +214,8 @@ $('#yearPloteo').on('change', function (event) {
 
 function datosGraficoPloteo(yearPloteo) {
 	
-	nombresDelMes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-	// console.log(nombresDelMes)
+	let nombresDelMesPloteo = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+	// console.log(nombresDelMesPloteo)
 	$.ajax({
 		url: 'http://localhost/ci3/getDataPloteo',
 		type: 'post',
@@ -227,8 +228,8 @@ function datosGraficoPloteo(yearPloteo) {
 			
 			$.each(data, function (key, value) {
 				
-				mesesPloteo.push(nombresDelMes[value.mes - 1]);
-				montosPloteo.push(value.monto)
+				mesesPloteo.push(nombresDelMesPloteo[value.mesPloteo - 1]);
+				montosPloteo.push(value.montoPloteo)
 				
 			})
 			graficarPloteo(mesesPloteo, montosPloteo)
