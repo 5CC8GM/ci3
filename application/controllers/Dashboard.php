@@ -25,7 +25,10 @@
 			
 			$data = array('cantidadVentasServicioTecnico' => $this->Backend_model->contarColumnas('ot_servicio_tecnico'),
 						  'cantidadClientes'              => $this->Backend_model->contarColumnas('cliente'),
-						  'years'                         => $this->Servicio_tecnico_model->years());
+						  'cantidadVentasPloteo'          => $this->Backend_model->contarColumnas('ot_ploteo'),
+						  'years'                         => $this->Servicio_tecnico_model->years(),
+						  'yearsPloteo'                   => $this->Ploteo_model->yearsPloteo(),
+						  'ingresosTotales'               => $this->Backend_model->ingresosTotales());
 			
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			
