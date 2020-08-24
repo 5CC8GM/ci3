@@ -111,4 +111,39 @@
 			
 		}
 		
+		public function actualizar($datos) {
+			
+			return $this->db->update('ot_ploteo', $datos, array('ID_OTPloteo' => $datos['ID_OTPloteo']));
+			
+		}
+		
+		public function editarDetalleOtPloteo() {
+			$id = $this->input->post('editarIdDetalleOTPloteo');
+			$precio = $this->input->post('metrosPloteo');
+			$importe = $this->input->post('importePloteo');
+			
+			$actualizarArray = array();
+			
+			for ($i = 0; $i < sizeof($id); $i++) {
+				
+				$actualizarArray[] = array(
+					'ID_DetalleOTPloteo' => $id[$i],
+					'Precio_OTPloteo'    => $precio[$i],
+					'Importe_OTPloteo'   => $importe[$i],
+				);
+				
+			}
+			
+			return $this->db->update_batch('detalle_otploteo', $actualizarArray, 'ID_DetalleOTPloteo');
+			
+			
+		}
+		
+		public function idAEliminar($ids) {
+			$this->db->where_in('ID_DetalleOTPloteo', $ids);
+			return $this->db->delete('detalle_otploteo');
+			
+			
+		}
+		
 	}

@@ -386,7 +386,7 @@ $(document).on('click', '#eliminarOtPloteo', function (event) {
 		
 	})
 })
-
+let nuevometro = []
 /* EDITAR ORDEN DE TRABAJO PLOTEO */
 $(document).on('click', '#editarOtPloteo', function (event) {
 	
@@ -404,7 +404,7 @@ $(document).on('click', '#editarOtPloteo', function (event) {
 		},
 		success: function (data) {
 			
-			
+			nuevometro.length = 0
 			// console.log(metros)
 			/* IMPRESION DE LOS VALORES EN CADA INPUT DEL MODAL EDITAR ORDEN DE TRABAJO PLOTEO */
 			$('#editarIdOtPloteo').val(data.post[0].ID_OTPloteo)
@@ -427,7 +427,6 @@ $(document).on('click', '#editarOtPloteo', function (event) {
 				// Agrega un campo oculto para saber qué es lo que se está modificando
 				let html = `<tr>
 										<td>
-											<input type="hidden" name="editarIdPloteo[]" value="${item.ID_OTPloteo}">
 											<input type="text" name="editarMetrosTotalPloteo[]" class="editarMetrosTotalPloteo form-control" value="${item.Precio_OTPloteo}">
 										</td>
 										<td>
@@ -454,8 +453,8 @@ $(document).on('click', '#editarOtPloteo', function (event) {
 					
 					/* PROCESO PARA AUMENTAR LAS FILAS EN LA TABLA PARA AGREGAR METROS */
 					tabla = `<tr>`;
-					tabla += `<td><input type="text" name="editarMetrosTotalPloteo[]" class="editarMetrosTotalPloteo form-control" value="${datos}"></td>`;
-					tabla += `<td><input type="text" class="form-control editarImporteMetrosPloteo" name="editarImporteMetrosPloteo[]" value="${(datos * 1.25).toFixed(2)}" readonly></td>`;
+					tabla += `<td><input type="text" name="editarNuevosMetrosTotalPloteo[]" class="editarNuevosMetrosTotalPloteo form-control" value="${datos}"></td>`;
+					tabla += `<td><input type="text" class="form-control editarNuevoImporteMetrosPloteo" name="editarNuevoImporteMetrosPloteo[]" value="${(datos * 1.25).toFixed(2)}" readonly></td>`;
 					tabla += `<td><a href="#" id="eliminarMetros" value="" class="eliminarMetros btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></td>`;
 					tabla += `</tr>`;
 					
@@ -488,18 +487,17 @@ $(document).on('click', '#editarOtPloteo', function (event) {
 			})
 			
 			
-			let nuevometro = []
-			$(document).on('click', '#eliminarMetros', function () {
-
-				nuevometro.push($(this).val())
-				console.log(nuevometro)
-			})
-
 			$('#modalEditarOtPloteo').modal('show');
 			
 		}
 	})
 	
+})
+
+$(document).on('click', '#eliminarMetros', function () {
+	
+	nuevometro.push($(this).val())
+	// console.log(nuevometro)
 })
 
 function editarCalculosMetrosPloteo() {
@@ -544,6 +542,104 @@ $(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
 		return this.value;
 	}).get();
 	// console.log(importePloteo)
+	let editarSubtotal = $('#editarSubtotalPloteo').val()
+	// console.log(editarSubtotal)
+	let editarIva = $('#editarIvaPloteo').val()
+	// console.log(editarIva)
+	let editarTotal = $('#editarTotalPloteo').val()
+	// console.log(editarTotal)
+	let editarIdDetalleOTPloteo = $('input[name="editarIdDetallePloteo[]"]').map(function () {
+		return this.value;
+	}).get();
+	/* VALORES DE LOS INPUTS CREADOS CON EL BOTON AGREGAR */
+	let nuevoMetroPloteo = $('input[name="editarNuevosMetrosTotalPloteo[]').map(function () {
+		return this.value;
+	}).get()
+	// console.log(nuevoMetroPloteo)
+	let nuevoImportePloteo = $('input[name="editarNuevoImporteMetrosPloteo[]').map(function () {
+		return this.value;
+	}).get()
+	// console.log(nuevoImportePloteo)
+	let idAEliminar = nuevometro;
+	// console.log(idAEliminar)
 	
+	if (editarIdOtPloteo == '' ||
+		editarSerie == '' ||
+		editarNumero == '' ||
+		editarIdCliente == '' ||
+		editarSubtotal == '' ||
+		editarIva == '' ||
+		editarTotal == '') {
+		
+		
+		/* MENSAJE DE ERROR EN CASO DE QUE CUALQUIER INPUT ESTE VACIO */
+		new Noty({
+			layout: 'topRight',
+			theme: 'limitless',
+			type: 'error',
+			text: 'Los campos no deben estar vacios',
+			timeout: 3000,
+		}).show();
+	} else if (metrosPloteo != '' ||
+		nuevoMetroPloteo != '') {
+		
+		$.ajax({
+			url: 'http://localhost/ci3/ploteo/actualizar',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				editarIdOtPloteo: editarIdOtPloteo,
+				// editarSerie: editarSerie,
+				// editarNumero: editarNumero,
+				editarIdCliente: editarIdCliente,
+				metrosPloteo: metrosPloteo,
+				importePloteo: importePloteo,
+				editarSubtotal: editarSubtotal,
+				editarIva: editarIva,
+				editarTotal: editarTotal,
+				nuevoMetroPloteo: nuevoMetroPloteo,
+				nuevoImportePloteo: nuevoImportePloteo,
+				editarIdDetalleOTPloteo: editarIdDetalleOTPloteo,
+				idAEliminar: idAEliminar
+			},
+			success: function (data) {
+				console.log(data)
+				if (data.respuesta == 'success') {
+					$('#tablaPloteo').DataTable().ajax.reload()
+					$('#modalEditarOtPloteo').modal('hide');
+					/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
+					new Noty({
+						layout: 'topRight',
+						theme: 'limitless',
+						type: 'success',
+						text: data.mensaje,
+						timeout: 3000,
+					}).show();
+					
+				} else {
+					
+					/* ESTETICA AL MOSTRAR EL MENSAJE DE ERROR */
+					new Noty({
+						layout: 'topRight',
+						theme: 'limitless',
+						type: 'error',
+						text: data.mensaje,
+						timeout: 3000,
+					}).show();
+					
+				}
+				
+			}
+		});
+		
+	} else {
+		new Noty({
+			layout: 'topRight',
+			theme: 'limitless',
+			type: 'error',
+			text: 'Debe ingresar al menos un metro',
+			timeout: 3000,
+		}).show();
+	}
 	
 })

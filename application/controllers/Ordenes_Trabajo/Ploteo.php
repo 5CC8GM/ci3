@@ -108,7 +108,8 @@
 			
 			for ($i = 0; $i < count($metros); $i++) {
 				
-				$datos = array('ID_OTPloteo'      => $idOrdenTrabajoPloteo, 'Precio_OTPloteo' => $metros[$i],
+				$datos = array('ID_OTPloteo'      => $idOrdenTrabajoPloteo,
+							   'Precio_OTPloteo'  => $metros[$i],
 							   'Importe_OTPloteo' => $importe[$i]);
 				
 				$this->ploteo_model->guardarDetalleOTPloteo($datos);
@@ -197,6 +198,58 @@
 				
 				echo json_encode($data);
 				
+			} else {
+				echo 'No se permite el acceso de scripts';
+			}
+			
+		}
+		
+		/* ACTUALIZAR ORDEN DE TRABAJO PLOTEO */
+		public function actualizar() {
+			
+			if ($this->input->is_ajax_request()) {
+				$dataOtPloteo['ID_OTPloteo'] = $this->input->post('editarIdOtPloteo');
+				$dataOtPloteo['ID_Cliente'] = $this->input->post('editarIdCliente');
+				$dataDetalleOtPloteo['Precio_OTPloteo'] = $this->input->post('metrosPloteo');
+				$dataDetalleOtPloteo['Importe_OTPloteo'] = $this->input->post('importePloteo');
+				$dataOtPloteo['Subtotal_OTPloteo'] = $this->input->post('editarSubtotal');
+				$dataOtPloteo['Impuesto_OTPloteo'] = $this->input->post('editarIva');
+				$dataOtPloteo['Total_OTPloteo'] = $this->input->post('editarTotal');
+				$idAEliminar = $this->input->post('idAEliminar');
+				$id = $this->input->post('editarIdDetalleOTPloteo');
+				//				var_dump($idAEliminar);
+				/* DATOS NUEVOS OBTENIDOS CUANDO SE CREA UN NUEVO METRAJE CON EL BOTON AGREGAR */
+				$dataNuevosOtPloteo['Precio_OTPloteo'] = $this->input->post('nuevoMetroPloteo');
+				$dataNuevosOtPloteo['Importe_OTPloteo'] = $this->input->post('nuevoImportePloteo');
+				
+				if ($this->ploteo_model->actualizar($dataOtPloteo)) {
+					
+					/* EDITAR EL DETALLE DE LA ORDEN DE TRABAJO PLOTEO */
+					if ($id != null) {
+						$this->ploteo_model->editarDetalleOtPloteo();
+					} else {
+						$data = array('respuesta' => 'error', 'mensaje' => 'Debe ingresar al metro un metro');
+					}
+					if ($idAEliminar != null) {
+						$this->ploteo_model->idAEliminar($idAEliminar);
+					}
+					if ($dataNuevosOtPloteo['Precio_OTPloteo'] != null
+						&& $dataNuevosOtPloteo['Importe_OTPloteo'] != null) {
+						$idOrdenTrabajoPloteo = json_decode($this->input->post('editarIdOtPloteo'));
+						
+						$metros = $this->input->post('nuevoMetroPloteo');
+						$importe = $this->input->post('nuevoImportePloteo');
+						$this->guardarDetalleOt($idOrdenTrabajoPloteo, $metros, $importe);
+						
+					}
+					
+					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de ploteo ha sido actualizada exitosamente');
+				} else {
+					
+					/* MENSAJE DE ERROR SI NO SE INSERTA CORRECTAMENTE */
+					$data = array('respuesta' => 'error', 'mensaje' => 'La orden de trabajo de ploteo no ha sido actualizada');
+				}
+				echo json_encode($data);
 			} else {
 				echo 'No se permite el acceso de scripts';
 			}
