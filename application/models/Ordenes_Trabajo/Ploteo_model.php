@@ -146,14 +146,25 @@
 			
 		}
 		
+		public function yearsPloteo() {
+			$this->db->select('YEAR(Fecha_OTPloteo) as yearPloteo');
+			$this->db->from('ot_ploteo');
+			$this->db->group_by('yearPloteo');
+			$this->db->order_by('yearPloteo', 'desc');
+			
+			$resultados = $this->db->get();
+			
+			return $resultados->result();
+		}
+		
 		public function montos($year) {
 			
-			$this->db->select('MONTH(Fecha_OTPloteo) as mes, SUM(Total_OTPloteo) as monto');
+			$this->db->select('MONTH(Fecha_OTPloteo) as mesPloteo, SUM(Total_OTPloteo) as montoPloteo');
 			$this->db->from('ot_ploteo');
 			$this->db->where('Fecha_OTPloteo >=', $year . '-01-01');
 			$this->db->where('Fecha_OTPloteo <=', $year . '-12-31');
-			$this->db->group_by('mes');
-			$this->db->order_by('mes');
+			$this->db->group_by('mesPloteo');
+			$this->db->order_by('mesPloteo');
 			
 			$resultados = $this->db->get();
 			
