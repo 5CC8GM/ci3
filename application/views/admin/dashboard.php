@@ -22,12 +22,12 @@
 			<div class="card card-body">
 				<div class="media">
 					<div class="mr-3 align-self-center">
-						<i class="icon-enter6 icon-3x text-indigo-400"></i>
+						<i class="icon-hammer-wrench icon-3x text-indigo-400"></i>
 					</div>
 					
 					<div class="media-body text-right">
 						<h3 class="font-weight-semibold mb-0"><?= $cantidadVentasServicioTecnico ?></h3>
-						<span class="text-uppercase font-size-sm text-muted">Ventas Servicio Técnico</span>
+						<span class="text-uppercase font-size-sm text-muted">Órdenes de Trabajo Servicio Técnico</span>
 					</div>
 				</div>
 			</div>
@@ -36,13 +36,13 @@
 		<div class="col-sm-6 col-xl-3">
 			<div class="card card-body">
 				<div class="media">
-					<div class="media-body">
-						<h3 class="font-weight-semibold mb-0">54,390</h3>
-						<span class="text-uppercase font-size-sm text-muted">Ventas Ploteo</span>
+					<div class="mr-3 align-self-center">
+						<i class="icon-printer icon-3x text-indigo-400"></i>
 					</div>
 					
-					<div class="ml-3 align-self-center">
-						<i class="icon-bubbles4 icon-3x text-blue-400"></i>
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0"><?= $cantidadVentasPloteo ?></h3>
+						<span class="text-uppercase font-size-sm text-muted">Órdenes de Trabajo Ploteo</span>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 	</div>
 	<!-- /basic card -->
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-lg-6">
 			<div class="card">
 				<div class="card-header header-elements-inline">
 					<h5 class="card-title">Gráfica De Ingresos Servicio Técnico</h5>
@@ -93,7 +93,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-lg-6">
 			<div class="card">
 				<div class="card-header header-elements-inline">
 					<h5 class="card-title">Gráfica De Ingresos Ploteo</h5>
@@ -102,8 +102,8 @@
 							<select name="yearPloteo"
 									id="yearPloteo"
 									class="form-control selectPloteo">
-								<?php foreach ($years as $year): ?>
-									<option value="<?= $year->year ?>"><?= $year->year ?></option>
+								<?php foreach ($yearsPloteo as $year): ?>
+									<option value="<?= $year->yearPloteo ?>"><?= $year->yearPloteo ?></option>
 								<?php endforeach; ?>
 							</select>
 							<a class="list-icons-item"
