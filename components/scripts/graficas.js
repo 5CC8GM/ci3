@@ -1,4 +1,7 @@
-$('.select').select2();
+$('.select').select2({
+	placeholder: 'Seleccione una fecha',
+	minimumResultsForSearch: Infinity,
+});
 
 let year = (new Date().getFullYear())
 datosGrafico(year)
