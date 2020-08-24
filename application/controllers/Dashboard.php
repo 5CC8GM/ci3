@@ -9,6 +9,7 @@
 			/* CARGA EL CONTENIDO DEL MODELO ADMIN_MODEL */
 			$this->load->model('Backend_model');
 			$this->load->model('Ordenes_Trabajo/Servicio_tecnico_model');
+			$this->load->model('Ordenes_Trabajo/Ploteo_model');
 			
 			/* COMPROBAR LA VARIABLE DE SESION LOGIN */
 			if (!$this->session->userdata('login')) {
@@ -47,6 +48,15 @@
 			
 			$year = $this->input->post('year');
 			$resultados = $this->Servicio_tecnico_model->montos($year);
+			
+			echo json_encode($resultados);
+			
+		}
+		
+		public function getDataPloteo() {
+			
+			$yearPloteo = $this->input->post('yearPloteo');
+			$resultados = $this->Ploteo_model->montos($yearPloteo);
 			
 			echo json_encode($resultados);
 			
