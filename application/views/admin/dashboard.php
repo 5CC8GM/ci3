@@ -64,29 +64,61 @@
 		</div>
 	</div>
 	<!-- /basic card -->
-	<div class="card">
-		<div class="card-header header-elements-inline">
-			<h5 class="card-title">Gráfica De Ingresos Servicio Técnico</h5>
-			<div class="header-elements">
-				<div class="list-icons">
-					<select name="year"
-							id="year"
-							class="form-control select">
-						<?php foreach ($years as $year): ?>
-							<option value="<?= $year->year ?>"><?= $year->year ?></option>
-						<?php endforeach; ?>
-					</select>
-					<a class="list-icons-item"
-					   data-action="collapse"></a>
-					<a class="list-icons-item"
-					   data-action="remove"></a>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header header-elements-inline">
+					<h5 class="card-title">Gráfica De Ingresos Servicio Técnico</h5>
+					<div class="header-elements">
+						<div class="list-icons">
+							<select name="year"
+									id="year"
+									class="form-control select">
+								<?php foreach ($years as $year): ?>
+									<option value="<?= $year->year ?>"><?= $year->year ?></option>
+								<?php endforeach; ?>
+							</select>
+							<a class="list-icons-item"
+							   data-action="collapse"></a>
+							<a class="list-icons-item"
+							   data-action="remove"></a>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="chart-container">
+						<div class="chart has-fixed-height"
+							 id="graficaServicioTecnico"></div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="card-body">
-			<div class="chart-container">
-				<div class="chart has-fixed-height"
-					 id="graficaServicioTecnico"></div>
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header header-elements-inline">
+					<h5 class="card-title">Gráfica De Ingresos Ploteo</h5>
+					<div class="header-elements">
+						<div class="list-icons">
+							<select name="yearPloteo"
+									id="yearPloteo"
+									class="form-control selectPloteo">
+								<?php foreach ($years as $year): ?>
+									<option value="<?= $year->year ?>"><?= $year->year ?></option>
+								<?php endforeach; ?>
+							</select>
+							<a class="list-icons-item"
+							   data-action="collapse"></a>
+							<a class="list-icons-item"
+							   data-action="remove"></a>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="chart-container">
+						<div class="chart has-fixed-height"
+							 id="graficaPloteo"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
