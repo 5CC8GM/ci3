@@ -222,7 +222,7 @@ function datosGraficoPloteo(yearPloteo) {
 		data: {yearPloteo: yearPloteo},
 		dataType: 'json',
 		success: function (data) {
-			console.log(data)
+			// console.log(data)
 			let mesesPloteo = [];
 			let montosPloteo = [];
 			
