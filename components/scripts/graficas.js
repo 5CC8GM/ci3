@@ -394,6 +394,3 @@ function graficarPloteo(mesesPloteo, montosPloteo) {
 }
 
 
-let nuevavariable
-let otraVariable
-let otraPrueba
