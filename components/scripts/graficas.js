@@ -393,4 +393,4 @@ function graficarPloteo(mesesPloteo, montosPloteo) {
 	columns_basic_element.setOption(option)
 }
 
-let textoprueba;
+
