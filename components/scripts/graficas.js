@@ -394,4 +394,3 @@ function graficarPloteo(mesesPloteo, montosPloteo) {
 }
 
 
-let variables;
