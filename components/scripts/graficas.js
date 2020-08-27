@@ -394,3 +394,4 @@ function graficarPloteo(mesesPloteo, montosPloteo) {
 }
 
 
+let nuevavariable
