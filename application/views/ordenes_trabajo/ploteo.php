@@ -339,3 +339,27 @@
 		</div>
 	</div>
 </div>
+<!-- MODAL VER ORDEN DE TRABAJO PLOTEO -->
+<div id="modalVerOtPloteo"
+     class="modal fade"
+     tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-body">
+			
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button"
+				        class="btn bg-danger-800"
+				        data-dismiss="modal">Cerrar
+				</button>
+				<button class="btn bg-primary-800 btn-print"
+				        type="button"
+				        id="imprimirOtPloteo">Imprimir <i
+							class="icon-printer
+									ml-2"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
