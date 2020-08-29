@@ -643,3 +643,39 @@ $(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
 	}
 	
 })
+
+/* VER ORDEN DE TRABAJO PLOTEO (INVOICE) */
+$(document).on('click', '#verOtPloteo', function (event) {
+	
+	event.preventDefault()
+	$('#modalVerOtPloteo').modal('show')
+	
+	let idOtPloteo = $(this).attr('value');
+	// console.log(idOtPloteo)
+	
+	$.ajax({
+		
+		url: 'http://localhost/ci3/ploteo/invoice',
+		type: 'post',
+		dataType: 'html',
+		data: {
+			id: idOtPloteo,
+		},
+		success: function (data) {
+			// console.log(data)
+			$('#modalVerOtPloteo').modal('show')
+			$('#modalVerOtPloteo .modal-body').html(data)
+		}
+		
+	})
+	
+})
+
+/* IMPRIMIR ORDEN DE TRABAJO PLOTEO */
+$(document).on('click', '#imprimirOtPloteo', function (event) {
+	event.preventDefault
+
+	$('#modalVerOtPloteo .modal-body').print({
+		title: null,
+	});
+})
