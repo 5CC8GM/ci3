@@ -170,6 +170,32 @@
 			
 			return $resultados->result();
 		}
-		
-		
+
+		public function getOtPloteo($id)
+		{
+
+			$this->db->select('*');
+			$this->db->from('ot_ploteo');
+			$this->db->join('cliente', 'cliente.ID_Cliente = ot_ploteo.ID_Cliente');
+			$this->db->join('tipo_documento', 'tipo_documento.ID_Documento = ot_ploteo.ID_Documento');
+			$this->db->where('ID_OTPloteo', $id);
+
+			$resultado = $this->db->get();
+
+			return $resultado->row();
+
+		}
+
+		public function getDetalle($id) {
+
+			$this->db->select('*');
+			$this->db->from('detalle_otploteo');
+			$this->db->where('ID_OTPloteo', $id);
+
+			$resultado = $this->db->get();
+
+			return $resultado->result();
+
+		}
+
 	}
