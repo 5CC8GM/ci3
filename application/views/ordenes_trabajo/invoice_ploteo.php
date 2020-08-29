@@ -18,10 +18,10 @@
 		<div class="mb-4">
 			<div class="text-sm-right">
 				<h4 class="text-orange-300 mb-2 mt-md-2"><?= $venta->Nombre_Documento ?> #<?=
-						$venta->NumeroDocumento_OTServicioTecnico ?></h4>
+						$venta->NumeroDocumento_OTPloteo ?></h4>
 				<ul class="list list-unstyled mb-0">
 					<?php
-						$fechaOriginal = $venta->Fecha_OTServicioTecnico;
+						$fechaOriginal = $venta->Fecha_OTPloteo;
 						setlocale(LC_ALL, 'spanish');
 						$fechaNueva = strftime("%d de %B de %Y %H:%M:%S", strtotime($fechaOriginal));
 					?>
@@ -62,7 +62,7 @@
 			</ul>
 			
 			<ul class="list list-unstyled text-right mb-0 ml-auto">
-				<li><h5 class="font-weight-semibold my-2">$<?= $venta->Total_OTServicioTecnico ?></h5></li>
+				<li><h5 class="font-weight-semibold my-2">$<?= $venta->Total_OTPloteo ?></h5></li>
 				<!--						<li><span class="font-weight-semibold">Profit Bank Europe</span></li>-->
 				<!--						<li>United Kingdom</li>-->
 				<!--						<li>London E1 8BF</li>-->
@@ -78,40 +78,17 @@
 	<table class="table table-lg">
 		<thead>
 			<tr>
-				<th>Descripción</th>
-				<th>Marca</th>
-				<th>Modelo</th>
-				<th>Total</th>
+				<th>Metros Ploteados</th>
+				<th>Metros * 1.25</th>
 			</tr>
 		</thead>
 		<tbody>
+		<?php foreach ($detalle as $detalles)  :?>
 			<tr>
-				<td>
-					<h6 class="mb-0"><?= $venta->Descripcion_OTServicioTecnico ?></h6>
-					<!--						<span class="text-muted">One morning, when Gregor Samsa woke from troubled.</span>-->
-				</td>
-				<td><?= $venta->Marca_OTServicioTecnico ?></td>
-				<td><?= $venta->Modelo_OTServicioTecnico ?></td>
-				<td><span class="font-weight-semibold">$<?= $detalle->Precio_DetalleOTServicioTecnico ?></span></td>
+				<td><?= $detalles->Precio_OTPloteo ?> metros</td>
+				<td>$ <?= $detalles->Importe_OTPloteo ?></td>
 			</tr>
-			<!--				<tr>-->
-			<!--					<td>-->
-			<!--						<h6 class="mb-0">Support tickets list doesn't support commas</h6>-->
-			<!--						<span class="text-muted">I'd have gone up to the boss and told him just what i think.</span>-->
-			<!--					</td>-->
-			<!--					<td>$70</td>-->
-			<!--					<td>12</td>-->
-			<!--					<td><span class="font-weight-semibold">$840</span></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td>-->
-			<!--						<h6 class="mb-0">Fix website issues on mobile</h6>-->
-			<!--						<span class="text-muted">I am so happy, my dear friend, so absorbed in the exquisite.</span>-->
-			<!--					</td>-->
-			<!--					<td>$70</td>-->
-			<!--					<td>31</td>-->
-			<!--					<td><span class="font-weight-semibold">$2,170</span></td>-->
-			<!--				</tr>-->
+		<?php endforeach;?>
 		</tbody>
 	</table>
 </div>
@@ -140,17 +117,17 @@
 				<tbody>
 					<tr>
 						<th>Subtotal:</th>
-						<td class="text-right">$<?= $venta->Subtotal_OTServicioTecnico ?></td>
+						<td class="text-right">$<?= $venta->Subtotal_OTPloteo ?></td>
 					</tr>
 					<tr>
 						<th>Impuesto: <span class="font-weight-normal"><?= $venta->Impuesto_Documento . '%'
 								?></span></th>
-						<td class="text-right">$<?= $venta->Impuesto_OTServicioTecnico ?></td>
+						<td class="text-right">$<?= $venta->Impuesto_OTPloteo ?></td>
 					</tr>
 					<tr>
 						<th>Total:</th>
 						<td class="text-right text-orange-300"><h5 class="font-weight-semibold">
-								$<?= $venta->Total_OTServicioTecnico ?></h5></td>
+								$<?= $venta->Total_OTPloteo ?></h5></td>
 					</tr>
 				</tbody>
 			</table>
