@@ -103,27 +103,9 @@
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
-			
+
 		}
-		
-		//		public function editar($id) {
-		//
-		//			$this->db->select('*');
-		//			$this->db->from('ot_servicio_tecnico');
-		//			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
-		//			$this->db->where('ID_OTServicioTecnico', $id);
-		//			$this->db->order_by('ID_OTServicioTecnico', 'ASC');
-		//
-		//			$consulta = $this->db->get();
-		//
-		//			if (count($consulta->result()) > 0) {
-		//
-		//				return $consulta->row();
-		//
-		//			}
-		//
-		//		}
-		
+
 		public function editar($id) {
 			
 			$this->db->select('*');
@@ -175,6 +157,6 @@
 			
 			return $resultados->result();
 		}
-		
+
 		
 	}
