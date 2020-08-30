@@ -78,17 +78,21 @@
 	<table class="table table-lg">
 		<thead>
 			<tr>
+				<th>#</th>
 				<th>Metros Ploteados</th>
 				<th>Metros * 1.25</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($detalle as $detalles)  : ?>
-				<tr>
-					<td><?= $detalles->Precio_OTPloteo ?> metros</td>
-					<td>$ <?= $detalles->Importe_OTPloteo ?></td>
-				</tr>
-			<?php endforeach; ?>
+			
+			<?php $i = 1;
+				foreach ($detalle as $detalles)  : ?>
+					<tr>
+						<td><?= $i++ ?></td>
+						<td><?= $detalles->Precio_OTPloteo ?> metros</td>
+						<td>$ <?= $detalles->Importe_OTPloteo ?></td>
+					</tr>
+				<?php endforeach; ?>
 		</tbody>
 	</table>
 </div>
