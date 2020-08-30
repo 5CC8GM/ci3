@@ -2,9 +2,9 @@
 	<div class="col-sm-6">
 		<div class="mb-4">
 			<img src="<?= base_url() ?>components/global_assets/images/logo_light.png"
-			     class="mb-3 mt-2"
-			     alt=""
-			     style="width: 120px;">
+				 class="mb-3 mt-2"
+				 alt=""
+				 style="width: 120px;">
 			<ul class="list list-unstyled mb-0">
 				<li>Julio César Paucar</li>
 				<li>Jacinto Escobar Oe4-31 pasaje S21A y José Abarcas</li>
@@ -23,7 +23,7 @@
 					<?php
 						$fechaOriginal = $venta->Fecha_OTPloteo;
 						setlocale(LC_ALL, 'spanish');
-						$fechaNueva = strftime("%d de %B de %Y %H:%M:%S", strtotime($fechaOriginal));
+						$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fechaOriginal));
 					?>
 					<li>Fecha: <span class="font-weight-semibold"><?= $fechaNueva
 							?></span></li>
@@ -83,12 +83,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($detalle as $detalles)  :?>
-			<tr>
-				<td><?= $detalles->Precio_OTPloteo ?> metros</td>
-				<td>$ <?= $detalles->Importe_OTPloteo ?></td>
-			</tr>
-		<?php endforeach;?>
+			<?php foreach ($detalle as $detalles)  : ?>
+				<tr>
+					<td><?= $detalles->Precio_OTPloteo ?> metros</td>
+					<td>$ <?= $detalles->Importe_OTPloteo ?></td>
+				</tr>
+			<?php endforeach; ?>
 		</tbody>
 	</table>
 </div>
@@ -98,8 +98,8 @@
 		<h6 class="mb-3">Firma Autorizada</h6>
 		<div class="mb-3">
 			<img src="<?= base_url() ?>components/global_assets/images/signature_light.png"
-			     width="150"
-			     alt="">
+				 width="150"
+				 alt="">
 		</div>
 		
 		<ul class="list-unstyled text-muted">
