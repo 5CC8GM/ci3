@@ -88,14 +88,14 @@
 		 *
 		 * @var string
 		 */
-		protected $_error_prefix = '';
+		protected $_error_prefix = '<p>';
 		
 		/**
 		 * End tag for error wrapping
 		 *
 		 * @var string
 		 */
-		protected $_error_suffix = '';
+		protected $_error_suffix = '</p>';
 		
 		/**
 		 * Custom error message
