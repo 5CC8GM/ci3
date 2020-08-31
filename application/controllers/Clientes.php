@@ -82,28 +82,6 @@
 			
 		}
 		
-		//		function fetch_user() {
-		//			$fetch_data = $this->clientes_model->make_datatables();
-		//			$data = array();
-		//			$contador = '1';
-		//			foreach ($fetch_data as $row) {
-		//				$sub_array = array();
-		//				$sub_array[] = $contador++;
-		//				$sub_array[] = $row->Nombre_Cliente;
-		//				$sub_array[] = $row->Apellido_Cliente;
-		//				$sub_array[] = $row->Telefono_Cliente;
-		//				$sub_array[] = '<div class="list-icons"><a href="#" id="editar" value="' . $row->ID_Cliente . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminar" value="' . $row->ID_Cliente . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
-		//				$data[] = $sub_array;
-		//			}
-		//			$output = array(
-		//				"draw"            => $_POST["draw"],
-		//				"recordsTotal"    => $this->clientes_model->get_all_data(),
-		//				"recordsFiltered" => $this->clientes_model->get_filtered_data(),
-		//				"data"            => $data,
-		//			);
-		//			echo json_encode($output);
-		//		}
-		
 		public function mostrar() {
 			
 			if ($this->input->is_ajax_request()) {
