@@ -44,11 +44,24 @@
 				//				echo 'yes';
 				
 				/* REGLAS PARA LA VALIDACION DE LOS INPUTS */
-				$this->form_validation->set_rules('Nombre_Cliente', 'Nombre del Cliente', 'required|callback_alpha_dash_space|trim', array('required' => 'El nombre del cliente es obligatorio', 'alpha_dash_space' => 'El nombre del cliente debe tener solo caracteres alfabéticos'));
-				$this->form_validation->set_rules('Apellido_Cliente', 'Apellido del Cliente', 'required|callback_alpha_dash_space|trim', array
-				('required' => '<br>' . 'El apellido del cliente es obligatorio', 'alpha_dash_space' => '<br>' . 'El apellido del cliente debe tener solo caracteres alfabéticos'));
-				$this->form_validation->set_rules('Telefono_Cliente', 'Telefono del Cliente', 'required|numeric', array
-				('required' => '<br>' . 'El teléfono del cliente es obligatorio', 'numeric' => '<br>' . 'El teléfono del cliente debe tener solo numeros'));
+				$this->form_validation->set_rules('Nombre_Cliente', 'Nombre del Cliente', 'trim|required|callback_alpha_dash_space|min_length[2]',
+					array('required' => 'El nombre del cliente es obligatorio',
+						  'alpha_dash_space' => 'El nombre del cliente debe tener solo caracteres alfabéticos'
+					)
+				);
+				
+				$this->form_validation->set_rules('Apellido_Cliente', 'Apellido del Cliente', 'trim|required|callback_alpha_dash_space|min_length[2]',
+					array('required'         => 'El apellido del cliente es obligatorio',
+						  'alpha_dash_space' => 'El apellido del cliente debe tener solo caracteres alfabéticos',
+						  'min_length'       => 'El apellido del cliente debe tener al menos 2 caracteres'
+					)
+				);
+				
+				$this->form_validation->set_rules('Telefono_Cliente', 'Telefono del Cliente', 'trim|required|numeric',
+					array('required' => 'El teléfono del cliente es obligatorio',
+						  'numeric'  => 'El teléfono del cliente debe tener solo numeros'
+					))
+				;
 				
 				/* CONDICION SI NO SE EJECUTA LA VALIDACION */
 				if ($this->form_validation->run() == FALSE) {
