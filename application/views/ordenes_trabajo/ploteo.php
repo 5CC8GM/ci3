@@ -74,7 +74,7 @@
 								<option></option>
 								<?php foreach ($clientePloteo as $value): ?>
 									
-									<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
+									<option value="<?= $value['ID_Cliente'] ?>"><?= $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'] ?></option>
 								
 								<?php endforeach; ?>
 							</select>
@@ -260,7 +260,7 @@
 							<option></option>
 							<?php foreach ($clientePloteo as $value): ?>
 								
-								<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
+								<option value="<?= $value['ID_Cliente'] ?>"><?= $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'] ?></option>
 							
 							<?php endforeach; ?>
 						</select>

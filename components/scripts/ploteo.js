@@ -569,7 +569,7 @@ $(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
 				idAEliminar: idAEliminar
 			},
 			success: function (data) {
-				console.log(data)
+				// console.log(data)
 				if (data.respuesta == 'success') {
 					$('#tablaPloteo').DataTable().ajax.reload()
 					$('#modalEditarOtPloteo').modal('hide');
