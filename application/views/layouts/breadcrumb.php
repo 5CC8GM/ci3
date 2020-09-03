@@ -10,7 +10,7 @@
 		
 		<div class="header-elements py-0 mb-3">
 			<div class="breadcrumb">
-				<a href="index.html"
+				<a href="<?= base_url() ?>dashboard"
 				   class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
 			</div>
 		</div>
