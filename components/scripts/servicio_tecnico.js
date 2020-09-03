@@ -354,7 +354,7 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 			$('#editarMarca').val(data.post.Marca_OTServicioTecnico);
 			$('#editarModelo').val(data.post.Modelo_OTServicioTecnico);
 			$('#editarDescripcion').val(data.post.Descripcion_OTServicioTecnico);
-			$('#editarPrecio').val(data.post.Precio_DetalleOTServicioTecnico);
+			$('#editarPrecio').val(data.post.Subtotal_OTServicioTecnico);
 			$('#editarIva').val(data.post.Impuesto_OTServicioTecnico);
 			$('#editarSubtotal').val(data.post.Subtotal_OTServicioTecnico);
 			$('#editarTotal').val(data.post.Total_OTServicioTecnico);
@@ -372,9 +372,6 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	
 	let editarIdOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
 	// alert(editarIdOtServicioTecnico)
-	let editarSerie = $('#editarSerieDocumento').val()
-	// alert(editarSerie)
-	let editarNumero = $('#editarNumeroDocumento').val()
 	// alert(editarNumero)
 	let editarCliente = $('#editarCliente').val()
 	// alert(editarCliente)
@@ -392,21 +389,15 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	// alert(editarSubtotal)
 	let editarTotal = $('#editarTotal').val();
 	// alert(editarTotal)
-	let editarIdDocumento = $('#editarTipoDocumento').val()
-	// alert(editarIdDocumento)
 	
 	if (editarIdOtServicioTecnico == '' ||
-		editarSerie == '' ||
-		editarNumero == '' ||
 		editarCliente == '' ||
 		editarMarca == '' ||
 		editarModelo == '' ||
 		editarDescripcion == '' ||
-		editarPrecio == '' ||
 		editarIva == '' ||
 		editarSubtotal == '' ||
-		editarTotal == '' ||
-		editarIdDocumento == '') {
+		editarTotal == '') {
 		
 		new Noty({
 			layout: 'topRight',
@@ -424,17 +415,13 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 			data: {
 				
 				id: editarIdOtServicioTecnico,
-				serie: editarSerie,
-				numero: editarNumero,
 				cliente: editarCliente,
 				marca: editarMarca,
 				modelo: editarModelo,
 				descripcion: editarDescripcion,
-				precio: editarPrecio,
 				iva: editarIva,
 				subtotal: editarSubtotal,
 				total: editarTotal,
-				totalDetalle: editarTotal
 				
 			},
 			success: function (data) {

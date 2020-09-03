@@ -41,13 +41,28 @@
 			
 			$idDocumento = $this->input->post('ID_Documento');
 			
-			$ot = $this->input->post(array('ID_Documento', 'Serie_OTServicioTecnico', 'NumeroDocumento_OTServicioTecnico', 'ID_Cliente', 'Marca_OTServicioTecnico', 'Modelo_OTServicioTecnico', 'Descripcion_OTServicioTecnico', 'Impuesto_OTServicioTecnico', 'Subtotal_OTServicioTecnico', 'Total_OTServicioTecnico'), TRUE);
+			$ot = $this->input->post(
+				
+				array('ID_Documento',
+					  'Serie_OTServicioTecnico',
+					  'NumeroDocumento_OTServicioTecnico',
+					  'ID_Cliente',
+					  'Marca_OTServicioTecnico',
+					  'Modelo_OTServicioTecnico',
+					  'Descripcion_OTServicioTecnico',
+					  'Impuesto_OTServicioTecnico',
+					  'Subtotal_OTServicioTecnico',
+					  'Total_OTServicioTecnico'), TRUE
+				
+			);
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
 			if ($this->input->is_ajax_request()) {
 				
 				/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
 				if ($this->servicio_tecnico_model->insertar($ot)) {
+					
 					$idOtServicoTecnico = $this->servicio_tecnico_model->lastId();
+					
 					$this->updateDocumento($idDocumento);
 					
 					/* MENSAJE AL INSERTAR CORRECTAMENTE */
@@ -61,8 +76,11 @@
 				
 				//				}
 				echo json_encode($data);
+				
 			} else {
+				
 				echo 'No se permite el acceso de scripts';
+				
 			}
 			
 			
@@ -77,20 +95,26 @@
 			$this->servicio_tecnico_model->updateComprobante($idDocumento, $data);
 			
 		}
+		
 		public function mostrar() {
 			
 			$resultadoList = $this->servicio_tecnico_model->mostrar();
 			$resultado = array();
 			$i = 1;
+			
 			if (!empty($resultadoList)) {
+				
 				foreach ($resultadoList as $key => $value) {
+					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					
 					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
 					
 					$resultado['data'][] = array(
+						
 						$i++,
 						$nombreApellido,
 						$value['Nombre_Documento'],
@@ -99,8 +123,10 @@
 						$value['Fecha_OTServicioTecnico'],
 						$value['Total_OTServicioTecnico'],
 						$acciones
+						
 					);
 				}
+				
 			} else {
 				$resultado['data'] = array();
 			}
@@ -127,7 +153,9 @@
 				echo json_encode($datos);
 				
 			} else {
+				
 				echo 'No se permite el acceso de scripts';
+				
 			}
 			
 		}
@@ -137,6 +165,7 @@
 			if ($this->input->is_ajax_request()) {
 				
 				$editarIdOtServicioTecnico = $this->input->post('editarIdOtServicioTecnico');
+				
 				if ($datos = $this->servicio_tecnico_model->editar($editarIdOtServicioTecnico)) {
 					
 					$data = array('respuesta' => 'success', 'post' => $datos);
@@ -168,13 +197,8 @@
 				$data['Subtotal_OTServicioTecnico'] = $this->input->post('subtotal');
 				$data['Total_OTServicioTecnico'] = $this->input->post('total');
 				
-				$data2['Precio_DetalleOTServicioTecnico'] = $this->input->post('precio');
-				$data2['Total_DetalleOTServicioTecnico'] = $this->input->post('totalDetalle');
-				
 				/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
 				if ($this->servicio_tecnico_model->actualizar($data)) {
-					
-					$this->editarSaveDetalle();
 					
 					/* MENSAJE AL INSERTAR CORRECTAMENTE */
 					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido actualizada exitosamente');
@@ -198,30 +222,10 @@
 			
 			$idOtServicioTecnico = $this->input->post('id');
 			
-			$data = array('venta'   => $this->servicio_tecnico_model->getVenta($idOtServicioTecnico),
-						  'detalle' => $this->servicio_tecnico_model->getDetalle($idOtServicioTecnico));
+			$data = array('venta' => $this->servicio_tecnico_model->getVenta($idOtServicioTecnico));
 			
 			$this->load->view('ordenes_trabajo/invoice', $data);
 			
-		}
-		
-		public function getFacts() {
-			
-			$search = $this->input->post('search');
-			//			var_dump($search);
-			$resultados = $this->servicio_tecnico_model->getFacts($search);
-			
-			foreach ($resultados as $row) {
-				
-				$selectAjax[] = array(
-					'id'       => $row['ID_Documento'],
-					'text'     => $row['Nombre_Documento'],
-					'impuesto' => $row['Impuesto_Documento'],
-					'cantidad' => $row['Cantidad_Documento'],
-					'serie'    => $row['Serie_Documento'],
-				);
-				$this->output->set_content_type('application / json')->set_output(json_encode($selectAjax));
-			}
 		}
 		
 		public function getFacturas() {
