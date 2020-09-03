@@ -6,8 +6,21 @@
 			  content="IE=edge">
 		<meta name="viewport"
 			  content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Signs & Letters | Órdenes de Trabajo</title>
+		<?php if (current_url() == base_url() . 'dashboard') : ?>
+			<title>Inicio | Signs & Letters</title>
 		
+		<?php elseif (current_url() == base_url() . 'clientes'): ?>
+			<title>Clientes | Signs & Letters</title>
+		
+		<?php elseif (current_url() == base_url() . 'servicio_tecnico'): ?>
+			<title>Orden de Trabajo Servicio Técnico | Signs & Letters</title>
+		
+		<?php elseif (current_url() == base_url() . 'ploteo'): ?>
+			<title>Orden de Trabajo Ploteo | Signs & Letters</title>
+		
+		<?php elseif (current_url() == base_url() . 'reportes'): ?>
+			<title>Reportes | Signs & Letters</title>
+		<?php endif; ?>
 		<!-- Global stylesheets -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900"
 			  rel="stylesheet"
