@@ -372,7 +372,6 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	
 	let editarIdOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
 	// alert(editarIdOtServicioTecnico)
-	// alert(editarNumero)
 	let editarCliente = $('#editarCliente').val()
 	// alert(editarCliente)
 	let editarMarca = $('#editarMarca').val();
@@ -381,8 +380,6 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	// alert(editarModelo)
 	let editarDescripcion = $('#editarDescripcion').val();
 	// alert(editarDescripcion)
-	let editarPrecio = $('#editarPrecio').val()
-	// alert(editarPrecio)
 	let editarIva = $('#editarIva').val();
 	// alert(editarIva)
 	let editarSubtotal = $('#editarSubtotal').val()
