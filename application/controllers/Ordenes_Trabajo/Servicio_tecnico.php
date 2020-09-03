@@ -40,43 +40,16 @@
 		public function crear() {
 			
 			$idDocumento = $this->input->post('ID_Documento');
-			$precio = $this->input->post('Precio_DetalleOTServicioTecnico');
-			$importe = $this->input->post('Total_DetalleOTServicioTecnico');
 			
 			$ot = $this->input->post(array('ID_Documento', 'Serie_OTServicioTecnico', 'NumeroDocumento_OTServicioTecnico', 'ID_Cliente', 'Marca_OTServicioTecnico', 'Modelo_OTServicioTecnico', 'Descripcion_OTServicioTecnico', 'Impuesto_OTServicioTecnico', 'Subtotal_OTServicioTecnico', 'Total_OTServicioTecnico'), TRUE);
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
 			if ($this->input->is_ajax_request()) {
-				
-				/* IMPRESION SI ES UNA SOLICITUD AJAX */
-				//				echo 'yes';
-				
-				/* REGLAS PARA LA VALIDACION DE LOS INPUTS */
-				/*$this->form_validation->set_rules('ID_Cliente', 'Nombre del Cliente', 'required|numeric|trim', array('required' => 'El cliente es obligatorio', 'numeric' => 'El cliente es obligatorio'));
-				$this->form_validation->set_rules('Marca_OTServicioTecnico', 'Marca', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'La marca es obligatoria', 'alpha_dash_space' => '<br>' . 'La marca debe tener solo caracteres alfabéticos o numéricos'));
-				$this->form_validation->set_rules('Modelo_OTServicioTecnico', 'Modelo', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'El modelo es obligatorio', 'alpha_dash_space' => '<br>' . 'El modelo debe tener solo caracteres alfabéticos o numéricos'));
-				$this->form_validation->set_rules('Descripcion_OTServicioTecnico', 'Descripcion', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'La descripcion es obligatorio', 'alpha_dash_space' => '<br>' . 'La descripción debe tener solo caracteres alfabéticos'));
-				$this->form_validation->set_rules('Precio_OTServicioTecnico', 'Precio', 'required|numeric|trim', array('required' => '<br>' . 'El precio es obligatorio', 'numeric' => '<br>' . 'El precio debe tener solo números'));
-				$this->form_validation->set_rules('Impuesto_OTServicioTecnico', 'Impuesto', 'required|numeric|trim', array('required' => '<br>' . 'El impuesto es obligatorio', 'numeric' => '<br>' . 'El impuesto debe tener solo números'));
-				$this->form_validation->set_rules('Subtotal_OTServicioTecnico', 'Subtotal', 'required|numeric|trim', array('required' => '<br>' . 'El subtotal es obligatorio', 'numeric' => '<br>' . 'El subtotal debe tener solo números'));
-				$this->form_validation->set_rules('Total_OTServicioTecnico', 'Total', 'required|numeric|trim', array('required' => '<br>' . 'El total es obligatorio', 'numeric' => '<br>' . 'El total debe tener solo números'));*/
-				
-				/* CONDICION SI NO SE EJECUTA LA VALIDACION */
-				//				if ($this->form_validation->run() == FALSE) {
-				//
-				//					/* MENSAJE CON EL ERROR SI NO SE EJECUTA LA VALIDACION */
-				//					$data = array('respuesta' => 'error', 'mensaje' => validation_errors());
-				//
-				//				} else {
-				
-				/* ALMACENAR EN UNA VARIABLE LOS DATOS DE LOS INPUTS */
-				//				$ajax_data = $this->input->post();
 				
 				/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
 				if ($this->servicio_tecnico_model->insertar($ot)) {
 					$idOtServicoTecnico = $this->servicio_tecnico_model->lastId();
 					$this->updateDocumento($idDocumento);
 					
-					$this->saveDetalle($idOtServicoTecnico, $precio, $importe);
 					/* MENSAJE AL INSERTAR CORRECTAMENTE */
 					$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido guardado exitosamente');
 					
@@ -104,26 +77,6 @@
 			$this->servicio_tecnico_model->updateComprobante($idDocumento, $data);
 			
 		}
-		
-		protected function saveDetalle($idOtServicoTecnico, $precio, $importe) {
-			$data = array('ID_OTServicioTecnico'            => $idOtServicoTecnico,
-						  'Precio_DetalleOTServicioTecnico' => $precio,
-						  'Total_DetalleOTServicioTecnico'  => $importe);
-			
-			$this->servicio_tecnico_model->saveDetalle($data);
-			
-		}
-		
-		public function editarSaveDetalle() {
-			
-			$data = array('ID_OTServicioTecnico'            => $data2['ID_OTServicioTecnico'] = $this->input->post('id'),
-						  'Precio_DetalleOTServicioTecnico' => $data2['Precio_DetalleOTServicioTecnico'] = $this->input->post('precio'),
-						  'Total_DetalleOTServicioTecnico'  => $data2['Total_DetalleOTServicioTecnico'] = $this->input->post('totalDetalle'));
-			
-			$this->servicio_tecnico_model->editarSaveDetalle($data);
-			
-		}
-		
 		public function mostrar() {
 			
 			$resultadoList = $this->servicio_tecnico_model->mostrar();
@@ -179,28 +132,6 @@
 			
 		}
 		
-		//		public function editar() {
-		//			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
-		//			if ($this->input->is_ajax_request()) {
-		//
-		//				$editarIdOtServicioTecnico = $this->input->post('editarIdOtServicioTecnico');
-		//				if ($datos = $this->servicio_tecnico_model->editar($editarIdOtServicioTecnico)) {
-		//
-		//					$data = array('respuesta' => 'success', 'post' => $datos);
-		//
-		//				} else {
-		//					$data = array('respuesta' => 'error', 'mensaje' => 'Error al mostrar los datos');
-		//				}
-		//
-		//				/* RESPUESTA EN FORMATO JSON */
-		//				echo json_encode($data);
-		//
-		//
-		//			} else {
-		//				echo 'No se permite el acceso de scripts';
-		//			}
-		//		}
-		
 		public function editar() {
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
 			if ($this->input->is_ajax_request()) {
@@ -222,60 +153,6 @@
 				echo 'No se permite el acceso de scripts';
 			}
 		}
-		
-		//		public function actualizar() {
-		//
-		//			if ($this->input->is_ajax_request()) {
-		//
-		//				/* REGLAS PARA LA VALIDACION DE LOS INPUTS */
-		//				$this->form_validation->set_rules('editarClienteOtServicioTecnico', 'Nombre del Cliente', 'required|numeric|trim', array('required' => 'El cliente es obligatorio', 'numeric' => 'El cliente es obligatorio'));
-		//				$this->form_validation->set_rules('editarMarcaOtServicioTecnico', 'Marca', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'La marca es obligatoria', 'alpha_dash_space' => '<br>' . 'La marca debe tener solo caracteres alfabéticos o numéricos'));
-		//				$this->form_validation->set_rules('editarModeloOtServicioTecnico', 'Modelo', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'El modelo es obligatorio', 'alpha_dash_space' => '<br>' . 'El modelo debe tener solo caracteres alfabéticos o numéricos'));
-		//				$this->form_validation->set_rules('editarDescripcionOtServicioTecnico', 'Descripcion', 'required|callback_alpha_dash_space|trim', array('required' => '<br>' . 'La descripcion es obligatorio', 'alpha_dash_space' => '<br>' . 'La descripción debe tener solo caracteres alfabéticos o numéricos'));
-		//				$this->form_validation->set_rules('editarPrecioOtServicioTecnico', 'Precio', 'required|numeric|trim', array('required' => '<br>' . 'El precio es obligatorio', 'numeric' => '<br>' . 'El precio debe tener solo números'));
-		//				$this->form_validation->set_rules('editarImpuestoOtServicioTecnico', 'Impuesto', 'required|numeric|trim', array('required' => '<br>' . 'El impuesto es obligatorio', 'numeric' => '<br>' . 'El impuesto debe tener solo números'));
-		//				$this->form_validation->set_rules('editarSubtotalOtServicioTecnico', 'Subtotal', 'required|numeric|trim', array('required' => '<br>' . 'El subtotal es obligatorio', 'numeric' => '<br>' . 'El subtotal debe tener solo números'));
-		//				$this->form_validation->set_rules('editarTotalOtServicioTecnico', 'Total', 'required|numeric|trim', array('required' => '<br>' . 'El total es obligatorio', 'numeric' => '<br>' . 'El total debe tener solo números'));
-		//
-		//				/* CONDICION SI NO SE EJECUTA LA VALIDACION */
-		//				if ($this->form_validation->run() == FALSE) {
-		//
-		//					/* MENSAJE CON EL ERROR SI NO SE EJECUTA LA VALIDACION */
-		//					$data = array('respuesta' => 'error', 'mensaje' => validation_errors());
-		//
-		//				} else {
-		//
-		//					/* ALMACENAR EN UNA VARIABLE LOS DATOS DE LOS INPUTS */
-		//					$data['ID_OTServicioTecnico'] = $this->input->post('editarIdOtServicioTecnico');
-		//					$data['ID_Cliente'] = $this->input->post('editarClienteOtServicioTecnico');
-		//					$data['Marca_OTServicioTecnico'] = $this->input->post('editarMarcaOtServicioTecnico');
-		//					$data['Modelo_OTServicioTecnico'] = $this->input->post('editarModeloOtServicioTecnico');
-		//					$data['Descripcion_OTServicioTecnico'] = $this->input->post('editarDescripcionOtServicioTecnico');
-		//					$data['Precio_OTServicio_Tecnico'] = $this->input->post('editarPrecioOtServicioTecnico');
-		//					$data['Impuesto_OTServicioTecnico'] = $this->input->post('editarImpuestoOtServicioTecnico');
-		//					$data['Subtotal_OTServicioTecnico'] = $this->input->post('editarSubtotalOtServicioTecnico');
-		//					$data['Total_OTServicioTecnico'] = $this->input->post('editarTotalOtServicioTecnico');
-		//
-		//					/* ENVIAR OBTENER LOS DATOS DE LOS INPUTS DESDE Y HACIA LA BASE DE DATOS */
-		//					if ($this->servicio_tecnico_model->actualizar($data)) {
-		//
-		//						/* MENSAJE AL INSERTAR CORRECTAMENTE */
-		//						$data = array('respuesta' => 'success', 'mensaje' => 'La orden de trabajo de servicio técnico ha sido editada exitosamente');
-		//
-		//					} else {
-		//
-		//						/* MENSAJE DE ERROR SI NO SE INSERTA CORRECTAMENTE */
-		//						$data = array('respuesta' => 'error', 'mensaje' => 'La orden de trabajo de servicio técnico no ha sido editada');
-		//					}
-		//
-		//				}
-		//				echo json_encode($data);
-		//
-		//			} else {
-		//				echo 'No se permite el acceso de scripts';
-		//			}
-		//
-		//		}
 		
 		public function actualizar() {
 			
