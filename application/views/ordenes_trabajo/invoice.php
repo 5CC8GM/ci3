@@ -92,26 +92,8 @@
 				</td>
 				<td><?= $venta->Marca_OTServicioTecnico ?></td>
 				<td><?= $venta->Modelo_OTServicioTecnico ?></td>
-				<td><span class="font-weight-semibold">$<?= $detalle->Precio_DetalleOTServicioTecnico ?></span></td>
+				<td><span class="font-weight-semibold">$<?= $venta->Subtotal_OTServicioTecnico ?></span></td>
 			</tr>
-			<!--				<tr>-->
-			<!--					<td>-->
-			<!--						<h6 class="mb-0">Support tickets list doesn't support commas</h6>-->
-			<!--						<span class="text-muted">I'd have gone up to the boss and told him just what i think.</span>-->
-			<!--					</td>-->
-			<!--					<td>$70</td>-->
-			<!--					<td>12</td>-->
-			<!--					<td><span class="font-weight-semibold">$840</span></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td>-->
-			<!--						<h6 class="mb-0">Fix website issues on mobile</h6>-->
-			<!--						<span class="text-muted">I am so happy, my dear friend, so absorbed in the exquisite.</span>-->
-			<!--					</td>-->
-			<!--					<td>$70</td>-->
-			<!--					<td>31</td>-->
-			<!--					<td><span class="font-weight-semibold">$2,170</span></td>-->
-			<!--				</tr>-->
 		</tbody>
 	</table>
 </div>
