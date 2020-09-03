@@ -106,6 +106,10 @@
 				
 				foreach ($resultadoList as $key => $value) {
 					
+					$fecha = $value['Fecha_OTServicioTecnico'];
+					setlocale(LC_ALL, 'spanish');
+					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
+					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
 					
 					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
@@ -120,7 +124,7 @@
 						$value['Nombre_Documento'],
 						$value['NumeroDocumento_OTServicioTecnico'],
 						$value['Descripcion_OTServicioTecnico'],
-						$value['Fecha_OTServicioTecnico'],
+						$fechaNueva,
 						$value['Total_OTServicioTecnico'],
 						$acciones
 						
