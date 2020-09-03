@@ -49,40 +49,6 @@ $('#tipoDocumentoPloteo').change(function () {
 	})
 })
 
-$('#editarTipoDocumentoPloteo').change(function () {
-	
-	/* PONER EN UNA VARIABLE EL CONTENIDO DEL SELECTOR */
-	let idDocumentoPloteo = $(this).val();
-	// alert(idDocumentoPloteo)
-	$.ajax({
-		url: 'http://localhost/ci3/ploteo/obtenerDocumentos',
-		type: 'post',
-		data: {
-			id: idDocumentoPloteo
-		},
-		dataType: 'json',
-		success: function (data) {
-			// console.log(data)
-			/* LLENAR EL INPUT HIDDEN CON LA INFORMACION OBTENIDA */
-			$('#editarDataDocumentoPloteo').val(data)
-			/* ALMACENAR EN UNA VARIABLE LOS VALORES DEL INPUT HIDDEN */
-			let opcion = $('#editarDataDocumentoPloteo').val();
-			// console.log('opcion ' + opcion)
-			if (opcion != '') {
-				
-				let informacionDocumento = opcion.split('*');
-				
-				$('#editarImpuestoDocumentoPloteo').val(informacionDocumento[2])
-				editarCalculosMetrosPloteo()
-				
-			} else {
-				$('#editarImpuestoDocumentoPloteo').val(null)
-				editarCalculosMetrosPloteo()
-			}
-		}
-	})
-})
-
 /* FUNCION PARA GENERAR EL NUMERO DE LA FACTURA O RECIBO */
 function generarNumeroDocumentoPloteo(numero) {
 	if (numero >= 99999 && numero < 99999) {
