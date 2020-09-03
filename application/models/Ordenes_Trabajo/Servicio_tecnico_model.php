@@ -71,32 +71,10 @@
 			
 		}
 		
-		public function getDetalle($id) {
-			
-			$this->db->select('*');
-			$this->db->from('detalle_otservicio_tecnico');
-			$this->db->where('ID_OTServicioTecnico', $id);
-			
-			$resultado = $this->db->get();
-			
-			return $resultado->row();
-			
-		}
-		
 		public function updateComprobante($idDocumento, $data) {
 			
 			$this->db->where('ID_Documento', $idDocumento);
 			$this->db->update('tipo_documento', $data);
-			
-		}
-		
-		public function saveDetalle($data) {
-			$this->db->insert('detalle_otservicio_tecnico', $data);
-		}
-		
-		public function editarSaveDetalle($data) {
-			
-			return $this->db->update('detalle_otservicio_tecnico', $data, array('ID_OTServicioTecnico' => $data['ID_OTServicioTecnico']));
 			
 		}
 		
@@ -111,7 +89,6 @@
 			$this->db->select('*');
 			$this->db->from('ot_servicio_tecnico');
 			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');
-			$this->db->join('detalle_otservicio_tecnico', 'ot_servicio_tecnico.ID_OTServicioTecnico = detalle_otservicio_tecnico.ID_OTServicioTecnico');
 			$this->db->join('tipo_documento', 'ot_servicio_tecnico.ID_Documento = tipo_documento.ID_Documento');
 			$this->db->where('ot_servicio_tecnico.ID_OTServicioTecnico', $id);
 			$this->db->order_by('ot_servicio_tecnico.ID_OTServicioTecnico', 'ASC');
