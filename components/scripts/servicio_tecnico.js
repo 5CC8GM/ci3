@@ -47,38 +47,6 @@ $('#tipoDocumento').change(function () {
 	})
 });
 
-/* FUNCION PARA EDITAR LOS PRECIOS EN EL MODAL EDITAR SERVICIO TECNICO EN BASE AL DOCUMENTO SELECCIONADO */
-$('#editarTipoDocumento').change(function () {
-	let id = $(this).val();
-	// console.log(id)
-	let idOtServicioTecnico = $('#editarIdOtServicioTecnico').val()
-	// alert(idOtServicioTecnico)
-	$.ajax({
-		url: 'http://localhost/ci3/servicio_tecnico/getFacturas',
-		type: 'post',
-		data: {
-			id: id,
-			idOt: idOtServicioTecnico
-		},
-		dataType: 'json',
-		success: function (data) {
-			// console.log('data ' + data)
-			$('#editarInfoOculta').val(data)
-			let opcion = $('#editarInfoOculta').val();
-			console.log('opcion' + opcion)
-			if (opcion != '') {
-				
-				let informacionComprobante = opcion.split('*');
-				$('#editarImpuestoDocumento').val(informacionComprobante[2]);
-				editarSumar()
-			} else {
-				$('#impuestoDocumento').val(null);
-				editarSumar()
-			}
-		}
-	})
-});
-
 /* INICIALIZAR EL EVENTO CON LA FUNCION DE SUMAR EN EL FORMULARIO GUARDAR SERVICIO TECNICO AL CAMBIAR LOS DATOS EN EL INPUT DE PRECIO */
 $(document).on('keyup', '#precio', function () {
 	sumar()
@@ -375,8 +343,8 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 			
 		},
 		success: function (data) {
-			// console.log(data)
-			
+			console.log(data)
+			$('#editarImpuestoDocumento').val(data.post.Impuesto_Documento)
 			$('#editarIdOtServicioTecnico').val(data.post.ID_OTServicioTecnico);
 			$('#editarIdDocumento').val(data.post.ID_Documento);
 			$('#editarTipoDocumento').val(data.post.ID_Documento).trigger('change');
