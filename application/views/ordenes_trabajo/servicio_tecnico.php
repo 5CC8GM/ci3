@@ -73,8 +73,9 @@
 									required>
 								<option></option>
 								<?php foreach ($cliente as $value): ?>
-									
-									<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
+								
+								
+									<option value="<?= $value['ID_Cliente'] ?>"><?= $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'] ?></option>'
 								
 								<?php endforeach; ?>
 							</select>
@@ -273,7 +274,7 @@
 								required>
 							<?php foreach ($cliente as $value): ?>
 								
-								<option value="<?= $value->ID_Cliente ?>"><?= $value->Nombre_Cliente . ' ' . $value->Apellido_Cliente ?></option>'
+								<option value="<?= $value['ID_Cliente'] ?>"><?= $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'] ?></option>'
 							
 							<?php endforeach; ?>
 						</select>

@@ -5,7 +5,7 @@
 		public function mostrar() {
 			$query = $this->db->get('cliente');
 			if (count($query->result()) > 0) {
-				return $query->result();
+				return $query->result_array();
 			}
 		}
 

@@ -30,8 +30,7 @@ $(document).on('click', '#crearCliente', function (event) {
 			// console.log(respuesta)
 			
 			if (respuesta.respuesta == 'success') {
-				$('#tablaClientes').DataTable().destroy()
-				mostrar()
+				$('#tablaClientes').DataTable().ajax.reload()
 				/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
 				new Noty({
 					layout: 'topRight',
@@ -62,181 +61,54 @@ $(document).on('click', '#crearCliente', function (event) {
 
 /* MOSTRAR CLIENTE */
 
-function mostrar() {
+$(document).ready(function () {
 	
-	$.ajax({
-		url: "http://localhost/ci3/mostrar",
-		type: "post",
-		dataType: "json",
-		success: function (respuesta) {
-			if (respuesta.respuesta == 'success') {
-				let i = "1";
-				// console.log(respuesta)
-				
-				let tabla = $('#tablaClientes').DataTable({
-					autoWidth: false,
-					language: {
-						"sProcessing": "Procesando...",
-						"sZeroRecords": "No se encontraron resultados",
-						"sEmptyTable": "Ningún dato disponible en esta tabla",
-						"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-						"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-						"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-						"sInfoPostFix": "",
-						"sUrl": "",
-						"sInfoThousands": ",",
-						"sLoadingRecords": "Cargando...",
-						"oAria": {
-							"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-						},
-						// Select2 for length menu styling
-						
-						// Initialize
-						
-						search: '<span>Filtro:</span> _INPUT_',
-						searchPlaceholder: 'Escriba para buscar...',
-						lengthMenu: '<span>Mostrar:</span> _MENU_',
-						paginate: {
-							'first': 'First',
-							'last': 'Last',
-							'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
-							'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
-						}
-					},
-					
-					dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-					'data': respuesta.datos,
-					'responsive': true,
-					'columns': [
-						{
-							"render": function () {
-								return acciones = i++;
-							}
-						},
-						{"data": "Nombre_Cliente"},
-						{"data": "Apellido_Cliente"},
-						{"data": "Telefono_Cliente"},
-						{
-							"render": function (data, type, row, meta) {
-								
-								let acciones = `
-
-							<div class="list-icons"><a href="#" id="editar" value="${row.ID_Cliente}" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminar" value="${row.ID_Cliente}"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>
-							`
-								return acciones
-							}
-						},
-					]
-					
-				});
-				$('.dataTables_length select').select2({
-					minimumResultsForSearch: Infinity,
-					dropdownAutoWidth: true,
-					width: 'auto'
-				});
-			} else {
-				
-				$('#tablaClientes').DataTable({
-					autoWidth: false,
-					language: {
-						"sProcessing": "Procesando...",
-						"sZeroRecords": "No se encontraron resultados",
-						"sEmptyTable": "Ningún dato disponible en esta tabla",
-						"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-						"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-						"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-						"sInfoPostFix": "",
-						"sUrl": "",
-						"sInfoThousands": ",",
-						"sLoadingRecords": "Cargando...",
-						"oAria": {
-							"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-						},
-						// Select2 for length menu styling
-						
-						// Initialize
-						
-						search: '<span>Filtro:</span> _INPUT_',
-						searchPlaceholder: 'Escriba para buscar...',
-						lengthMenu: '<span>Mostrar:</span> _MENU_',
-						paginate: {
-							'first': 'First',
-							'last': 'Last',
-							'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
-							'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
-						}
-					},
-					
-					dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-					'data': [],
-					'responsive': true,
-				})
-				$('.dataTables_length select').select2({
-					minimumResultsForSearch: Infinity,
-					dropdownAutoWidth: true,
-					width: 'auto'
-				});
-			}
+	$('#tablaClientes').DataTable({
+		ajax: 'http://localhost/ci3/mostrar',
+		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+		order: [],
+		responsive: true,
+		autoWidth: false,
+		processing: true,
+		language: {
+			"sProcessing": "Procesando...",
+			"sZeroRecords": "No se encontraron resultados",
+			"sEmptyTable": "Ningún dato disponible en esta tabla",
+			"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix": "",
+			"sUrl": "",
+			"sInfoThousands": ",",
+			"sLoadingRecords": "Cargando...",
+			"oAria": {
+				"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			},
+			// Select2 for length menu styling
 			
-		}
+			// Initialize
+			
+			search: '<span>Filtro:</span> _INPUT_',
+			searchPlaceholder: 'Escriba para buscar...',
+			lengthMenu: '<span>Mostrar:</span> _MENU_',
+			paginate: {
+				'first': 'First',
+				'last': 'Last',
+				'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
+				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
+			}
+		},
 	})
+	$('.dataTables_length select').select2({
+		minimumResultsForSearch: Infinity,
+		dropdownAutoWidth: true,
+		width: 'auto'
+	});
 	
-}
+})
 
-mostrar()
-/* MOSTRAR CLIENTES */
-
-// $(document).ready(function () {
-// 	let tabla = $('#tablaClientes').DataTable({
-// 		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-// 		processing: true,
-// 		serverSide: true,
-// 		autoWidth: false,
-// 		responsive: true,
-// 		ajax: {
-// 			url: "http://localhost/ci3/clientes/fetch_user",
-// 			type: 'post',
-// 		},
-// 		language: {
-// 			"sProcessing": "Procesando...",
-// 			"sZeroRecords": "No se encontraron resultados",
-// 			"sEmptyTable": "Ningún dato disponible en esta tabla",
-// 			"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-// 			"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-// 			"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-// 			"sInfoPostFix": "",
-// 			"sUrl": "",
-// 			"sInfoThousands": ",",
-// 			"sLoadingRecords": "Cargando...",
-// 			"oAria": {
-// 				"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-// 				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-// 			},
-// 			// Select2 for length menu styling
-//
-// 			// Initialize
-//
-// 			search: '<span>Filtro:</span> _INPUT_',
-// 			searchPlaceholder: 'Escriba para buscar...',
-// 			lengthMenu: '<span>Mostrar:</span> _MENU_',
-// 			paginate: {
-// 				'first': 'First',
-// 				'last': 'Last',
-// 				'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;',
-// 				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
-// 			}
-// 		},
-// 	});
-// 	$('.dataTables_length select').select2({
-// 		minimumResultsForSearch: Infinity,
-// 		dropdownAutoWidth: true,
-// 		width: 'auto'
-// 	});
-// });
 /* ELIMINAR CLIENTE */
-
 $(document).on('click', '#eliminar', function (event) {
 	event.preventDefault()
 	
@@ -276,11 +148,10 @@ $(document).on('click', '#eliminar', function (event) {
 				
 				success: function (respuesta) {
 					
-					console.log(respuesta)
+					// console.log(respuesta)
 					if (respuesta.respuesta == 'success') {
 						
-						$('#tablaClientes').DataTable().destroy()
-						mostrar()
+						$('#tablaClientes').DataTable().ajax.reload()
 						swalInit.fire(
 							'Eliminado!',
 							'El cliente ha sido eliminado',
@@ -376,8 +247,7 @@ $(document).on('click', '#actualizar', function (event) {
 			success: function (data) {
 				// console.log(data)
 				if (data.respuesta == 'success') {
-					$('#tablaClientes').DataTable().destroy()
-					mostrar()
+					$('#tablaClientes').DataTable().ajax.reload()
 					$('#modalEditarCliente').modal('hide');
 					/* ESTETICA AL MOSTRAR EL MENSAJE DE EXITO */
 					new Noty({

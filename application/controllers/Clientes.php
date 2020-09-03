@@ -100,14 +100,35 @@
 			if ($this->input->is_ajax_request()) {
 				
 				if ($datos = $this->clientes_model->mostrar()) {
-					$respuesta = array('respuesta' => 'success', 'datos' => $datos);
-				} else {
-					$respuesta = array('respuesta' => 'error', 'mensaje' => 'No hay datos para mostrar');
+					$resultado = array();
+					$i = 1;
+					if (!empty($datos)) {
+						
+						foreach ($datos as $key => $value) {
+							
+							$acciones = '<div class="list-icons"><a href="#" id="editar" value="' .
+						$value['ID_Cliente'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminar" value="' .
+						$value['ID_Cliente'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
+							
+							$resultado['data'][] = array(
+								$i++,
+								$value['Nombre_Cliente'],
+								$value['Apellido_Cliente'],
+								$value['Telefono_Cliente'],
+								$acciones
+							);
+							
+						}
+						
+					} else {
+						$resultado['data'] = array();
+					}
 				}
-				echo json_encode($respuesta);
 			} else {
 				echo 'No se permite el acceso de scripts';
 			}
+			
+			echo json_encode($resultado);
 			
 		}
 		
