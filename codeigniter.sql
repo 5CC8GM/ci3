@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2020 a las 22:38:37
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.8
+-- Tiempo de generación: 07-09-2020 a las 17:25:27
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,8 +60,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`ID_Cliente`, `Nombre_Cliente`, `Apellido_Cliente`, `Telefono_Cliente`) VALUES
-(3, 'Andre', 'Rodriguez', '0968521145'),
-(4, 'Roxana', 'Perez', '0956855284');
+(3, 'Andrea', 'Rodriguez', '0968521145'),
+(4, 'Roxana Maria', 'Perez', '0956855284'),
+(5, 'David Alejandro', 'Paucar Briones', '0992896820');
 
 -- --------------------------------------------------------
 
@@ -81,27 +82,15 @@ CREATE TABLE `detalle_otploteo` (
 --
 
 INSERT INTO `detalle_otploteo` (`ID_DetalleOTPloteo`, `ID_OTPloteo`, `Precio_OTPloteo`, `Importe_OTPloteo`) VALUES
-(73, 78, 5.00, 6.25);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalle_otservicio_tecnico`
---
-
-CREATE TABLE `detalle_otservicio_tecnico` (
-  `ID_DetalleOTServicioTecnico` int(11) NOT NULL,
-  `ID_OTServicioTecnico` int(11) NOT NULL,
-  `Precio_DetalleOTServicioTecnico` double(255,2) NOT NULL,
-  `Total_DetalleOTServicioTecnico` double(255,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `detalle_otservicio_tecnico`
---
-
-INSERT INTO `detalle_otservicio_tecnico` (`ID_DetalleOTServicioTecnico`, `ID_OTServicioTecnico`, `Precio_DetalleOTServicioTecnico`, `Total_DetalleOTServicioTecnico`) VALUES
-(131, 202, 45.00, 50.40);
+(73, 78, 2.00, 2.50),
+(74, 79, 1.00, 1.25),
+(75, 79, 1.00, 1.25),
+(76, 79, 1.00, 1.25),
+(77, 80, 2.00, 2.50),
+(78, 80, 3.00, 3.75),
+(79, 79, 1.00, 1.25),
+(84, 78, 1.00, 1.25),
+(85, 81, 5.00, 6.25);
 
 -- --------------------------------------------------------
 
@@ -126,7 +115,10 @@ CREATE TABLE `ot_ploteo` (
 --
 
 INSERT INTO `ot_ploteo` (`ID_OTPloteo`, `ID_Cliente`, `ID_Documento`, `Subtotal_OTPloteo`, `Impuesto_OTPloteo`, `Total_OTPloteo`, `NumeroDocumento_OTPloteo`, `Serie_OTPloteo`, `Fecha_OTPloteo`) VALUES
-(78, 4, 1, 6.25, 0.00, 6.25, '000035', '001', '2020-08-25 02:15:08');
+(78, 5, 1, 3.75, 0.00, 3.75, '000035', '001', '2020-09-03 16:44:51'),
+(79, 3, 2, 5.00, 0.60, 5.60, '000152', '001', '2020-09-03 16:13:08'),
+(80, 3, 1, 6.25, 0.00, 6.25, '000036', '001', '2020-09-03 15:37:28'),
+(81, 5, 1, 6.25, 0.00, 6.25, '000038', '001', '2020-09-03 21:06:10');
 
 -- --------------------------------------------------------
 
@@ -154,7 +146,8 @@ CREATE TABLE `ot_servicio_tecnico` (
 --
 
 INSERT INTO `ot_servicio_tecnico` (`ID_OTServicioTecnico`, `ID_Cliente`, `ID_Documento`, `Marca_OTServicioTecnico`, `Modelo_OTServicioTecnico`, `Descripcion_OTServicioTecnico`, `Subtotal_OTServicioTecnico`, `Impuesto_OTServicioTecnico`, `Total_OTServicioTecnico`, `NumeroDocumento_OTServicioTecnico`, `Serie_OTServicioTecnico`, `Fecha_OTServicioTecnico`) VALUES
-(202, 3, 2, 'Asus', 'Strix 3080ti', 'Instalacion de Tarjeta de Video', 45.00, 5.40, 50.40, '000151', '001', '2020-08-25 01:41:06');
+(204, 3, 2, 'Asus', 'df', 'Formateo de lap', 1.00, 0.12, 1.12, '000154', '001', '2020-08-03 20:41:31'),
+(205, 4, 1, 'asdf', 'asdf', 'asdf', 34.00, 0.00, 34.00, '000037', '001', '2020-09-03 20:51:07');
 
 -- --------------------------------------------------------
 
@@ -175,8 +168,8 @@ CREATE TABLE `tipo_documento` (
 --
 
 INSERT INTO `tipo_documento` (`ID_Documento`, `Nombre_Documento`, `Impuesto_Documento`, `Cantidad_Documento`, `Serie_Documento`) VALUES
-(1, 'Recibo', 0, 35, 001),
-(2, 'Factura', 12, 151, 001);
+(1, 'Recibo', 0, 38, 001),
+(2, 'Factura', 12, 154, 001);
 
 --
 -- Índices para tablas volcadas
@@ -200,13 +193,6 @@ ALTER TABLE `cliente`
 ALTER TABLE `detalle_otploteo`
   ADD PRIMARY KEY (`ID_DetalleOTPloteo`),
   ADD KEY `ID_OTPloteo` (`ID_OTPloteo`);
-
---
--- Indices de la tabla `detalle_otservicio_tecnico`
---
-ALTER TABLE `detalle_otservicio_tecnico`
-  ADD PRIMARY KEY (`ID_DetalleOTServicioTecnico`),
-  ADD KEY `ID_OTServicioTecnico` (`ID_OTServicioTecnico`);
 
 --
 -- Indices de la tabla `ot_ploteo`
@@ -244,31 +230,25 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID_Cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_otploteo`
 --
 ALTER TABLE `detalle_otploteo`
-  MODIFY `ID_DetalleOTPloteo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT de la tabla `detalle_otservicio_tecnico`
---
-ALTER TABLE `detalle_otservicio_tecnico`
-  MODIFY `ID_DetalleOTServicioTecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `ID_DetalleOTPloteo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `ot_ploteo`
 --
 ALTER TABLE `ot_ploteo`
-  MODIFY `ID_OTPloteo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `ID_OTPloteo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `ot_servicio_tecnico`
 --
 ALTER TABLE `ot_servicio_tecnico`
-  MODIFY `ID_OTServicioTecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `ID_OTServicioTecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
@@ -285,12 +265,6 @@ ALTER TABLE `tipo_documento`
 --
 ALTER TABLE `detalle_otploteo`
   ADD CONSTRAINT `detalle_otploteo_ibfk_1` FOREIGN KEY (`ID_OTPloteo`) REFERENCES `ot_ploteo` (`ID_OTPloteo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detalle_otservicio_tecnico`
---
-ALTER TABLE `detalle_otservicio_tecnico`
-  ADD CONSTRAINT `detalle_otservicio_tecnico_ibfk_1` FOREIGN KEY (`ID_OTServicioTecnico`) REFERENCES `ot_servicio_tecnico` (`ID_OTServicioTecnico`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ot_ploteo`
