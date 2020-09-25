@@ -1,7 +1,7 @@
-/* VER ORDENES DE TRABAJO */
+/* VER ORDENES DE TRABAJO SERVICIO TECNICO */
 $(document).ready(function () {
-	$('#tablaPloteo').DataTable({
-		ajax: 'http://localhost/ci3/reportes/mostrar',
+	$('#tablaReporteServicioTecnico').DataTable({
+		ajax: 'http://localhost/ci3/reportes/mostrarServicioTecnico',
 		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
 		responsive: true,
