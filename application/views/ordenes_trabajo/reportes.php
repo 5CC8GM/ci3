@@ -46,7 +46,7 @@
 						<div class="tab-pane fade" id="reportePloteo">
 							<div class="card-body">
 								<table class="table"
-									   id="tablaReporPloteo">
+									   id="tablaReportePloteo">
 									<thead>
 										<tr>
 											<th>#</th>

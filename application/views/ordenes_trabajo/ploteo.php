@@ -169,7 +169,7 @@
 				
 				<div class="card-body">
 					<table class="table"
-						   id="tablaPloteo">
+						   id="tablaReportePloteo">
 						<thead>
 							<tr>
 								<th>#</th>
