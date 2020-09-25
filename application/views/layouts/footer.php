@@ -52,6 +52,7 @@
 <script src="<?= base_url() ?>components/scripts/clientes.js"></script>
 <script src="<?= base_url() ?>components/scripts/servicio_tecnico.js"></script>
 <script src="<?= base_url() ?>components/scripts/ploteo.js"></script>
+<script src="<?= base_url() ?>components/scripts/reportes.js"></script>
 <?php if (current_url() == base_url('dashboard')): ?>
 	
 	<script src="<?= base_url() ?>components/scripts/graficas.js"></script>
