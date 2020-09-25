@@ -2,7 +2,10 @@
 	defined('BASEPATH') or exit('No direct script access allowed');
 	
 	class Reportes extends CI_Controller {
-		
+		public function __construct() {
+			parent::__construct();
+			$this->load->model('ordenes_trabajo/reportes_model');
+		}
 		/* VISTA */
 		public function index() {
 			
@@ -19,6 +22,48 @@
 			$this->load->view('ordenes_trabajo/reportes');
 			/* FOOTER */
 			$this->load->view('layouts/footer');
+			
+		}
+		
+		/* MOSTRAR ORDENES DE TRABAJO */
+		public function mostrarServicioTecnico() {
+			
+			$resultadoList = $this->reportes_model->mostrarServicioTecnico();
+			$resultado = array();
+			$i = 1;
+			
+			if (!empty($resultadoList)) {
+				
+				foreach ($resultadoList as $key => $value) {
+					
+					$fecha = $value['Fecha_OTServicioTecnico'];
+					setlocale(LC_ALL, 'spanish');
+					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
+					
+					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					
+					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
+						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
+					
+					$resultado['data'][] = array(
+						
+						$i++,
+						$nombreApellido,
+						$value['Nombre_Documento'],
+						$value['NumeroDocumento_OTServicioTecnico'],
+						$value['Descripcion_OTServicioTecnico'],
+						$fechaNueva,
+						$value['Total_OTServicioTecnico'],
+						$acciones
+					
+					);
+				}
+				
+			} else {
+				$resultado['data'] = array();
+			}
+			
+			echo json_encode($resultado);
 			
 		}
 		
