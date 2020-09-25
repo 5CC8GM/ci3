@@ -16,6 +16,9 @@
 				<?php elseif (current_url() == base_url() . 'ploteo') : ?>
 					<span class="font-weight-semibold">Órdenes de Trabajo - Ploteo</span>
 					
+				<?php elseif (current_url() == base_url() . 'reportes') : ?>
+					<span class="font-weight-semibold">Reportes</span>
+					
 				<?php endif ?>
 			</h5>
 		</div>
@@ -43,6 +46,11 @@
 					   class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
 					<span class="breadcrumb-item active">Órdenes de Trabajo</span>
 					<span class="breadcrumb-item active">Ploteo</span>
+				
+				<?php elseif (current_url() == base_url() . 'reportes') : ?>
+					<a href="<?= base_url() ?>dashboard"
+					   class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
+					<span class="breadcrumb-item active">Reportes</span>
 				
 				<?php endif ?>
 			
