@@ -79,4 +79,5 @@
 	$route['ploteo/invoice'] = 'ordenes_trabajo/ploteo/verOtPloteo';
 	$route['reportes'] = 'ordenes_trabajo/reportes/index';
 	$route['reportes/mostrarServicioTecnico'] = 'ordenes_trabajo/reportes/mostrarServicioTecnico';
+	$route['reportes/mostrarPloteo'] = 'ordenes_trabajo/reportes/mostrarPloteo';
 	
