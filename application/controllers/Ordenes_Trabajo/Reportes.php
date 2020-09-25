@@ -42,7 +42,7 @@
 					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
 					
-					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
+					$acciones = '<div class="list-icons"><a href="#" id="verReporteOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
 					
 					$resultado['data'][] = array(
@@ -81,7 +81,7 @@
 					setlocale(LC_ALL, 'spanish');
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
-					$acciones = '<div class="list-icons"><a href="#" id="verOtPloteo" value="' .
+					$acciones = '<div class="list-icons"><a href="#" id="verReporteOtPloteo" value="' .
 						$value['ID_OTPloteo'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
 					
 					$resultado['data'][] = array(
