@@ -67,4 +67,41 @@
 			
 		}
 		
+		/* MOSTRAR ORDENES DE TRABAJO PLOTEO */
+		public function mostrarPloteo() {
+			
+			$resultadoDb = $this->reportes_model->mostrarPloteo();
+			$resultado = array();
+			$i = 1;
+			
+			if (!empty($resultadoDb)) {
+				
+				foreach ($resultadoDb as $key => $value) {
+					$fecha = $value['Fecha_OTPloteo'];
+					setlocale(LC_ALL, 'spanish');
+					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
+					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					$acciones = '<div class="list-icons"><a href="#" id="verOtPloteo" value="' .
+						$value['ID_OTPloteo'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
+					
+					$resultado['data'][] = array(
+						$i++,
+						$nombreApellido,
+						$value['Nombre_Documento'],
+						$value['NumeroDocumento_OTPloteo'],
+						$fechaNueva,
+						$value['Total_OTPloteo'],
+						$acciones
+					);
+					
+				}
+				
+			} else {
+				$resultado['data'] = array();
+			}
+			
+			echo json_encode($resultado);
+			
+		}
+		
 	}
