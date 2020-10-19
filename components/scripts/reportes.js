@@ -2,7 +2,7 @@
 $(document).ready(function () {
 	$('#tablaReporteServicioTecnico').DataTable({
 		ajax: 'http://localhost/ci3/reportes/mostrarServicioTecnico',
-		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
 		responsive: true,
 		autoWidth: false,
@@ -36,6 +36,20 @@ $(document).ready(function () {
 				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
 			}
 		},
+		buttons: {
+			dom: {
+				button: {
+					className: 'btn btn-light'
+				}
+			},
+			buttons: [
+				{extend: 'copy', text:'Copiar'},
+				{extend: 'csv'},
+				{extend: 'excel'},
+				{extend: 'pdf'},
+				{extend: 'print', text: 'Imprimir'}
+			]
+		}
 	})
 	$('.dataTables_length select').select2({
 		minimumResultsForSearch: Infinity,
