@@ -36,6 +36,11 @@
 <script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
 <script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/extensions/responsive.min
 .js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/extensions/buttons.min
+.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
 <!-- MULTISELECT -->
 <script src="<?= base_url() ?>components/global_assets/js/plugins/forms/selects/select2.min.js"></script>
 <!-- SWEETALERT -->
