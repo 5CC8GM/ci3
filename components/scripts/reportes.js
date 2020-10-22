@@ -1,5 +1,9 @@
 /* VER ORDENES DE TRABAJO SERVICIO TECNICO */
 $(document).ready(function () {
+	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+		$('#tablaReportePloteo').DataTable().responsive.recalc();
+		$('#tablaReporteServicioTecnico').DataTable().responsive.recalc();
+	})
 	$('#tablaReporteServicioTecnico').DataTable({
 		ajax: 'http://localhost/ci3/reportes/mostrarServicioTecnico',
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
@@ -83,6 +87,10 @@ $(document).ready(function () {
 
 /* VER ORDENES DE TRABAJO PLOTEO */
 $(document).ready(function () {
+	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+		$('#tablaReportePloteo').DataTable().responsive.recalc();
+		$('#tablaReporteServicioTecnico').DataTable().responsive.recalc();
+	})
 	$('#tablaReportePloteo').DataTable({
 		ajax: 'http://localhost/ci3/reportes/mostrarPloteo',
 		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
