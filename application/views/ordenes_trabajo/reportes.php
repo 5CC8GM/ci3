@@ -30,6 +30,45 @@
 							 id="reporteServicioTecnico">
 							
 							<div class="card-body">
+								<form action=""
+									  method="post"
+									  id="buscarServicioTecnico">
+									<div class="form-group row">
+										<div class="col-sm-4">
+											<div class="row">
+												<label class="col-lg-4 col-form-label text-lg-right">Desde:</label>
+												<div class="col-lg-8">
+													<input type="date"
+														   class="form-control"
+														   name="fechaInicio"
+														   id="fechaInicio">
+												</div>
+											</div>
+										
+										</div>
+										<div class="col-sm-4">
+											<div class="row">
+												<label class="col-lg-4 col-form-label text-lg-right">Hasta:</label>
+												<div class="col-lg-8">
+													<input type="date"
+														   class="form-control"
+														   name="fechaFin"
+														   id="fechaFin">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="row">
+												<div class="col-lg-6">
+													<button type="button"
+															id="buscar"
+															class="btn btn-block btn-primary">Buscar
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
 								<table class="table"
 									   id="tablaReporteServicioTecnico">
 									<thead>
