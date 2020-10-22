@@ -90,6 +90,45 @@
 						<div class="tab-pane fade"
 							 id="reportePloteo">
 							<div class="card-body">
+								<form action=""
+									  method="post"
+									  id="buscarPloteo">
+									<div class="form-group row">
+										<div class="col-sm-4">
+											<div class="row">
+												<label class="col-lg-4 col-form-label text-lg-right">Desde:</label>
+												<div class="col-lg-8">
+													<input type="date"
+														   class="form-control"
+														   name="fechaInicioPloteo"
+														   id="fechaInicioPloteo">
+												</div>
+											</div>
+										
+										</div>
+										<div class="col-sm-4">
+											<div class="row">
+												<label class="col-lg-4 col-form-label text-lg-right">Hasta:</label>
+												<div class="col-lg-8">
+													<input type="date"
+														   class="form-control"
+														   name="fechaFinPloteo"
+														   id="fechaFinPloteo">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="row">
+												<div class="col-lg-6">
+													<button type="button"
+															id="buscarPloteo"
+															class="btn btn-block btn-primary">Buscar
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
 								<table class="table"
 									   id="tablaReportePloteo">
 									<thead>
