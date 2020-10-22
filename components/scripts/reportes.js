@@ -43,11 +43,34 @@ $(document).ready(function () {
 				}
 			},
 			buttons: [
-				{extend: 'copy', text:'Copiar'},
-				{extend: 'csv'},
-				{extend: 'excel'},
-				{extend: 'pdf'},
-				{extend: 'print', text: 'Imprimir'}
+				{
+					extend: 'copy',
+					text: 'Copiar'
+				},
+				{
+					extend: 'csv',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'excel',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'pdf',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'print', text: 'Imprimir',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				}
 			]
 		}
 	})
@@ -96,6 +119,43 @@ $(document).ready(function () {
 				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
 			}
 		},
+		buttons: {
+			dom: {
+				button: {
+					className: 'btn btn-light'
+				}
+			},
+			buttons: [
+				{
+					extend: 'copy',
+					text: 'Copiar'
+				},
+				{
+					extend: 'csv',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'excel',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'pdf',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				},
+				{
+					extend: 'print', text: 'Imprimir',
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5]
+					}
+				}
+			]
+		}
 	})
 	$('.dataTables_length select').select2({
 		minimumResultsForSearch: Infinity,
