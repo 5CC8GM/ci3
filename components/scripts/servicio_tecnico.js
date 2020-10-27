@@ -234,7 +234,10 @@ $(document).ready(function () {
 				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
 			}
 		},
-		
+		drawCallback: (settings) => {
+		// Aplicar select2 con las opciones deseadas
+		$('.estadoDocumento').select2();
+	}
 	})
 	$('.dataTables_length select').select2({
 		minimumResultsForSearch: Infinity,
@@ -343,7 +346,10 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 			
 		},
 		success: function (data) {
-			console.log(data)
+			$('#editarEstadoDocumento').select2({
+				minimumResultsForSearch: Infinity,
+			})
+			// console.log(data)
 			$('#editarImpuestoDocumento').val(data.post.Impuesto_Documento)
 			$('#editarIdOtServicioTecnico').val(data.post.ID_OTServicioTecnico);
 			$('#editarIdDocumento').val(data.post.ID_Documento);
@@ -351,6 +357,7 @@ $(document).on('click', '#editarOtServicioTecnico', function (event) {
 			$('#editarSerieDocumento').val(data.post.Serie_OTServicioTecnico);
 			$('#editarNumeroDocumento').val(data.post.NumeroDocumento_OTServicioTecnico);
 			$('#editarCliente').val(data.post.ID_Cliente).trigger('change');
+			$('#editarEstadoDocumento').val(data.post.Estado_OTServicioTecnico).trigger('change');
 			$('#editarMarca').val(data.post.Marca_OTServicioTecnico);
 			$('#editarModelo').val(data.post.Modelo_OTServicioTecnico);
 			$('#editarDescripcion').val(data.post.Descripcion_OTServicioTecnico);
@@ -374,6 +381,8 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 	// alert(editarIdOtServicioTecnico)
 	let editarCliente = $('#editarCliente').val()
 	// alert(editarCliente)
+	let editarEstadoDocumento = $('#editarEstadoDocumento').val()
+	// alert(editarEstadoDocumento)
 	let editarMarca = $('#editarMarca').val();
 	// alert(editarMarca)
 	let editarModelo = $('#editarModelo').val();
@@ -413,6 +422,7 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 				
 				id: editarIdOtServicioTecnico,
 				cliente: editarCliente,
+				estadoDocumento: editarEstadoDocumento,
 				marca: editarMarca,
 				modelo: editarModelo,
 				descripcion: editarDescripcion,
