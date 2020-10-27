@@ -18,8 +18,9 @@
 		
 		public function index() {
 			/* CARGA LOS DATOS DEL METODO MOSTRAR DEL MODELO Y LOS ADJUNTA EN UN ARRAY PARA PASARLO A LA VISTA */
-			$data = array('cliente'       => $this->clientes_model->mostrar(),
-						  'tipoDocumento' => $this->servicio_tecnico_model->getComprobantes());
+			$data = array('cliente'                    => $this->clientes_model->mostrar(),
+						  'tipoDocumento'              => $this->servicio_tecnico_model->getComprobantes(),
+						  'informacionServicioTecnico' => $this->servicio_tecnico_model->mostrar());
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			/* HEADER */
 			$this->load->view('layouts/header');
@@ -53,7 +54,7 @@
 					  'Impuesto_OTServicioTecnico',
 					  'Subtotal_OTServicioTecnico',
 					  'Total_OTServicioTecnico'), TRUE
-				
+			
 			);
 			/* COMPROBAR SI ES UNA SOLICITUD AJAX */
 			if ($this->input->is_ajax_request()) {
@@ -112,6 +113,22 @@
 					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
 					
+					if ($value['Estado_OTServicioTecnico'] == '1') {
+						$estado = 'Vigente';
+					} else {
+						$estado = 'Anulada';
+					}
+					
+					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
+					$estadoDocumento = '<select name="estadoDocumento" class="estadoDocumento form-control" data-fouc disabled="disabled">
+
+                                            <option value="' . $value['Estado_OTServicioTecnico'] . '">
+                                    
+                                                ' . $estado . '
+                                                
+                                            </option>
+                                        </select>';
+					
 					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="' .
@@ -123,11 +140,12 @@
 						$nombreApellido,
 						$value['Nombre_Documento'],
 						$value['NumeroDocumento_OTServicioTecnico'],
+						$estadoDocumento,
 						$value['Descripcion_OTServicioTecnico'],
 						$fechaNueva,
 						$value['Total_OTServicioTecnico'],
 						$acciones
-						
+					
 					);
 				}
 				
@@ -194,6 +212,7 @@
 				/* ALMACENAR EN UNA VARIABLE LOS DATOS DE LOS INPUTS */
 				$data['ID_OTServicioTecnico'] = $this->input->post('id');
 				$data['ID_Cliente'] = $this->input->post('cliente');
+				$data['Estado_OTServicioTecnico'] = $this->input->post('estadoDocumento');
 				$data['Marca_OTServicioTecnico'] = $this->input->post('marca');
 				$data['Modelo_OTServicioTecnico'] = $this->input->post('modelo');
 				$data['Descripcion_OTServicioTecnico'] = $this->input->post('descripcion');
