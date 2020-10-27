@@ -191,6 +191,7 @@
 								<th>Cliente</th>
 								<th>Tipo de Documento</th>
 								<th>Número de Documento</th>
+								<th>Estado del Documento</th>
 								<th>Descripción</th>
 								<th>Fecha</th>
 								<th>Total</th>
@@ -277,6 +278,20 @@
 								<option value="<?= $value['ID_Cliente'] ?>"><?= $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'] ?></option>
 							
 							<?php endforeach; ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="editarEstadoDocumento">Estado del Documento</label>
+						<select id="editarEstadoDocumento"
+								name="editarEstadoDocumento"
+								class="form-control select-search"
+								data-placeholder="Seleccione un cliente"
+								data-fouc
+								required>
+							
+								<option value="1">Vigente</option>
+								<option value="0">Anulada</option>
+							
 						</select>
 					</div>
 					<div class="form-group row">
