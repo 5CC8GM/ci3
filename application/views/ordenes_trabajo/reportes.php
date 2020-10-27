@@ -38,7 +38,7 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Desde:</label>
 												<div class="col-lg-8">
-													<input type="date"
+													<input type="text"
 														   class="form-control"
 														   name="fechaInicio"
 														   id="fechaInicio">
@@ -50,10 +50,10 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Hasta:</label>
 												<div class="col-lg-8">
-													<input type="date"
+													<input type="text"
 														   class="form-control"
 														   name="fechaFin"
-														   id="fechaFin">
+														   id="fechaFin" value="">
 												</div>
 											</div>
 										</div>
@@ -61,8 +61,7 @@
 											<div class="row">
 												<div class="col-lg-6">
 													<button type="button"
-															id="buscar"
-															class="btn btn-block btn-primary">Buscar
+															class="btn btn-block btn-primary buscarFechaServicioTecnico">Buscar
 													</button>
 												</div>
 											</div>
@@ -76,6 +75,7 @@
 											<th>#</th>
 											<th>Cliente</th>
 											<th>Tipo de Documento</th>
+											<th>Estado del Documento</th>
 											<th>Número de Documento</th>
 											<th>Descripción</th>
 											<th>Fecha</th>
