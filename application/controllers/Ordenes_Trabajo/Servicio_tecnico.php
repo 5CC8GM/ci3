@@ -114,25 +114,20 @@
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
 					
 					if ($value['Estado_OTServicioTecnico'] == '1') {
-						$estado = 'Vigente';
+						$estado = '<span class="badge badge-primary">Vigente</span>';
 					} else {
-						$estado = 'Anulada';
+						$estado = '<span class="badge badge-danger">Anulada</span>';
 					}
 					
 					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
-					$estadoDocumento = '<select name="estadoDocumento" class="estadoDocumento form-control" data-fouc disabled="disabled">
-
-                                            <option value="' . $value['Estado_OTServicioTecnico'] . '">
-                                    
-                                                ' . $estado . '
-                                                
-                                            </option>
-                                        </select>';
+					$estadoDocumento = $estado;
 					
 					$acciones = '<div class="list-icons"><a href="#" id="verOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
+					
+					$total = '$' . $value['Total_OTServicioTecnico'];
 					
 					$resultado['data'][] = array(
 						
@@ -143,7 +138,7 @@
 						$estadoDocumento,
 						$value['Descripcion_OTServicioTecnico'],
 						$fechaNueva,
-						$value['Total_OTServicioTecnico'],
+						$total,
 						$acciones
 					
 					);
