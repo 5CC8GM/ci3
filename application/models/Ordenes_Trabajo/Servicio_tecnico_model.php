@@ -81,9 +81,9 @@
 		public function eliminar($id) {
 			
 			return $this->db->delete('ot_servicio_tecnico', array('ID_OTServicioTecnico' => $id));
-
+			
 		}
-
+		
 		public function editar($id) {
 			
 			$this->db->select('*');
@@ -127,6 +127,7 @@
 			$this->db->from('ot_servicio_tecnico');
 			$this->db->where('Fecha_OTServicioTecnico >=', $year . '-01-01');
 			$this->db->where('Fecha_OTServicioTecnico <=', $year . '-12-31');
+			$this->db->where('Estado_OTServicioTecnico =', 1);
 			$this->db->group_by('mes');
 			$this->db->order_by('mes');
 			
@@ -134,6 +135,5 @@
 			
 			return $resultados->result();
 		}
-
 		
 	}
