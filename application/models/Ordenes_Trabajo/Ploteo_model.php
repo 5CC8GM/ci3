@@ -163,6 +163,7 @@
 			$this->db->from('ot_ploteo');
 			$this->db->where('Fecha_OTPloteo >=', $year . '-01-01');
 			$this->db->where('Fecha_OTPloteo <=', $year . '-12-31');
+			$this->db->where('Estado_OTPloteo =', 1);
 			$this->db->group_by('mesPloteo');
 			$this->db->order_by('mesPloteo');
 			
