@@ -171,3 +171,18 @@ $(document).ready(function () {
 		width: 'auto'
 	});
 });
+
+$('#fechaInicio').daterangepicker({
+	singleDatePicker: true,
+	locale: {
+		format: 'DD/MM/YYYY'
+	}
+});
+$('#fechaInicio').val('')
+$('#fechaFin').daterangepicker({
+	singleDatePicker: true,
+	locale: {
+		format: 'DD/MM/YYYY'
+	}
+});
+$('#fechaFin').val('')
