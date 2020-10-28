@@ -54,25 +54,25 @@ $(document).ready(function () {
 				{
 					extend: 'csv',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6, 7]
 					}
 				},
 				{
 					extend: 'excel',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6, 7]
 					}
 				},
 				{
 					extend: 'pdf',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6, 7]
 					}
 				},
 				{
 					extend: 'print', text: 'Imprimir',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6, 7]
 					}
 				}
 			]
@@ -93,7 +93,7 @@ $(document).ready(function () {
 	})
 	$('#tablaReportePloteo').DataTable({
 		ajax: 'http://localhost/ci3/reportes/mostrarPloteo',
-		dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
 		responsive: true,
 		autoWidth: false,
@@ -141,25 +141,25 @@ $(document).ready(function () {
 				{
 					extend: 'csv',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6]
 					}
 				},
 				{
 					extend: 'excel',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6]
 					}
 				},
 				{
 					extend: 'pdf',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6]
 					}
 				},
 				{
 					extend: 'print', text: 'Imprimir',
 					exportOptions: {
-						columns: [0, 1, 2, 3, 4, 5]
+						columns: [0, 1, 2, 3, 4, 5, 6]
 					}
 				}
 			]
