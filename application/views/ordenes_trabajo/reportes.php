@@ -136,6 +136,7 @@
 											<th>#</th>
 											<th>Cliente</th>
 											<th>Tipo de Documento</th>
+											<th>Estado del Documento</th>
 											<th>Número de Documento</th>
 											<th>Fecha</th>
 											<th>Total</th>

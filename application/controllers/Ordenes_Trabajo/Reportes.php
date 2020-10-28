@@ -41,19 +41,27 @@
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					if ($value['Estado_OTServicioTecnico'] == '1') {
+						$estado = '<span class="badge badge-primary">Vigente</span>';
+					} else {
+						$estado = '<span class="badge badge-danger">Anulada</span>';
+					}
 					
+					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
+					$estadoDocumento = $estado;
 					$acciones = '<div class="list-icons"><a href="#" id="verReporteOtServicioTecnico" value="' .
 						$value['ID_OTServicioTecnico'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
-					
+					$total = '$' . $value['Total_OTServicioTecnico'];
 					$resultado['data'][] = array(
 						
 						$i++,
 						$nombreApellido,
 						$value['Nombre_Documento'],
+						$estado,
 						$value['NumeroDocumento_OTServicioTecnico'],
 						$value['Descripcion_OTServicioTecnico'],
 						$fechaNueva,
-						$value['Total_OTServicioTecnico'],
+						$total,
 						$acciones
 					
 					);
@@ -81,16 +89,25 @@
 					setlocale(LC_ALL, 'spanish');
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					if ($value['Estado_OTPloteo'] == '1') {
+						$estado = '<span class="badge badge-primary">Vigente</span>';
+					} else {
+						$estado = '<span class="badge badge-danger">Anulada</span>';
+					}
+					
+					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
+					$estadoDocumentPloteo = $estado;
 					$acciones = '<div class="list-icons"><a href="#" id="verReporteOtPloteo" value="' .
 						$value['ID_OTPloteo'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a>';
-					
+					$total = '$' . $value['Total_OTPloteo'];
 					$resultado['data'][] = array(
 						$i++,
 						$nombreApellido,
 						$value['Nombre_Documento'],
+						$estadoDocumentPloteo,
 						$value['NumeroDocumento_OTPloteo'],
 						$fechaNueva,
-						$value['Total_OTPloteo'],
+						$total,
 						$acciones
 					);
 					
