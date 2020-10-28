@@ -20,7 +20,8 @@
 		public function index() {
 			
 			$data = array('clientePloteo'       => $this->clientes_model->mostrar(),
-						  'tipoDocumentoPloteo' => $this->ploteo_model->getComprobantes());
+						  'tipoDocumentoPloteo' => $this->ploteo_model->getComprobantes(),
+						  'informacionPloteo'   => $this->ploteo_model->mostrar());
 			
 			/* CARGA DE ELEMENTOS DEL LAYOUT */
 			/* HEADER */
@@ -132,18 +133,32 @@
 					setlocale(LC_ALL, 'spanish');
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
+					
+					if ($value['Estado_OTPloteo'] == '1') {
+						$estado = '<span class="badge badge-primary">Vigente</span>';
+					} else {
+						$estado = '<span class="badge badge-danger">Anulada</span>';
+					}
+					
+					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
+					$estadoDocumentPloteo = $estado;
+					
 					$acciones = '<div class="list-icons"><a href="#" id="verOtPloteo" value="' .
 						$value['ID_OTPloteo'] . '" class="btn btn-primary btn-icon" type="button"><i class="icon-info22"></i></a><a href="#" id="editarOtPloteo" value="' .
 						$value['ID_OTPloteo'] . '" class="btn btn-warning btn-icon" type="button"><i class="icon-pencil7"></i></a><a href="#" id="eliminarOtPloteo" value="' .
 						$value['ID_OTPloteo'] . '"  class="btn btn-danger btn-icon" type="button"><i class="icon-trash"></i></a></div>';
+					
+					/* ADICION DEL SIGNO DE DOLAR */
+					$total = '$' . $value['Total_OTPloteo'];
 					
 					$resultado['data'][] = array(
 						$i++,
 						$nombreApellido,
 						$value['Nombre_Documento'],
 						$value['NumeroDocumento_OTPloteo'],
+						$estadoDocumentPloteo,
 						$fechaNueva,
-						$value['Total_OTPloteo'],
+						$total,
 						$acciones
 					);
 					
@@ -212,6 +227,7 @@
 			if ($this->input->is_ajax_request()) {
 				$dataOtPloteo['ID_OTPloteo'] = $this->input->post('editarIdOtPloteo');
 				$dataOtPloteo['ID_Cliente'] = $this->input->post('editarIdCliente');
+				$dataOtPloteo['Estado_OTPloteo'] = $this->input->post('editarEstadoDocumentoPloteo');
 				$dataDetalleOtPloteo['Precio_OTPloteo'] = $this->input->post('metrosPloteo');
 				$dataDetalleOtPloteo['Importe_OTPloteo'] = $this->input->post('importePloteo');
 				$dataOtPloteo['Subtotal_OTPloteo'] = $this->input->post('editarSubtotal');

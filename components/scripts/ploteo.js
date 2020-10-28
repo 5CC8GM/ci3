@@ -283,6 +283,10 @@ $(document).ready(function () {
 				'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;'
 			}
 		},
+		drawCallback: (settings) => {
+			// Aplicar select2 con las opciones deseadas
+			$('.estadoDocumentoPloteo').select2();
+		}
 	})
 	$('.dataTables_length select').select2({
 		minimumResultsForSearch: Infinity,
@@ -380,6 +384,7 @@ $(document).on('click', '#editarOtPloteo', function (event) {
 			$('#editarSerieDocumentoPloteo').val(data.post[0].Serie_OTPloteo)
 			$('#editarNumeroDocumentoPloteo').val(data.post[0].NumeroDocumento_OTPloteo)
 			$('#editarClientePloteo').val(data.post[0].ID_Cliente).trigger('change')
+			$('#editarEstadoDocumentoPloteo').val(data.post[0].Estado_OTPloteo).trigger('change');
 			$('#editarSubtotalPloteo').val(data.post[0].Subtotal_OTPloteo)
 			$('#editarIvaPloteo').val(data.post[0].Impuesto_OTPloteo)
 			$('#editarTotalPloteo').val(data.post[0].Total_OTPloteo)
@@ -500,6 +505,8 @@ $(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
 	// console.log(editarNumero)
 	let editarIdCliente = $('#editarClientePloteo').val()
 	// console.log(editarIdCliente)
+	let editarEstadoDocumentoPloteo = $('#editarEstadoDocumentoPloteo').val()
+	// console.log(editarEstadoDocumentoPloteo)
 	let metrosPloteo = $('input[name="editarMetrosTotalPloteo[]"]').map(function () {
 		return this.value;
 	}).get();
@@ -558,6 +565,7 @@ $(document).on('click', '#editarOrdenTrabajoPloteo', function (event) {
 				// editarSerie: editarSerie,
 				// editarNumero: editarNumero,
 				editarIdCliente: editarIdCliente,
+				editarEstadoDocumentoPloteo: editarEstadoDocumentoPloteo,
 				metrosPloteo: metrosPloteo,
 				importePloteo: importePloteo,
 				editarSubtotal: editarSubtotal,
