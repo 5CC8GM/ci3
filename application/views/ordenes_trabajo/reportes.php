@@ -41,7 +41,8 @@
 													<input type="text"
 														   class="form-control"
 														   name="fechaInicio"
-														   id="fechaInicio">
+														   id="fechaInicio"
+														   placeholder="Escoja una fecha de inicio">
 												</div>
 											</div>
 										
@@ -53,7 +54,8 @@
 													<input type="text"
 														   class="form-control"
 														   name="fechaFin"
-														   id="fechaFin" value="">
+														   id="fechaFin"
+														   placeholder="Escoja una fecha de fin">
 												</div>
 											</div>
 										</div>
@@ -61,7 +63,8 @@
 											<div class="row">
 												<div class="col-lg-6">
 													<button type="button"
-															class="btn btn-block btn-primary buscarFechaServicioTecnico">Buscar
+															class="btn btn-block btn-primary buscarFechaServicioTecnico">
+														Buscar
 													</button>
 												</div>
 											</div>
