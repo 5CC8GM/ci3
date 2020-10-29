@@ -38,7 +38,7 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Desde:</label>
 												<div class="col-lg-8">
-													<input type="text"
+													<input type="date"
 														   class="form-control"
 														   name="fechaInicio"
 														   id="fechaInicio">
@@ -50,7 +50,7 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Hasta:</label>
 												<div class="col-lg-8">
-													<input type="text"
+													<input type="date"
 														   class="form-control"
 														   name="fechaFin"
 														   id="fechaFin" value="">
@@ -60,7 +60,7 @@
 										<div class="col-sm-4">
 											<div class="row">
 												<div class="col-lg-6">
-													<button type="button"
+													<button type="button" onclick="buscarReporteServicioTecnico()"
 															class="btn btn-block btn-primary buscarFechaServicioTecnico">Buscar
 													</button>
 												</div>

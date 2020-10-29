@@ -27,7 +27,8 @@
 		
 		/* MOSTRAR ORDENES DE TRABAJO */
 		public function mostrarServicioTecnico() {
-			
+			$fechaInicio= $_GET['fechaInicio'];
+			$fechaFin = $_GET['fechaFin'];
 			$resultadoList = $this->reportes_model->mostrarServicioTecnico();
 			$resultado = array();
 			$i = 1;
@@ -41,11 +42,11 @@
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
-					if ($value['Estado_OTServicioTecnico'] == '1') {
+				//	if ($value['Estado_OTServicioTecnico'] == '1') {
 						$estado = '<span class="badge badge-primary">Vigente</span>';
-					} else {
-						$estado = '<span class="badge badge-danger">Anulada</span>';
-					}
+				//	} else {
+				//		$estado = '<span class="badge badge-danger">Anulada</span>';
+				//	}
 					
 					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
 					$estadoDocumento = $estado;
@@ -89,11 +90,11 @@
 					setlocale(LC_ALL, 'spanish');
 					$fechaNueva = strftime("%d de %B de %Y a las %H:%M:%S", strtotime($fecha));
 					$nombreApellido = $value['Nombre_Cliente'] . ' ' . $value['Apellido_Cliente'];
-					if ($value['Estado_OTPloteo'] == '1') {
+					//if ($value['Estado_OTPloteo'] == '1') {
 						$estado = '<span class="badge badge-primary">Vigente</span>';
-					} else {
-						$estado = '<span class="badge badge-danger">Anulada</span>';
-					}
+					//} else {
+					//	$estado = '<span class="badge badge-danger">Anulada</span>';
+					//}
 					
 					/* CREACION DEL SELECTOR DENTRO DE LA TABLA PARA CAMBIAR SU ESTADO POSTERIORMENTE */
 					$estadoDocumentPloteo = $estado;

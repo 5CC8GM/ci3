@@ -3,7 +3,7 @@
 	
 	class Reportes_model extends CI_Model {
 		/* MOSTRAR ORDEN DE TRABAJO SERVICIO TECNICO */
-		public function mostrarServicioTecnico() {
+		public function mostrarServicioTecnico($fechaInicio,$fechaFin) {
 			$this->db->select('*');
 			$this->db->from('ot_servicio_tecnico');
 			$this->db->join('cliente', 'cliente.ID_Cliente = ot_servicio_tecnico.ID_Cliente');

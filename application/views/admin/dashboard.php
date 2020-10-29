@@ -15,7 +15,7 @@
 						<span class="text-uppercase font-size-sm text-muted">Clientes</span>
 					</div>
 				</div>
-			</div>
+			</div> 
 		</div>
 		
 		<div class="col-sm-6 col-xl-3">

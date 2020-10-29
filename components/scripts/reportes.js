@@ -1,14 +1,25 @@
 /* VER ORDENES DE TRABAJO SERVICIO TECNICO */
+var table;
+const buscarReporteServicioTecnico = function(){
+	table.ajax.reload();
+}
 $(document).ready(function () {
 	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		$('#tablaReportePloteo').DataTable().responsive.recalc();
 		$('#tablaReporteServicioTecnico').DataTable().responsive.recalc();
 	})
-	$('#tablaReporteServicioTecnico').DataTable({
-		ajax: 'http://localhost/ci3/reportes/mostrarServicioTecnico',
+	table = $('#tablaReporteServicioTecnico').DataTable({
+		ajax: {
+			"url": 'http://localhost/ci3/reportes/mostrarServicioTecnico',
+			"type": "GET",
+			"data": {
+				fechaInicio: function() { return $('#fechaInicio').val() },
+				fechaFin: function() { return $('#fechaFin').val() }
+			},
+		},
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
-		responsive: true,
+		responsive: true, 
 		autoWidth: false,
 		processing: true,
 		language: {
