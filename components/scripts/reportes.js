@@ -183,7 +183,7 @@ $(document).ready(function () {
 	});
 });
 
-$('#fechaInicio').daterangepicker({
+/*$('#fechaInicio').daterangepicker({
 	singleDatePicker: true,
 	locale: {
 		format: 'DD/MM/YYYY'
@@ -197,3 +197,4 @@ $('#fechaFin').daterangepicker({
 	}
 });
 $('#fechaFin').val('')
+*/
