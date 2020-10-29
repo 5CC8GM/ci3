@@ -41,7 +41,8 @@
 													<input type="date"
 														   class="form-control"
 														   name="fechaInicio"
-														   id="fechaInicio">
+														   id="fechaInicio"
+														   placeholder="Escoja una fecha de inicio">
 												</div>
 											</div>
 										
@@ -53,7 +54,8 @@
 													<input type="date"
 														   class="form-control"
 														   name="fechaFin"
-														   id="fechaFin" value="">
+														   id="fechaFin"
+														   placeholder="Escoja una fecha de fin">
 												</div>
 											</div>
 										</div>
