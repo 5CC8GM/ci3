@@ -19,7 +19,7 @@ $(document).ready(function () {
 		},
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
-		responsive: true, 
+		responsive: true,
 		autoWidth: false,
 		processing: true,
 		language: {
@@ -96,14 +96,25 @@ $(document).ready(function () {
 	});
 });
 
+let tablaPloteo;
+const buscarReportePloteo = function(){
+	tablaPloteo.ajax.reload();
+}
 /* VER ORDENES DE TRABAJO PLOTEO */
 $(document).ready(function () {
 	$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		$('#tablaReportePloteo').DataTable().responsive.recalc();
 		$('#tablaReporteServicioTecnico').DataTable().responsive.recalc();
 	})
-	$('#tablaReportePloteo').DataTable({
-		ajax: 'http://localhost/ci3/reportes/mostrarPloteo',
+	tablaPloteo = $('#tablaReportePloteo').DataTable({
+		ajax: {
+			"url": 'http://localhost/ci3/reportes/mostrarPloteo',
+			"type": "GET",
+			"data": {
+				fechaInicioPloteo: function() { return $('#fechaInicioPloteo').val() },
+				fechaFinPloteo: function() { return $('#fechaFinPloteo').val() }
+			},
+		},
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
 		order: [],
 		responsive: true,
