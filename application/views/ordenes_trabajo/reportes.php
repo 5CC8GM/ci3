@@ -121,8 +121,8 @@
 											<div class="row">
 												<div class="col-lg-6">
 													<button type="button"
-															id="buscarPloteo"
-															class="btn btn-block btn-primary">Buscar
+															onclick="buscarReportePloteo()"
+															class="btn btn-block btn-primary buscarPloteo">Buscar
 													</button>
 												</div>
 											</div>
