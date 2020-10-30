@@ -101,7 +101,7 @@
 													<input type="date"
 														   class="form-control"
 														   name="fechaInicioPloteo"
-														   id="fechaInicioPloteo">
+														   id="fechaInicioPloteo" data-value="" placeholder="Seleccione una fecha de inicio">
 												</div>
 											</div>
 										
@@ -113,7 +113,7 @@
 													<input type="date"
 														   class="form-control"
 														   name="fechaFinPloteo"
-														   id="fechaFinPloteo">
+														   id="fechaFinPloteo" data-value="" placeholder="Seleccione una fecha de fin">
 												</div>
 											</div>
 										</div>

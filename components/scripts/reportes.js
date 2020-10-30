@@ -13,6 +13,21 @@ $('#fechaFin').pickadate({
 	hiddenName: true,
 	close: 'cerrar'
 });
+
+$('#fechaInicioPloteo').pickadate({
+	selectYears: true,
+	selectMonths: true,
+	formatSubmit: 'yyyy/mm/dd',
+	hiddenName: true,
+	close: 'cerrar'
+});
+$('#fechaFinPloteo').pickadate({
+	selectYears: true,
+	selectMonths: true,
+	formatSubmit: 'yyyy/mm/dd',
+	hiddenName: true,
+	close: 'cerrar'
+});
 console.log($('fechaInicio').val())
 var table;
 const buscarReporteServicioTecnico = function(){
@@ -126,8 +141,8 @@ $(document).ready(function () {
 			"url": 'http://localhost/ci3/reportes/mostrarPloteo',
 			"type": "GET",
 			"data": {
-				fechaInicioPloteo: function() { return $('#fechaInicioPloteo').val() },
-				fechaFinPloteo: function() { return $('#fechaFinPloteo').val() }
+				fechaInicioPloteo: function() { return $('input[name="fechaInicioPloteo"]').val() },
+				fechaFinPloteo: function() { return $('input[name="fechaFinPloteo"]').val() }
 			},
 		},
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
