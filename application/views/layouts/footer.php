@@ -52,8 +52,9 @@
 <!-- PRINT -->
 <script src="<?= base_url() ?>components/global_assets/js/plugins/print/jQuery.print.js"></script>
 <!-- DATEPICKER -->
-<script src="<?= base_url() ?>components/global_assets/js/plugins/ui/moment/moment.min.js"></script>
-<script src="<?= base_url() ?>components/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/pickers/pickadate/picker.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+<script src="<?= base_url() ?>components/global_assets/js/plugins/pickers/pickadate/translations/es_ES.js"></script>
 <!-- Theme JS files -->
 <script src="<?= base_url() ?>components/assets/js/app.js"></script>
 <!-- /theme JS files -->
