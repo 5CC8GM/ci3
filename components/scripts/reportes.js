@@ -1,4 +1,19 @@
 /* VER ORDENES DE TRABAJO SERVICIO TECNICO */
+$('#fechaInicio').pickadate({
+	selectYears: true,
+	selectMonths: true,
+	formatSubmit: 'yyyy/mm/dd',
+	hiddenName: true,
+	close: 'cerrar'
+});
+$('#fechaFin').pickadate({
+	selectYears: true,
+	selectMonths: true,
+	formatSubmit: 'yyyy/mm/dd',
+	hiddenName: true,
+	close: 'cerrar'
+});
+console.log($('fechaInicio').val())
 var table;
 const buscarReporteServicioTecnico = function(){
 	table.ajax.reload();
@@ -13,8 +28,8 @@ $(document).ready(function () {
 			"url": 'http://localhost/ci3/reportes/mostrarServicioTecnico',
 			"type": "GET",
 			"data": {
-				fechaInicio: function() { return $('#fechaInicio').val() },
-				fechaFin: function() { return $('#fechaFin').val() }
+				fechaInicio: function() { return $('input[name="fechaInicio"]').val() },
+				fechaFin: function() { return $('input[name="fechaFin"]').val() }
 			},
 		},
 		dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
@@ -194,18 +209,3 @@ $(document).ready(function () {
 	});
 });
 
-/*$('#fechaInicio').daterangepicker({
-	singleDatePicker: true,
-	locale: {
-		format: 'DD/MM/YYYY'
-	}
-});
-$('#fechaInicio').val('')
-$('#fechaFin').daterangepicker({
-	singleDatePicker: true,
-	locale: {
-		format: 'DD/MM/YYYY'
-	}
-});
-$('#fechaFin').val('')
-*/

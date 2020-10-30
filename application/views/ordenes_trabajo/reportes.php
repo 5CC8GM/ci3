@@ -38,10 +38,10 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Desde:</label>
 												<div class="col-lg-8">
-													<input type="date"
+													<input type="text"
 														   class="form-control"
 														   name="fechaInicio"
-														   id="fechaInicio">
+														   id="fechaInicio" data-value="" placeholder="Seleccione una fecha de inicio">
 												</div>
 											</div>
 										
@@ -50,10 +50,10 @@
 											<div class="row">
 												<label class="col-lg-4 col-form-label text-lg-right">Hasta:</label>
 												<div class="col-lg-8">
-													<input type="date"
+													<input type="text"
 														   class="form-control"
 														   name="fechaFin"
-														   id="fechaFin">
+														   id="fechaFin" data-value="" placeholder="Seleccione una fecha de fin">
 												</div>
 											</div>
 										</div>
