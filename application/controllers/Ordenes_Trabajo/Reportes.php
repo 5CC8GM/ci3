@@ -80,8 +80,10 @@ class Reportes extends CI_Controller
 	/* MOSTRAR ORDENES DE TRABAJO PLOTEO */
 	public function mostrarPloteo()
 	{
-
-		$resultadoDb = $this->reportes_model->mostrarPloteo();
+		
+		$fechaInicioPloteo = $_GET['fechaInicioPloteo'];
+		$fechaFinPloteo = $_GET['fechaFinPloteo'];
+		$resultadoDb = $this->reportes_model->mostrarPloteo($fechaInicioPloteo,$fechaFinPloteo);
 		$resultado = array();
 		$i = 1;
 
