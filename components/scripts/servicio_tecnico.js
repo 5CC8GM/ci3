@@ -235,9 +235,9 @@ $(document).ready(function () {
 			}
 		},
 		drawCallback: (settings) => {
-		// Aplicar select2 con las opciones deseadas
-		$('.estadoDocumento').select2();
-	}
+			// Aplicar select2 con las opciones deseadas
+			$('.estadoDocumento').select2();
+		}
 	})
 	$('.dataTables_length select').select2({
 		minimumResultsForSearch: Infinity,
@@ -466,7 +466,7 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 })
 
 /* IMPRIMIR ORDEN DE TRABAJO SERVICIO TECNICO */
-$(document).on('click', '.btn-print', function (event) {
+$(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
 	event.preventDefault
 	
 	$('#modalVerOtServicioTecnico .modal-body').print({
