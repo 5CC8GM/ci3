@@ -6,6 +6,12 @@ class Reportes extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (!$this->session->userdata('login')) {
+			
+			/* SI ES FALSA REDIRECCIONAR AL LOGIN */
+			redirect(base_url());
+			
+		}
 		$this->load->model('ordenes_trabajo/reportes_model');
 	}
 	/* VISTA */

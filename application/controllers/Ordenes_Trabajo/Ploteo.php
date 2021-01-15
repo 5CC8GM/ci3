@@ -5,6 +5,13 @@
 		
 		public function __construct() {
 			parent::__construct();
+			/* COMPROBAR LA VARIABLE DE SESION LOGIN */
+			if (!$this->session->userdata('login')) {
+				
+				/* SI ES FALSA REDIRECCIONAR AL LOGIN */
+				redirect(base_url());
+				
+			}
 			$this->load->helper(array('form', 'url'));
 			$this->load->library('form_validation');
 			$this->load->model('clientes_model');
