@@ -28,7 +28,6 @@ $('#fechaFinPloteo').pickadate({
 	hiddenName: true,
 	close: 'cerrar'
 });
-console.log($('fechaInicio').val())
 var table;
 const buscarReporteServicioTecnico = function(){
 	table.ajax.reload();
@@ -224,3 +223,49 @@ $(document).ready(function () {
 	});
 });
 
+/* VER DOCUMENTO OT SERVICIO TECNICO */
+$(document).on('click', '#verReporteOtServicioTecnico', function (event) {
+	$('#modalVerReporteOtServicioTecnico').modal('show')
+	event.preventDefault()
+	let verIdOtServicioTecnico = $(this).attr('value');
+	$.ajax({
+		url: 'http://localhost/ci3/servicio_tecnico/invoice',
+		type: 'post',
+		dataType: 'html',
+		data: {
+			id: verIdOtServicioTecnico,
+		},
+		success: function (data) {
+			// console.log(data)
+			$('#modalVerReporteOtServicioTecnico').modal('show')
+			$('#modalVerReporteOtServicioTecnico .modal-body').html(data)
+		}
+	})
+	
+})
+
+$(document).on('click', '#verReporteOtPloteo', function (event) {
+	
+	event.preventDefault()
+	$('#modalVerReporteOtPloteo').modal('show')
+	
+	let idOtPloteo = $(this).attr('value');
+	// console.log(idOtPloteo)
+	
+	$.ajax({
+		
+		url: 'http://localhost/ci3/ploteo/invoice',
+		type: 'post',
+		dataType: 'html',
+		data: {
+			id: idOtPloteo,
+		},
+		success: function (data) {
+			// console.log(data)
+			$('#modalVerReporteOtPloteo').modal('show')
+			$('#modalVerReporteOtPloteo .modal-body').html(data)
+		}
+		
+	})
+	
+})
