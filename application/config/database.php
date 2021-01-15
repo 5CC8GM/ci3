@@ -77,7 +77,7 @@
 		'dsn'          => '',
 		'hostname'     => 'localhost',
 		'username'     => 'root',
-		'password'     => '123456',
+		'password'     => '',
 		'database'     => 'codeigniter',
 		'dbdriver'     => 'mysqli',
 		'dbprefix'     => '',
