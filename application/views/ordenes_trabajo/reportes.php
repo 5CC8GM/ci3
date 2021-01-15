@@ -152,3 +152,41 @@
 		</div>
 	</div>
 </div>
+<!-- MODAL VER ORDEN DE TRABAJO SERVICIO TECNICO -->
+<div id="modalVerReporteOtServicioTecnico"
+	 class="modal fade"
+	 tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-body">
+			
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button"
+						class="btn bg-danger-800"
+						data-dismiss="modal">Cerrar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- MODAL VER ORDEN DE TRABAJO PLOTEO -->
+<div id="modalVerReporteOtPloteo"
+	 class="modal fade"
+	 tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-body">
+			
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button"
+						class="btn bg-danger-800"
+						data-dismiss="modal">Cerrar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
