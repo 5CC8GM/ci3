@@ -400,7 +400,7 @@
 				</button>
 				<button class="btn bg-primary-800 btn-print"
 						type="button"
-						id="crearOrdenTrabajoServicioTecnico">Imprimir <i
+						id="imprimirOrdenTrabajoServicioTecnico">Imprimir <i
 							class="icon-printer
 									ml-2"></i></button>
 			</div>

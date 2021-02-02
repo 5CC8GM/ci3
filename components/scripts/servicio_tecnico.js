@@ -466,7 +466,7 @@ $(document).on('click', '#actualizarOtServicioTecnico', function (event) {
 })
 
 /* IMPRIMIR ORDEN DE TRABAJO SERVICIO TECNICO */
-$(document).on('click', '#crearOrdenTrabajoServicioTecnico', function (event) {
+$(document).on('click', '#imprimirOrdenTrabajoServicioTecnico', function (event) {
 	event.preventDefault
 	
 	$('#modalVerOtServicioTecnico .modal-body').print({
