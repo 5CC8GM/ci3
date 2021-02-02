@@ -13,9 +13,8 @@
 		}
 		
 		public function ingresosTotales() {
-			
-			$total = $this->db->select_sum('Total_OTPloteo')->get('ot_ploteo')->row('Total_OTPloteo');
-			$total2 = $this->db->select_sum('Total_OTServicioTecnico')->get('ot_servicio_tecnico')->row('Total_OTServicioTecnico');
+			$total = $this->db->select_sum('Total_OTPloteo')->where('Estado_OTPloteo', 1)->get('ot_ploteo')->row('Total_OTPloteo');
+			$total2 = $this->db->select_sum('Total_OTServicioTecnico')->where('Estado_OTServicioTecnico', 1)->get('ot_servicio_tecnico')->row('Total_OTServicioTecnico');
 			return number_format($total + $total2, 2);
 		}
 		
