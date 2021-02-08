@@ -122,17 +122,18 @@
 		}
 		
 		public function montos($year) {
-			
-			$this->db->select('MONTH(Fecha_OTServicioTecnico) as mes, SUM(Total_OTServicioTecnico) as monto');
-			$this->db->from('ot_servicio_tecnico');
-			$this->db->where('Fecha_OTServicioTecnico >=', $year . '-01-01');
-			$this->db->where('Fecha_OTServicioTecnico <=', $year . '-12-31');
-			$this->db->where('Estado_OTServicioTecnico =', 1);
-			$this->db->group_by('mes');
-			$this->db->order_by('mes');
-			
-			$resultados = $this->db->get();
-			
+			$sql = "SELECT * FROM (
+					SELECT MONTH(Fecha_OTPloteo) mes,
+					  SUM(Total_OTPloteo) totalPloteo
+					  FROM ot_ploteo WHERE Estado_OTPloteo = '1'
+					  GROUP BY 1
+				  ) c1 LEFT JOIN (
+					SELECT MONTH(Fecha_OTServicioTecnico) mes,
+					  SUM(Total_OTServicioTecnico) totalSt
+					  FROM ot_servicio_tecnico WHERE Estado_OTServicioTecnico = '1'
+					  GROUP BY 1
+				  ) c2 USING(mes)";
+			$resultados = $this->db->query($sql);
 			return $resultados->result();
 		}
 		

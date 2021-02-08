@@ -64,10 +64,10 @@
 	</div>
 	<!-- /basic card -->
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-header header-elements-inline">
-					<h5 class="card-title">Gráfica De Ingresos Servicio Técnico</h5>
+					<h5 class="card-title">Gráfica De Ingresos</h5>
 					<div class="header-elements">
 						<div class="list-icons">
 							<select name="year"
@@ -88,34 +88,6 @@
 					<div class="chart-container">
 						<div class="chart has-fixed-height"
 							 id="graficaServicioTecnico"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6">
-			<div class="card">
-				<div class="card-header header-elements-inline">
-					<h5 class="card-title">Gráfica De Ingresos Ploteo</h5>
-					<div class="header-elements">
-						<div class="list-icons">
-							<select name="yearPloteo"
-									id="yearPloteo"
-									class="form-control selectPloteo">
-								<?php foreach ($yearsPloteo as $year): ?>
-									<option value="<?= $year->yearPloteo ?>"><?= $year->yearPloteo ?></option>
-								<?php endforeach; ?>
-							</select>
-							<a class="list-icons-item"
-							   data-action="collapse"></a>
-							<a class="list-icons-item"
-							   data-action="remove"></a>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<div class="chart-container">
-						<div class="chart has-fixed-height"
-							 id="graficaPloteo"></div>
 					</div>
 				</div>
 			</div>

@@ -4,7 +4,9 @@ $('.select').select2({
 });
 
 let year = (new Date().getFullYear())
+// console.log(year)
 datosGrafico(year)
+
 $('#year').on('change', function (event) {
 	
 	event.preventDefault()
@@ -23,17 +25,18 @@ function datosGrafico(year) {
 		data: {year: year},
 		dataType: 'json',
 		success: function (data) {
-			// console.log(data)
+			console.log(data)
 			let meses = [];
 			let montos = [];
+			let montosPloteo = [];
 			
 			$.each(data, function (key, value) {
-				
 				meses.push(nombresDelMes[value.mes - 1]);
-				montos.push(value.monto)
+				montos.push(value.totalSt)
+				montosPloteo.push(value.totalPloteo)
 				
 			})
-			graficar(meses, montos)
+			graficar(meses, montos, montosPloteo)
 			
 		}
 	})
@@ -41,7 +44,7 @@ function datosGrafico(year) {
 }
 
 
-function graficar(meses, montos) {
+function graficar(meses, montos, montosPloteo) {
 	// Define element
 	var columns_basic_element = echarts.init(document.getElementById('graficaServicioTecnico'));
 	
@@ -49,7 +52,7 @@ function graficar(meses, montos) {
 	var option = ({
 		
 		// Define colors
-		color: ['#5ab1ef'],
+		color: ['#5AB1EF', '#FFB980'],
 		
 		// Global text styles
 		textStyle: {
@@ -57,7 +60,7 @@ function graficar(meses, montos) {
 			fontSize: 13
 		},
 		// Chart animation duration
-		animationDuration: 3000,
+		animationDuration: 1500,
 		
 		// Setup grid
 		grid: {
@@ -70,7 +73,7 @@ function graficar(meses, montos) {
 		
 		// Add legend
 		legend: {
-			data: ['Ingresos Servicio Técnico'],
+			data: ['Ingresos Servicio Técnico', 'Ingresos Ploteo'],
 			itemHeight: 8,
 			itemGap: 20,
 			textStyle: {
@@ -166,190 +169,10 @@ function graficar(meses, montos) {
 						}
 					}
 				},
-			},
-		]
-	});
-	
-	// Resize function
-	var triggerChartResize = function () {
-		columns_basic_element.resize();
-	};
-	
-	// On sidebar width change
-	var sidebarToggle = document.querySelector('.sidebar-control');
-	sidebarToggle && sidebarToggle.addEventListener('click', triggerChartResize);
-	
-	// On window resize
-	var resizeCharts;
-	window.addEventListener('resize', function () {
-		clearTimeout(resizeCharts);
-		resizeCharts = setTimeout(function () {
-			triggerChartResize();
-		}, 200);
-	});
-	
-	
-	//
-	// Return objects assigned to module
-	columns_basic_element.setOption(option)
-}
-
-
-/* GRAFICA PLOTEO */
-$('.selectPloteo').select2({
-	placeholder: 'Seleccione una fecha',
-	minimumResultsForSearch: Infinity,
-});
-
-let yearPloteo = (new Date().getFullYear())
-
-datosGraficoPloteo(yearPloteo)
-$('#yearPloteo').on('change', function (event) {
-	
-	event.preventDefault()
-	let yearSeleccionado = $(this).val();
-	datosGraficoPloteo(yearSeleccionado)
-	
-})
-
-function datosGraficoPloteo(yearPloteo) {
-	
-	let nombresDelMesPloteo = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-	// console.log(nombresDelMesPloteo)
-	$.ajax({
-		url: 'http://localhost/ci3/getDataPloteo',
-		type: 'post',
-		data: {yearPloteo: yearPloteo},
-		dataType: 'json',
-		success: function (data) {
-			// console.log(data)
-			let mesesPloteo = [];
-			let montosPloteo = [];
-			
-			$.each(data, function (key, value) {
-				
-				mesesPloteo.push(nombresDelMesPloteo[value.mesPloteo - 1]);
-				montosPloteo.push(value.montoPloteo)
-				
-			})
-			graficarPloteo(mesesPloteo, montosPloteo)
-			
-		}
-	})
-	
-}
-
-
-function graficarPloteo(mesesPloteo, montosPloteo) {
-	// Define element
-	var columns_basic_element = echarts.init(document.getElementById('graficaPloteo'));
-	
-	// Options
-	var option = ({
-		
-		// Define colors
-		color: ['#d87a80'],
-		
-		// Global text styles
-		textStyle: {
-			fontFamily: 'Roboto, Arial, Verdana, sans-serif',
-			fontSize: 13
-		},
-		// Chart animation duration
-		animationDuration: 3000,
-		
-		// Setup grid
-		grid: {
-			left: 0,
-			right: 40,
-			top: 35,
-			bottom: 0,
-			containLabel: true
-		},
-		
-		// Add legend
-		legend: {
-			data: ['Ingresos Ploteo'],
-			itemHeight: 8,
-			itemGap: 20,
-			textStyle: {
-				padding: [0, 5],
-				color: '#FFF'
-			}
-		},
-		
-		// Add tooltip
-		tooltip: {
-			trigger: 'axis',
-			backgroundColor: 'rgba(255,255,255,0.9)',
-			padding: [10, 15],
-			textStyle: {
-				color: '#222',
-				fontSize: 13,
-				fontFamily: 'Roboto, sans-serif'
-			},
-			axisPointer: {
-				type: 'shadow',
-				shadowStyle: {
-					color: 'rgba(255,255,255,0.1)'
-				}
-			}
-		},
-		
-		// Horizontal axis
-		xAxis: [{
-			type: 'category',
-			data: mesesPloteo,
-			axisLabel: {
-				color: '#FFF'
-			},
-			axisLine: {
-				lineStyle: {
-					color: 'rgba(255,255,255,0.25)'
+				markLine: {
+					data: [{type: 'average', name: 'Average'}]
 				}
 			},
-			splitLine: {
-				show: true,
-				lineStyle: {
-					color: 'rgba(255,255,255,0.1)',
-					type: 'dashed'
-				}
-			}
-		}],
-		
-		// Vertical axis
-		yAxis: [{
-			type: 'value',
-			axisLabel: {
-				color: '#FFF'
-			},
-			axisLine: {
-				lineStyle: {
-					color: 'rgba(255,255,255,0.25)'
-				}
-			},
-			splitLine: {
-				lineStyle: {
-					color: 'rgba(255,255,255,0.1)'
-				}
-			},
-			splitArea: {
-				show: true,
-				areaStyle: {
-					color: ['rgba(255,255,255,0.01)', 'rgba(0,0,0,0.01)']
-				}
-			}
-		}],
-		
-		// Axis pointer
-		axisPointer: [{
-			lineStyle: {
-				color: 'rgba(255,255,255,0.25)'
-			}
-		}],
-		
-		// Add series
-		series: [
 			{
 				name: 'Ingresos Ploteo',
 				type: 'bar',
@@ -365,6 +188,9 @@ function graficarPloteo(mesesPloteo, montosPloteo) {
 						}
 					}
 				},
+				markLine: {
+					data: [{type: 'average', name: 'Average'}]
+				}
 			},
 		]
 	});
