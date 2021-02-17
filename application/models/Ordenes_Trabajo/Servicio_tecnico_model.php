@@ -109,32 +109,68 @@
 		}
 		
 		public function years() {
-			
-			$this->db->select('YEAR(Fecha_OTServicioTecnico) as year');
-			$this->db->from('ot_servicio_tecnico');
-			$this->db->group_by('year');
-			$this->db->order_by('year', 'desc');
-			
-			$resultados = $this->db->get();
+		
+//			$this->db->select('YEAR(Fecha_OTServicioTecnico) as year');
+//			$this->db->from('ot_servicio_tecnico');
+//			$this->db->group_by('year');
+//			$this->db->order_by('year', 'desc');
+			$sql = "SELECT year
+					FROM (SELECT YEAR(Fecha_OTPloteo) year FROM ot_ploteo op group by 1) c1
+							 LEFT JOIN (SELECT YEAR(Fecha_OTServicioTecnico) year FROM ot_servicio_tecnico ost group by 1) c2 using (year)
+					UNION
+					SELECT year
+					FROM (
+							 SELECT YEAR(Fecha_OTPloteo) year
+							 FROM ot_ploteo op
+							 group by 1
+						 ) c1
+							 RIGHT JOIN (
+						SELECT YEAR(Fecha_OTServicioTecnico) year FROM ot_servicio_tecnico ost group by 1
+					) c2 using (year) order by year desc ";
+			$resultados = $this->db->query($sql);
 			
 			return $resultados->result();
+			
+			
 			
 		}
 		
 		public function montos($year) {
-			$sql = "SELECT * FROM (
-					SELECT MONTH(Fecha_OTPloteo) mes,
-					  SUM(Total_OTPloteo) totalPloteo
-					  FROM ot_ploteo WHERE Estado_OTPloteo = '1'
-					  GROUP BY 1
-				  ) c1 LEFT JOIN (
-					SELECT MONTH(Fecha_OTServicioTecnico) mes,
-					  SUM(Total_OTServicioTecnico) totalSt
-					  FROM ot_servicio_tecnico WHERE Estado_OTServicioTecnico = '1'
-					  GROUP BY 1
-				  ) c2 USING(mes)";
+			$sql = "SELECT mes, totalPloteo, totalSt
+					FROM (
+							 SELECT MONTH(Fecha_OTPloteo) mes,
+									SUM(Total_OTPloteo)   totalPloteo
+							 FROM ot_ploteo
+							 WHERE Fecha_OTPloteo BETWEEN '$year-01-01' AND '$year-12-31'
+							 GROUP BY 1
+						 ) c1
+							 LEFT JOIN (
+						SELECT MONTH(Fecha_OTServicioTecnico) mes,
+							   SUM(Total_OTServicioTecnico)   totalSt
+						FROM ot_servicio_tecnico
+						WHERE Fecha_OTServicioTecnico BETWEEN '$year-01-01' AND '$year-12-31'
+						GROUP BY 1
+					) c2 USING (mes)
+					UNION
+					SELECT mes, totalPloteo, totalSt
+					FROM (
+							 SELECT MONTH(Fecha_OTPloteo) mes,
+									SUM(Total_OTPloteo)   totalPloteo
+							 FROM ot_ploteo
+							 WHERE Fecha_OTPloteo BETWEEN '$year-01-01' AND '$year-12-31'
+							 GROUP BY 1
+						 ) c1
+							 RIGHT JOIN (
+						SELECT MONTH(Fecha_OTServicioTecnico) mes,
+							   SUM(Total_OTServicioTecnico)   totalSt
+						FROM ot_servicio_tecnico
+						WHERE Fecha_OTServicioTecnico BETWEEN '$year-01-01' AND '$year-12-31'
+						GROUP BY 1
+					) c2 USING (mes)";
+			
 			$resultados = $this->db->query($sql);
 			return $resultados->result();
+//			echo $this->db->get_compiled_select($sql);
 		}
 		
 	}
