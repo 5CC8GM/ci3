@@ -55,13 +55,4 @@
 			echo json_encode($resultados);
 			
 		}
-		
-		public function getDataPloteo() {
-			
-			$yearPloteo = $this->input->post('yearPloteo');
-			$resultados = $this->Ploteo_model->montos($yearPloteo);
-			
-			echo json_encode($resultados);
-			
-		}
 	}
