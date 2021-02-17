@@ -11,6 +11,7 @@ $('#year').on('change', function (event) {
 	
 	event.preventDefault()
 	let yearSeleccionado = $(this).val();
+	// console.log(yearSeleccionado)
 	datosGrafico(yearSeleccionado)
 	
 })
@@ -25,7 +26,7 @@ function datosGrafico(year) {
 		data: {year: year},
 		dataType: 'json',
 		success: function (data) {
-			console.log(data)
+			// console.log(data)
 			let meses = [];
 			let montos = [];
 			let montosPloteo = [];
